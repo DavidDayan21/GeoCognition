@@ -1,6 +1,7 @@
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import { LogOut, Pause } from "lucide-react";
 import { useCallback, useEffect, useRef, useState } from "react";
+import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
 import {
   cardSwap,
@@ -10,9 +11,11 @@ import {
   pageVariants,
 } from "../../lib/animations";
 import { formatPercent } from "../../lib/format";
+import { localeOf } from "../../lib/language";
+import { getLocalizedCountryName } from "../../lib/localize";
 import { selectAccuracy, usePracticeStore } from "../../store/practice-store";
 import { useToastStore } from "../../store/toast-store";
-import type { QuestionMode } from "../../types/domain";
+import type { Language, QuestionMode } from "../../types/domain";
 import { Button } from "../ui/Button";
 import { Card } from "../ui/Card";
 import { Modal } from "../ui/Modal";
@@ -25,9 +28,10 @@ import { FlagPrompt } from "./FlagPrompt";
 const AUTO_ADVANCE_MS = 650;
 
 function ModeBadge({ mode }: { mode: QuestionMode }) {
+  const { t } = useTranslation();
   return (
     <span className="inline-flex items-center rounded-full border border-border bg-surface-2 px-3 py-1 text-xs font-medium uppercase tracking-wide text-text-muted">
-      {mode === "capital" ? "Capital" : "Flag"}
+      {mode === "capital" ? t("practice.capital") : t("practice.flag")}
     </span>
   );
 }
@@ -46,6 +50,9 @@ function Stat({ label, value }: { label: string; value: string }) {
 /** The infinite practice loop: question, answer, feedback, repeat. */
 export function PracticeView() {
   const navigate = useNavigate();
+  const { t, i18n } = useTranslation();
+  const language: Language = i18n.language === "fr" ? "fr" : "en";
+  const locale = localeOf(language);
   const reduce = useReducedMotion();
   const inputRef = useRef<HTMLInputElement>(null);
   const beganRef = useRef(false);
@@ -143,22 +150,26 @@ export function PracticeView() {
           {question && <ModeBadge mode={question.mode} />}
         </div>
         <div className="flex items-center gap-6">
-          <Stat label="answered" value={String(answered)} />
+          <Stat label={t("practice.answered")} value={String(answered)} />
           <Stat
-            label="accuracy"
-            value={answered === 0 ? "—" : formatPercent(accuracy)}
+            label={t("practice.accuracy")}
+            value={answered === 0 ? "—" : formatPercent(accuracy, locale)}
           />
-          <Stat label="streak" value={String(streak)} />
+          <Stat label={t("practice.streak")} value={String(streak)} />
         </div>
         <div className="flex min-w-[120px] items-center justify-end gap-1">
           <Button
             variant="ghost"
-            aria-label="Pause"
+            aria-label={t("practice.pause")}
             onClick={() => setPaused(true)}
           >
             <Pause size={18} aria-hidden />
           </Button>
-          <Button variant="ghost" aria-label="Exit to home" onClick={goHome}>
+          <Button
+            variant="ghost"
+            aria-label={t("practice.exit")}
+            onClick={goHome}
+          >
             <LogOut size={18} aria-hidden />
           </Button>
         </div>
@@ -168,15 +179,17 @@ export function PracticeView() {
         {status === "error" ? (
           <div className="flex flex-col items-center gap-4 text-center">
             <p className="text-text-muted">
-              {errorMessage ?? "Couldn't load the next question."}
+              {errorMessage ?? t("practice.loadError")}
             </p>
-            <Button onClick={() => void begin()}>Try again</Button>
+            <Button onClick={() => void begin()}>
+              {t("practice.tryAgain")}
+            </Button>
           </div>
         ) : !question ? (
           <div
             className="h-4 w-32 animate-pulse rounded-full bg-surface-2"
             role="status"
-            aria-label="Loading question"
+            aria-label={t("practice.loadingQuestion")}
           />
         ) : (
           <AnimatePresence mode="wait" initial={false}>
@@ -191,7 +204,16 @@ export function PracticeView() {
             >
               <Card className="flex flex-col items-center gap-10 px-8 py-14">
                 {question.mode === "capital" && question.country_name && (
-                  <CapitalPrompt countryName={question.country_name} />
+                  <CapitalPrompt
+                    countryName={getLocalizedCountryName(
+                      {
+                        name: question.country_name,
+                        name_fr:
+                          question.country_name_fr ?? question.country_name,
+                      },
+                      language,
+                    )}
+                  />
                 )}
                 {question.mode === "flag" && question.iso_alpha2 && (
                   <FlagPrompt isoAlpha2={question.iso_alpha2} />
@@ -233,8 +255,8 @@ export function PracticeView() {
                           disabled={inputDisabled}
                           placeholder={
                             question.mode === "capital"
-                              ? "Type the capital…"
-                              : "Type the country…"
+                              ? t("practice.typeCapital")
+                              : t("practice.typeCountry")
                           }
                         />
                       </motion.div>
@@ -247,14 +269,20 @@ export function PracticeView() {
         )}
       </div>
 
-      <Modal open={paused} onClose={() => setPaused(false)} title="Paused">
+      <Modal
+        open={paused}
+        onClose={() => setPaused(false)}
+        title={t("practice.paused")}
+      >
         <p className="mb-6 text-sm text-text-muted">
-          Take your time — your progress is saved after every answer.
+          {t("practice.pausedBody")}
         </p>
         <div className="flex flex-col gap-2">
-          <Button onClick={() => setPaused(false)}>Resume</Button>
+          <Button onClick={() => setPaused(false)}>
+            {t("practice.resume")}
+          </Button>
           <Button variant="secondary" onClick={goHome}>
-            Exit to home
+            {t("practice.exit")}
           </Button>
         </div>
       </Modal>

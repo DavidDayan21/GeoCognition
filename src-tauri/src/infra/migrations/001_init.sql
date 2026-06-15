@@ -4,7 +4,9 @@
 CREATE TABLE IF NOT EXISTS countries (
   id INTEGER PRIMARY KEY,
   name TEXT NOT NULL,
+  name_fr TEXT NOT NULL,
   capital TEXT NOT NULL,
+  capital_fr TEXT NOT NULL,
   continent TEXT NOT NULL,
   iso_alpha2 TEXT NOT NULL UNIQUE,
   iso_alpha3 TEXT NOT NULL UNIQUE,

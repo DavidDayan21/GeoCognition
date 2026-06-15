@@ -15,6 +15,7 @@ import {
 } from "lucide-react";
 import type { ReactNode } from "react";
 import { useEffect, useState } from "react";
+import { useTranslation } from "react-i18next";
 import { Link, useNavigate } from "react-router-dom";
 import { getGlobalStats } from "../api/tauri-api";
 import { WorldMap } from "../components/map/WorldMap";
@@ -23,6 +24,7 @@ import { Toggle } from "../components/ui/Toggle";
 import { LanguageSelector } from "../components/LanguageSelector";
 import { EASE_CALM } from "../lib/animations";
 import { formatPercent } from "../lib/format";
+import { localeOf } from "../lib/language";
 import { useAsync } from "../lib/use-async";
 import { useIntroStore } from "../store/intro-store";
 import { useSettingsStore } from "../store/settings-store";
@@ -128,6 +130,8 @@ function HomeStat({
 /** Home page: continent map, mode toggles, Start CTA, and lifetime stats. */
 export default function HomePage() {
   const navigate = useNavigate();
+  const { t, i18n } = useTranslation();
+  const locale = localeOf(i18n.language === "fr" ? "fr" : "en");
 
   // Settings
   const settings = useSettingsStore((s) => s.settings);
@@ -135,6 +139,7 @@ export default function HomePage() {
   const load = useSettingsStore((s) => s.load);
   const toggleContinent = useSettingsStore((s) => s.toggleContinent);
   const setMode = useSettingsStore((s) => s.setMode);
+  const setLanguage = useSettingsStore((s) => s.setLanguage);
 
   useEffect(() => {
     if (status === "idle") void load();
@@ -209,14 +214,14 @@ export default function HomePage() {
             </motion.h1>
 
             <div className="flex items-center gap-1">
-              <NavIcon to="/stats" label="Stats">
+              <NavIcon to="/stats" label={t("nav.stats")}>
                 <ChartColumn size={20} aria-hidden />
               </NavIcon>
-              <NavIcon to="/settings" label="Settings">
+              <NavIcon to="/settings" label={t("nav.settings")}>
                 <Settings size={20} aria-hidden />
               </NavIcon>
               <div className="ml-2">
-                <LanguageSelector onChange={() => {}} />
+                <LanguageSelector onChange={setLanguage} />
               </div>
             </div>
           </header>
@@ -240,7 +245,7 @@ export default function HomePage() {
                 <div
                   className="h-80 animate-pulse rounded-card bg-surface-2"
                   role="status"
-                  aria-label="Loading map"
+                  aria-label={t("home.loadingMap")}
                 />
               )}
             </motion.div>
@@ -253,7 +258,7 @@ export default function HomePage() {
               {settings && (
                 <div className="flex flex-wrap items-center justify-center gap-8">
                   <ModeToggle
-                    label="Capitals"
+                    label={t("common.capitals")}
                     checked={settings.modes_enabled.capital}
                     disabled={
                       settings.modes_enabled.capital &&
@@ -264,7 +269,7 @@ export default function HomePage() {
                     }
                   />
                   <ModeToggle
-                    label="Flags"
+                    label={t("common.flags")}
                     checked={settings.modes_enabled.flag}
                     disabled={
                       settings.modes_enabled.flag &&
@@ -281,7 +286,7 @@ export default function HomePage() {
                 className="px-12 py-4 text-base font-semibold"
               >
                 <Play size={20} aria-hidden />
-                Start practicing
+                {t("home.startPracticing")}
               </Button>
             </motion.div>
 
@@ -295,22 +300,22 @@ export default function HomePage() {
                   <HomeStat
                     icon={<Flame size={16} />}
                     value={String(stats.current_streak)}
-                    label="streak"
+                    label={t("home.streak")}
                   />
                   <HomeStat
                     icon={<Trophy size={16} />}
                     value={String(stats.total_mastered)}
-                    label="mastered"
+                    label={t("home.mastered")}
                   />
                   <HomeStat
                     icon={<Target size={16} />}
-                    value={formatPercent(stats.lifetime_accuracy)}
-                    label="accuracy"
+                    value={formatPercent(stats.lifetime_accuracy, locale)}
+                    label={t("home.accuracy")}
                   />
                 </>
               ) : (
                 <p className="text-sm text-text-muted">
-                  {stats ? "No practice yet — start your first session." : ""}
+                  {stats ? t("home.noPracticeYet") : ""}
                 </p>
               )}
             </motion.div>

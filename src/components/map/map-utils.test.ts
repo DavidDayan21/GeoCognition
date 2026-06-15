@@ -12,7 +12,9 @@ function country(iso_alpha3: string, continent: string, id: number): Country {
   return {
     id,
     name: iso_alpha3.toUpperCase(),
+    name_fr: iso_alpha3.toUpperCase(),
     capital: "City",
+    capital_fr: "City",
     continent,
     iso_alpha2: iso_alpha3.slice(0, 2),
     iso_alpha3,
@@ -78,6 +80,7 @@ describe("buildMasteryByIso", () => {
       {
         country_id: 1,
         name: "Japan",
+        name_fr: "Japon",
         iso_alpha2: "jp",
         iso_alpha3: "jpn",
         continent: "Asia",
@@ -88,6 +91,7 @@ describe("buildMasteryByIso", () => {
       {
         country_id: 2,
         name: "France",
+        name_fr: "France",
         iso_alpha2: "fr",
         iso_alpha3: "fra",
         continent: "Europe",

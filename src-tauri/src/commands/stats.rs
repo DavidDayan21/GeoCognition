@@ -53,9 +53,11 @@ pub async fn get_global_stats(state: State<'_, AppState>) -> Result<GlobalStats,
 }
 
 /// Row shape for the mastery map query:
-/// (id, name, iso_alpha2, iso_alpha3, continent, ef, repetitions, total_attempts).
+/// (id, name, name_fr, iso_alpha2, iso_alpha3, continent, ef, repetitions,
+/// total_attempts).
 type MasteryRow = (
     i64,
+    String,
     String,
     String,
     String,
@@ -71,8 +73,8 @@ pub async fn fetch_mastery_map(
     mode: QuestionMode,
 ) -> Result<Vec<CountryMastery>, AppError> {
     let rows: Vec<MasteryRow> = sqlx::query_as(
-        "SELECT c.id, c.name, c.iso_alpha2, c.iso_alpha3, c.continent, s.ef, s.repetitions, \
-             s.total_attempts \
+        "SELECT c.id, c.name, c.name_fr, c.iso_alpha2, c.iso_alpha3, c.continent, s.ef, \
+             s.repetitions, s.total_attempts \
              FROM countries c \
              LEFT JOIN user_stats s ON s.country_id = c.id AND s.mode = ? \
              ORDER BY c.name",
@@ -86,6 +88,7 @@ pub async fn fetch_mastery_map(
             |(
                 country_id,
                 name,
+                name_fr,
                 iso_alpha2,
                 iso_alpha3,
                 continent,
@@ -96,6 +99,7 @@ pub async fn fetch_mastery_map(
                 CountryMastery {
                     country_id,
                     name,
+                    name_fr,
                     iso_alpha2,
                     iso_alpha3,
                     continent,

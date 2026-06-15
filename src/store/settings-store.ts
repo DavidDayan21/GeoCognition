@@ -8,8 +8,11 @@
 import { create } from "zustand";
 import { getSettings, resetStats, updateSettings } from "../api/tauri-api";
 import { sortContinents } from "../lib/continents";
+import { applyLanguage } from "../lib/language";
+import i18n from "../i18n";
 import type {
   FuzzyTolerance,
+  Language,
   QuestionMode,
   Settings,
   Theme,
@@ -29,6 +32,8 @@ interface SettingsStoreState {
   setMode: (mode: QuestionMode, enabled: boolean) => void;
   setTheme: (theme: Theme) => void;
   setFuzzyTolerance: (tolerance: FuzzyTolerance) => void;
+  /** Switches the UI language, applies it to i18next, and persists it. */
+  setLanguage: (language: Language) => void;
   /** Deletes all SM-2 progress and the answer log via the backend. */
   resetStats: () => Promise<void>;
 }
@@ -36,7 +41,7 @@ interface SettingsStoreState {
 function toMessage(error: unknown): string {
   if (typeof error === "string") return error;
   if (error instanceof Error) return error.message;
-  return "Couldn't save settings. Please try again.";
+  return i18n.t("toast.saveError");
 }
 
 export const useSettingsStore = create<SettingsStoreState>((set, get) => {
@@ -56,6 +61,7 @@ export const useSettingsStore = create<SettingsStoreState>((set, get) => {
       set({ status: "loading" });
       try {
         const settings = await getSettings();
+        applyLanguage(settings.language);
         set({ settings, status: "ready" });
       } catch (error) {
         set({ status: "error" });
@@ -97,10 +103,19 @@ export const useSettingsStore = create<SettingsStoreState>((set, get) => {
       persist({ ...current, fuzzy_tolerance });
     },
 
+    setLanguage: (language) => {
+      // Always switch the UI language and cache it, even before settings have
+      // loaded, so the change is instant. Persist only once we have settings.
+      applyLanguage(language);
+      const current = get().settings;
+      if (!current) return;
+      persist({ ...current, language });
+    },
+
     resetStats: async () => {
       try {
         await resetStats();
-        useToastStore.getState().show("All stats have been reset.", "success");
+        useToastStore.getState().show(i18n.t("toast.statsReset"), "success");
       } catch (error) {
         useToastStore.getState().show(toMessage(error), "error");
       }

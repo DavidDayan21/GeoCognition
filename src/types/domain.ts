@@ -7,11 +7,14 @@
 export type QuestionMode = "capital" | "flag";
 export type Theme = "light" | "dark" | "system";
 export type FuzzyTolerance = "strict" | "normal" | "lenient";
+export type Language = "en" | "fr";
 
 export interface Country {
   id: number;
   name: string;
+  name_fr: string;
   capital: string;
+  capital_fr: string;
   continent: string;
   iso_alpha2: string;
   iso_alpha3: string;
@@ -29,13 +32,16 @@ export interface Settings {
   modes_enabled: ModesEnabled;
   theme: Theme;
   fuzzy_tolerance: FuzzyTolerance;
+  language: Language;
 }
 
 export interface QuestionPayload {
   country_id: number;
   mode: QuestionMode;
-  /** Present in capital mode only. */
+  /** English country name; present in capital mode only. */
   country_name: string | null;
+  /** French country name; present in capital mode only. */
+  country_name_fr: string | null;
   /** Present in flag mode only (flag asset lookup). */
   iso_alpha2: string | null;
   question_index: number;
@@ -45,8 +51,12 @@ export interface AnswerResult {
   /** SM-2 quality: 0 (wrong), 3 (near miss), or 5 (exact). */
   quality: number;
   is_correct: boolean;
+  /** Expected answer in English (capital or country name, by mode). */
   correct_answer: string;
+  /** Expected answer in French (capital or country name, by mode). */
+  correct_answer_fr: string;
   country_name: string;
+  country_name_fr: string;
   ef: number;
   interval_days: number;
   /** RFC 3339 UTC timestamp. */
@@ -56,6 +66,7 @@ export interface AnswerResult {
 export interface CountryMastery {
   country_id: number;
   name: string;
+  name_fr: string;
   iso_alpha2: string;
   iso_alpha3: string;
   continent: string;

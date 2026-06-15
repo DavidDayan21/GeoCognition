@@ -26,6 +26,7 @@ const base: Settings = {
   modes_enabled: { capital: true, flag: true },
   theme: "system",
   fuzzy_tolerance: "normal",
+  language: "en",
 };
 
 /** The settings object passed to the most recent updateSettings call. */

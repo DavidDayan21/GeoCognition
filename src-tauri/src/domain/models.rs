@@ -9,7 +9,11 @@ use crate::domain::question_mode::QuestionMode;
 pub struct Country {
     pub id: i64,
     pub name: String,
+    /// French country name (used when the UI language is French).
+    pub name_fr: String,
     pub capital: String,
+    /// French capital name (used when the UI language is French).
+    pub capital_fr: String,
     pub continent: String,
     pub iso_alpha2: String,
     pub iso_alpha3: String,
@@ -39,6 +43,16 @@ pub enum Theme {
     Light,
     Dark,
     System,
+}
+
+/// UI language. Persisted in settings and mirrored by the frontend i18n
+/// instance. Serde rejects any value other than `"en"` / `"fr"`, so an
+/// invalid language can never reach the backend.
+#[derive(Debug, Clone, Copy, PartialEq, Eq, Serialize, Deserialize)]
+#[serde(rename_all = "lowercase")]
+pub enum Language {
+    En,
+    Fr,
 }
 
 /// Near-miss tolerance presets for answer grading.
@@ -76,6 +90,7 @@ pub struct Settings {
     pub modes_enabled: ModesEnabled,
     pub theme: Theme,
     pub fuzzy_tolerance: FuzzyTolerance,
+    pub language: Language,
 }
 
 /// The six continents available for selection.
@@ -90,7 +105,7 @@ pub const CONTINENTS: [&str; 6] = [
 
 impl Default for Settings {
     /// First-launch defaults: all continents, both modes, system theme,
-    /// normal fuzzy tolerance.
+    /// normal fuzzy tolerance, English UI.
     fn default() -> Self {
         Settings {
             selected_continents: CONTINENTS.iter().map(|c| c.to_string()).collect(),
@@ -100,6 +115,7 @@ impl Default for Settings {
             },
             theme: Theme::System,
             fuzzy_tolerance: FuzzyTolerance::Normal,
+            language: Language::En,
         }
     }
 }
@@ -123,9 +139,12 @@ impl Settings {
 pub struct QuestionPayload {
     pub country_id: i64,
     pub mode: QuestionMode,
-    /// Country name; present in capital mode only (it would leak the
-    /// answer in flag mode).
+    /// English country name; present in capital mode only (it would leak
+    /// the answer in flag mode).
     pub country_name: Option<String>,
+    /// French country name; present in capital mode only. The frontend
+    /// shows this when the UI language is French.
+    pub country_name_fr: Option<String>,
     /// ISO alpha-2 code for the flag asset; present in flag mode only.
     pub iso_alpha2: Option<String>,
     /// In-run index of this question (0-based).
@@ -139,10 +158,14 @@ pub struct AnswerResult {
     pub quality: u8,
     /// True for quality >= 3.
     pub is_correct: bool,
-    /// The expected answer (capital or country name, depending on mode).
+    /// The expected answer in English (capital or country name, by mode).
     pub correct_answer: String,
-    /// Country name, for feedback display in both modes.
+    /// The expected answer in French (capital or country name, by mode).
+    pub correct_answer_fr: String,
+    /// English country name, for feedback display in both modes.
     pub country_name: String,
+    /// French country name, for feedback display in both modes.
+    pub country_name_fr: String,
     pub ef: f64,
     pub interval_days: u32,
     /// RFC 3339 UTC timestamp of the next scheduled review.
@@ -154,6 +177,8 @@ pub struct AnswerResult {
 pub struct CountryMastery {
     pub country_id: i64,
     pub name: String,
+    /// French country name, for the heatmap tooltip in French.
+    pub name_fr: String,
     pub iso_alpha2: String,
     pub iso_alpha3: String,
     pub continent: String,

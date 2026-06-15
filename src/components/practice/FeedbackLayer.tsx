@@ -1,8 +1,9 @@
 import { motion, useReducedMotion } from "framer-motion";
 import { Check } from "lucide-react";
+import { useTranslation } from "react-i18next";
 import { DURATION, EASE_CALM } from "../../lib/animations";
-import { formatNextReview } from "../../lib/format";
-import type { AnswerResult } from "../../types/domain";
+import { pickLocalized } from "../../lib/localize";
+import type { AnswerResult, Language } from "../../types/domain";
 
 export interface FeedbackLayerProps {
   result: AnswerResult;
@@ -17,6 +18,21 @@ export interface FeedbackLayerProps {
  */
 export function FeedbackLayer({ result, userInput }: FeedbackLayerProps) {
   const reduce = useReducedMotion();
+  const { t, i18n } = useTranslation();
+  const language: Language = i18n.language === "fr" ? "fr" : "en";
+
+  // Build the "next review …" relative phrase from the SM-2 interval.
+  const reviewWhen =
+    result.interval_days <= 0
+      ? t("practice.reviewToday")
+      : t("practice.reviewInDays", { count: result.interval_days });
+
+  // Show the correct answer in the active language (falls back to English).
+  const correct = pickLocalized(
+    result.correct_answer,
+    result.correct_answer_fr,
+    language,
+  );
 
   if (result.quality === 5) {
     return (
@@ -27,7 +43,7 @@ export function FeedbackLayer({ result, userInput }: FeedbackLayerProps) {
         transition={{ duration: DURATION.base, ease: EASE_CALM }}
       >
         <Check size={48} strokeWidth={2.5} aria-hidden />
-        <span className="text-sm font-medium">Correct</span>
+        <span className="text-sm font-medium">{t("practice.correct")}</span>
       </motion.div>
     );
   }
@@ -50,20 +66,20 @@ export function FeedbackLayer({ result, userInput }: FeedbackLayerProps) {
       <span
         className={`text-sm font-medium ${isFuzzy ? "text-warning" : "text-error"}`}
       >
-        {isFuzzy ? "Close" : "Not quite"}
+        {isFuzzy ? t("practice.close") : t("practice.notQuite")}
       </span>
       {userInput.trim() && (
         <span className="text-base text-text-muted line-through">
           {userInput}
         </span>
       )}
-      <span className="font-display text-4xl text-text">
-        {result.correct_answer}
+      <span className="font-display text-4xl text-text">{correct}</span>
+      <span className="text-xs text-text-muted">
+        {t("practice.nextReview", { when: reviewWhen })}
       </span>
       <span className="text-xs text-text-muted">
-        Next review {formatNextReview(result.interval_days)}
+        {t("practice.pressEnter")}
       </span>
-      <span className="text-xs text-text-muted">Press Enter to continue</span>
     </motion.div>
   );
 }

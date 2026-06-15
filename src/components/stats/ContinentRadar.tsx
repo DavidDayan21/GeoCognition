@@ -7,30 +7,34 @@ import {
   ResponsiveContainer,
   Tooltip,
 } from "recharts";
+import { useTranslation } from "react-i18next";
 import { getContinentBreakdown } from "../../api/tauri-api";
 import { continentMasteryPercent } from "../../lib/stats";
 import { useAsync } from "../../lib/use-async";
 import { tooltipStyle, useChartColors } from "./chart-theme";
 import { StatPlaceholder } from "./StatPlaceholder";
 
-/** Short axis labels so long continent names don't overlap. */
-const SHORT_NAME: Record<string, string> = {
-  "North America": "N. America",
-  "South America": "S. America",
+/** Continents that need a shortened axis label so long names don't overlap. */
+const SHORT_KEY: Record<string, string> = {
+  "North America": "continents.shortNorthAmerica",
+  "South America": "continents.shortSouthAmerica",
 };
 
 /** Mastery percentage per continent on a 6-axis radar. */
 export function ContinentRadar() {
+  const { t } = useTranslation();
   const { data, status } = useAsync(() => getContinentBreakdown(), 0);
   const colors = useChartColors();
 
+  /** Localized, possibly-shortened axis label for a continent. */
+  const axisLabel = (name: string): string =>
+    SHORT_KEY[name] ? t(SHORT_KEY[name]) : t(`continents.${name}`, name);
+
   if (status === "loading") {
-    return <StatPlaceholder>Loading…</StatPlaceholder>;
+    return <StatPlaceholder>{t("stats.loading")}</StatPlaceholder>;
   }
   if (status === "error" || !data) {
-    return (
-      <StatPlaceholder>Couldn&apos;t load continent mastery.</StatPlaceholder>
-    );
+    return <StatPlaceholder>{t("stats.continentLoadError")}</StatPlaceholder>;
   }
 
   const points = data.map((stat) => ({
@@ -44,7 +48,7 @@ export function ContinentRadar() {
         <PolarGrid stroke={colors["--border"]} />
         <PolarAngleAxis
           dataKey="continent"
-          tickFormatter={(name: string) => SHORT_NAME[name] ?? name}
+          tickFormatter={axisLabel}
           tick={{ fill: colors["--text-muted"], fontSize: 11 }}
         />
         <PolarRadiusAxis
@@ -62,7 +66,8 @@ export function ContinentRadar() {
         />
         <Tooltip
           contentStyle={tooltipStyle(colors)}
-          formatter={(value) => [`${value}%`, "Mastered"]}
+          labelFormatter={(label) => axisLabel(String(label))}
+          formatter={(value) => [`${value}%`, t("stats.tooltipMastered")]}
         />
       </RadarChart>
     </ResponsiveContainer>

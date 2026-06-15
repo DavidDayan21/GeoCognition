@@ -50,6 +50,7 @@ pub async fn load_settings(pool: &SqlitePool) -> Result<Settings, AppError> {
             "modes_enabled" => settings.modes_enabled = serde_json::from_str(&value)?,
             "theme" => settings.theme = serde_json::from_str(&value)?,
             "fuzzy_tolerance" => settings.fuzzy_tolerance = serde_json::from_str(&value)?,
+            "language" => settings.language = serde_json::from_str(&value)?,
             _ => {}
         }
     }
@@ -86,6 +87,7 @@ pub async fn save_settings(pool: &SqlitePool, settings: &Settings) -> Result<(),
             "fuzzy_tolerance",
             serde_json::to_string(&settings.fuzzy_tolerance)?,
         ),
+        ("language", serde_json::to_string(&settings.language)?),
     ];
     let mut tx = pool.begin().await?;
     for (key, value) in entries {

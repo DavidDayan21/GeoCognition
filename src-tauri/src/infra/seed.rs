@@ -22,12 +22,14 @@ pub async fn seed_countries(pool: &SqlitePool) -> Result<u64, AppError> {
     for country in &countries {
         let result = sqlx::query(
             "INSERT OR IGNORE INTO countries \
-             (id, name, capital, continent, iso_alpha2, iso_alpha3, lat, lng) \
-             VALUES (?, ?, ?, ?, ?, ?, ?, ?)",
+             (id, name, name_fr, capital, capital_fr, continent, iso_alpha2, iso_alpha3, lat, lng) \
+             VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
         )
         .bind(country.id)
         .bind(&country.name)
+        .bind(&country.name_fr)
         .bind(&country.capital)
+        .bind(&country.capital_fr)
         .bind(&country.continent)
         .bind(&country.iso_alpha2)
         .bind(&country.iso_alpha3)

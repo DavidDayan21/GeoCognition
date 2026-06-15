@@ -6,6 +6,7 @@
  */
 import { create } from "zustand";
 import { nextQuestion, submitAnswer } from "../api/tauri-api";
+import i18n from "../i18n";
 import type { AnswerResult, QuestionPayload } from "../types/domain";
 
 /**
@@ -69,7 +70,7 @@ function now(): number {
 function toMessage(error: unknown): string {
   if (typeof error === "string") return error;
   if (error instanceof Error) return error.message;
-  return "Something went wrong. Please try again.";
+  return i18n.t("toast.genericError");
 }
 
 export const usePracticeStore = create<PracticeState>((set, get) => ({

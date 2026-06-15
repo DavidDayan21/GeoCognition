@@ -8,6 +8,7 @@ import {
   XAxis,
   YAxis,
 } from "recharts";
+import { useTranslation } from "react-i18next";
 import { getForgettingCurve } from "../../api/tauri-api";
 import { buildForgettingSeries } from "../../lib/stats";
 import { useAsync } from "../../lib/use-async";
@@ -19,23 +20,20 @@ import { StatPlaceholder } from "./StatPlaceholder";
  * theoretical Ebbinghaus curve (dashed line).
  */
 export function ForgettingCurve() {
+  const { t } = useTranslation();
   const { data, status } = useAsync(() => getForgettingCurve(), 0);
   const colors = useChartColors();
 
   if (status === "loading") {
-    return <StatPlaceholder>Loading…</StatPlaceholder>;
+    return <StatPlaceholder>{t("stats.loading")}</StatPlaceholder>;
   }
   if (status === "error") {
-    return <StatPlaceholder>Couldn&apos;t load the curve.</StatPlaceholder>;
+    return <StatPlaceholder>{t("stats.curveLoadError")}</StatPlaceholder>;
   }
 
   const series = buildForgettingSeries(data ?? []);
   if (series.length === 0) {
-    return (
-      <StatPlaceholder>
-        Review the same cards across different days to see your retention.
-      </StatPlaceholder>
-    );
+    return <StatPlaceholder>{t("stats.curveEmpty")}</StatPlaceholder>;
   }
 
   return (
@@ -57,7 +55,7 @@ export function ForgettingCurve() {
           tick={{ fill: colors["--text-muted"], fontSize: 12 }}
           stroke={colors["--border"]}
           label={{
-            value: "Days since last review",
+            value: t("stats.daysSinceReview"),
             position: "insideBottom",
             offset: -2,
             fill: colors["--text-muted"],
@@ -73,10 +71,10 @@ export function ForgettingCurve() {
         />
         <Tooltip
           contentStyle={tooltipStyle(colors)}
-          labelFormatter={(label) => `Day ${label}`}
+          labelFormatter={(label) => t("stats.dayLabel", { day: label })}
           formatter={(value, name) => [
             value === null ? "—" : `${value}%`,
-            name === "observed" ? "Observed" : "Ebbinghaus",
+            name === "observed" ? t("stats.observed") : t("stats.ebbinghaus"),
           ]}
         />
         <Line

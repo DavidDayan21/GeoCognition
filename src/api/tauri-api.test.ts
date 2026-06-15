@@ -14,6 +14,7 @@ const question: QuestionPayload = {
   country_id: 142,
   mode: "capital",
   country_name: "Japan",
+  country_name_fr: "Japon",
   iso_alpha2: null,
   question_index: 0,
 };
@@ -22,7 +23,9 @@ const answer: AnswerResult = {
   quality: 5,
   is_correct: true,
   correct_answer: "Tokyo",
+  correct_answer_fr: "Tokyo",
   country_name: "Japan",
+  country_name_fr: "Japon",
   ef: 2.6,
   interval_days: 1,
   next_review: "2026-06-14T12:00:00Z",
@@ -33,6 +36,7 @@ const settings: Settings = {
   modes_enabled: { capital: true, flag: false },
   theme: "system",
   fuzzy_tolerance: "normal",
+  language: "en",
 };
 
 afterEach(() => {

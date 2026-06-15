@@ -24,6 +24,7 @@ function question(
     country_id: 1,
     mode,
     country_name: mode === "capital" ? "Japan" : null,
+    country_name_fr: mode === "capital" ? "Japon" : null,
     iso_alpha2: mode === "flag" ? "jp" : null,
     question_index: index,
   };
@@ -34,7 +35,9 @@ function answer(quality: number): AnswerResult {
     quality,
     is_correct: quality >= 3,
     correct_answer: "Tokyo",
+    correct_answer_fr: "Tokyo",
     country_name: "Japan",
+    country_name_fr: "Japon",
     ef: 2.6,
     interval_days: 1,
     next_review: "2026-06-14T00:00:00Z",

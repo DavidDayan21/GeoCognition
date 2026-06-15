@@ -53,5 +53,7 @@ pub fn validate(settings: &Settings) -> Result<(), AppError> {
             "at least one mode must be enabled".into(),
         ));
     }
+    // `language` is a `Language` enum, so serde already rejected any value
+    // other than "en"/"fr" before deserialization reached this point.
     Ok(())
 }

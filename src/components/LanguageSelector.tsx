@@ -1,35 +1,35 @@
 /**
- * Language selector button in the Home page header.
+ * Language selector in the Home page header.
  *
  * Shows the active language as a flag icon. Clicking opens a small dropdown
- * with two options. Selecting a language updates the visible flag and calls
- * `onChange` — but NO translation layer is wired yet. All UI text stays in
- * English until a full i18n pass replaces these string literals.
- *
- * TODO(i18n): wire onChange to a real translation context / i18next instance
- *             and replace every hardcoded string with t() calls.
+ * with the two supported languages. Selecting one switches the i18next
+ * language immediately and persists the choice through the settings store
+ * (`setLanguage` → `update_settings`), so it survives a reload.
  */
 import { ChevronDown } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
-
-type Language = "en" | "fr";
+import { useTranslation } from "react-i18next";
+import type { Language } from "../types/domain";
 
 const LANGUAGES: ReadonlyArray<{
   readonly code: Language;
-  readonly name: string;
+  readonly nameKey: "language.english" | "language.french";
   readonly flag: string;
 }> = [
-  { code: "en", name: "English", flag: "/flags/gb.svg" },
-  { code: "fr", name: "Français", flag: "/flags/fr.svg" },
+  { code: "en", nameKey: "language.english", flag: "/flags/gb.svg" },
+  { code: "fr", nameKey: "language.french", flag: "/flags/fr.svg" },
 ];
 
 export interface LanguageSelectorProps {
+  /** Called with the newly selected language. */
   onChange: (lang: Language) => void;
 }
 
-/** Non-functional i18n placeholder — see file-level TODO above. */
 export function LanguageSelector({ onChange }: LanguageSelectorProps) {
-  const [current, setCurrent] = useState<Language>("en");
+  const { t, i18n } = useTranslation();
+  // The active language is i18next's, not the (async) settings — so the
+  // selector reflects the change immediately, even before settings load.
+  const value: Language = i18n.language === "fr" ? "fr" : "en";
   const [open, setOpen] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
 
@@ -47,12 +47,11 @@ export function LanguageSelector({ onChange }: LanguageSelectorProps) {
   }, [open]);
 
   function select(lang: Language) {
-    setCurrent(lang);
     setOpen(false);
-    onChange(lang);
+    if (lang !== value) onChange(lang);
   }
 
-  const activeLang = LANGUAGES.find((l) => l.code === current) ?? LANGUAGES[0];
+  const activeLang = LANGUAGES.find((l) => l.code === value) ?? LANGUAGES[0];
 
   return (
     <div ref={containerRef} className="relative">
@@ -62,7 +61,7 @@ export function LanguageSelector({ onChange }: LanguageSelectorProps) {
         className="flex items-center gap-1.5 rounded-card border border-border bg-surface px-2.5 py-1.5 text-sm text-text-muted ease-calm transition-colors duration-150 hover:text-text focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
         aria-expanded={open}
         aria-haspopup="listbox"
-        aria-label={`Language: ${activeLang.name}`}
+        aria-label={t("language.label", { name: t(activeLang.nameKey) })}
       >
         <img
           src={activeLang.flag}
@@ -76,7 +75,7 @@ export function LanguageSelector({ onChange }: LanguageSelectorProps) {
       {open && (
         <div
           role="listbox"
-          aria-label="Select language"
+          aria-label={t("language.select")}
           className="absolute right-0 top-full z-10 mt-1 w-36 overflow-hidden rounded-card border border-border bg-surface shadow-md"
         >
           {LANGUAGES.map((lang) => (
@@ -84,7 +83,7 @@ export function LanguageSelector({ onChange }: LanguageSelectorProps) {
               key={lang.code}
               type="button"
               role="option"
-              aria-selected={current === lang.code}
+              aria-selected={value === lang.code}
               onClick={() => select(lang.code)}
               className="flex w-full items-center gap-2 px-3 py-2 text-left text-sm text-text-muted ease-calm transition-colors duration-150 hover:bg-surface-2 hover:text-text focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
             >
@@ -94,7 +93,7 @@ export function LanguageSelector({ onChange }: LanguageSelectorProps) {
                 aria-hidden
                 className="h-3.5 w-5 rounded-sm object-cover"
               />
-              {lang.name}
+              {t(lang.nameKey)}
             </button>
           ))}
         </div>

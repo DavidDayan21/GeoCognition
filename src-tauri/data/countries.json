@@ -2,7 +2,9 @@
   {
     "id": 1,
     "name": "Afghanistan",
+    "name_fr": "Afghanistan",
     "capital": "Kabul",
+    "capital_fr": "Kaboul",
     "continent": "Asia",
     "iso_alpha2": "af",
     "iso_alpha3": "afg",
@@ -12,7 +14,9 @@
   {
     "id": 2,
     "name": "Albania",
+    "name_fr": "Albanie",
     "capital": "Tirana",
+    "capital_fr": "Tirana",
     "continent": "Europe",
     "iso_alpha2": "al",
     "iso_alpha3": "alb",
@@ -22,7 +26,9 @@
   {
     "id": 3,
     "name": "Algeria",
+    "name_fr": "Algérie",
     "capital": "Algiers",
+    "capital_fr": "Alger",
     "continent": "Africa",
     "iso_alpha2": "dz",
     "iso_alpha3": "dza",
@@ -32,7 +38,9 @@
   {
     "id": 4,
     "name": "Andorra",
+    "name_fr": "Andorre",
     "capital": "Andorra la Vella",
+    "capital_fr": "Andorre-la-Vieille",
     "continent": "Europe",
     "iso_alpha2": "ad",
     "iso_alpha3": "and",
@@ -42,7 +50,9 @@
   {
     "id": 5,
     "name": "Angola",
+    "name_fr": "Angola",
     "capital": "Luanda",
+    "capital_fr": "Luanda",
     "continent": "Africa",
     "iso_alpha2": "ao",
     "iso_alpha3": "ago",
@@ -52,7 +62,9 @@
   {
     "id": 6,
     "name": "Antigua and Barbuda",
+    "name_fr": "Antigua-et-Barbuda",
     "capital": "Saint John's",
+    "capital_fr": "Saint John's",
     "continent": "North America",
     "iso_alpha2": "ag",
     "iso_alpha3": "atg",
@@ -62,7 +74,9 @@
   {
     "id": 7,
     "name": "Argentina",
+    "name_fr": "Argentine",
     "capital": "Buenos Aires",
+    "capital_fr": "Buenos Aires",
     "continent": "South America",
     "iso_alpha2": "ar",
     "iso_alpha3": "arg",
@@ -72,7 +86,9 @@
   {
     "id": 8,
     "name": "Armenia",
+    "name_fr": "Arménie",
     "capital": "Yerevan",
+    "capital_fr": "Erevan",
     "continent": "Asia",
     "iso_alpha2": "am",
     "iso_alpha3": "arm",
@@ -82,7 +98,9 @@
   {
     "id": 9,
     "name": "Australia",
+    "name_fr": "Australie",
     "capital": "Canberra",
+    "capital_fr": "Canberra",
     "continent": "Oceania",
     "iso_alpha2": "au",
     "iso_alpha3": "aus",
@@ -92,7 +110,9 @@
   {
     "id": 10,
     "name": "Austria",
+    "name_fr": "Autriche",
     "capital": "Vienna",
+    "capital_fr": "Vienne",
     "continent": "Europe",
     "iso_alpha2": "at",
     "iso_alpha3": "aut",
@@ -102,7 +122,9 @@
   {
     "id": 11,
     "name": "Azerbaijan",
+    "name_fr": "Azerbaïdjan",
     "capital": "Baku",
+    "capital_fr": "Bakou",
     "continent": "Asia",
     "iso_alpha2": "az",
     "iso_alpha3": "aze",
@@ -112,7 +134,9 @@
   {
     "id": 12,
     "name": "Bahamas",
+    "name_fr": "Bahamas",
     "capital": "Nassau",
+    "capital_fr": "Nassau",
     "continent": "North America",
     "iso_alpha2": "bs",
     "iso_alpha3": "bhs",
@@ -122,7 +146,9 @@
   {
     "id": 13,
     "name": "Bahrain",
+    "name_fr": "Bahreïn",
     "capital": "Manama",
+    "capital_fr": "Manama",
     "continent": "Asia",
     "iso_alpha2": "bh",
     "iso_alpha3": "bhr",
@@ -132,7 +158,9 @@
   {
     "id": 14,
     "name": "Bangladesh",
+    "name_fr": "Bangladesh",
     "capital": "Dhaka",
+    "capital_fr": "Dacca",
     "continent": "Asia",
     "iso_alpha2": "bd",
     "iso_alpha3": "bgd",
@@ -142,7 +170,9 @@
   {
     "id": 15,
     "name": "Barbados",
+    "name_fr": "Barbade",
     "capital": "Bridgetown",
+    "capital_fr": "Bridgetown",
     "continent": "North America",
     "iso_alpha2": "bb",
     "iso_alpha3": "brb",
@@ -152,7 +182,9 @@
   {
     "id": 16,
     "name": "Belarus",
+    "name_fr": "Biélorussie",
     "capital": "Minsk",
+    "capital_fr": "Minsk",
     "continent": "Europe",
     "iso_alpha2": "by",
     "iso_alpha3": "blr",
@@ -162,7 +194,9 @@
   {
     "id": 17,
     "name": "Belgium",
+    "name_fr": "Belgique",
     "capital": "Brussels",
+    "capital_fr": "Bruxelles",
     "continent": "Europe",
     "iso_alpha2": "be",
     "iso_alpha3": "bel",
@@ -172,7 +206,9 @@
   {
     "id": 18,
     "name": "Belize",
+    "name_fr": "Belize",
     "capital": "Belmopan",
+    "capital_fr": "Belmopan",
     "continent": "North America",
     "iso_alpha2": "bz",
     "iso_alpha3": "blz",
@@ -182,7 +218,9 @@
   {
     "id": 19,
     "name": "Benin",
+    "name_fr": "Bénin",
     "capital": "Porto-Novo",
+    "capital_fr": "Porto-Novo",
     "continent": "Africa",
     "iso_alpha2": "bj",
     "iso_alpha3": "ben",
@@ -192,7 +230,9 @@
   {
     "id": 20,
     "name": "Bhutan",
+    "name_fr": "Bhoutan",
     "capital": "Thimphu",
+    "capital_fr": "Thimphou",
     "continent": "Asia",
     "iso_alpha2": "bt",
     "iso_alpha3": "btn",
@@ -202,7 +242,9 @@
   {
     "id": 21,
     "name": "Bolivia",
+    "name_fr": "Bolivie",
     "capital": "Sucre",
+    "capital_fr": "Sucre",
     "continent": "South America",
     "iso_alpha2": "bo",
     "iso_alpha3": "bol",
@@ -212,7 +254,9 @@
   {
     "id": 22,
     "name": "Bosnia and Herzegovina",
+    "name_fr": "Bosnie-Herzégovine",
     "capital": "Sarajevo",
+    "capital_fr": "Sarajevo",
     "continent": "Europe",
     "iso_alpha2": "ba",
     "iso_alpha3": "bih",
@@ -222,7 +266,9 @@
   {
     "id": 23,
     "name": "Botswana",
+    "name_fr": "Botswana",
     "capital": "Gaborone",
+    "capital_fr": "Gaborone",
     "continent": "Africa",
     "iso_alpha2": "bw",
     "iso_alpha3": "bwa",
@@ -232,7 +278,9 @@
   {
     "id": 24,
     "name": "Brazil",
+    "name_fr": "Brésil",
     "capital": "Brasília",
+    "capital_fr": "Brasilia",
     "continent": "South America",
     "iso_alpha2": "br",
     "iso_alpha3": "bra",
@@ -242,7 +290,9 @@
   {
     "id": 25,
     "name": "Brunei",
+    "name_fr": "Brunei",
     "capital": "Bandar Seri Begawan",
+    "capital_fr": "Bandar Seri Begawan",
     "continent": "Asia",
     "iso_alpha2": "bn",
     "iso_alpha3": "brn",
@@ -252,7 +302,9 @@
   {
     "id": 26,
     "name": "Bulgaria",
+    "name_fr": "Bulgarie",
     "capital": "Sofia",
+    "capital_fr": "Sofia",
     "continent": "Europe",
     "iso_alpha2": "bg",
     "iso_alpha3": "bgr",
@@ -262,7 +314,9 @@
   {
     "id": 27,
     "name": "Burkina Faso",
+    "name_fr": "Burkina Faso",
     "capital": "Ouagadougou",
+    "capital_fr": "Ouagadougou",
     "continent": "Africa",
     "iso_alpha2": "bf",
     "iso_alpha3": "bfa",
@@ -272,7 +326,9 @@
   {
     "id": 28,
     "name": "Burundi",
+    "name_fr": "Burundi",
     "capital": "Gitega",
+    "capital_fr": "Gitega",
     "continent": "Africa",
     "iso_alpha2": "bi",
     "iso_alpha3": "bdi",
@@ -282,7 +338,9 @@
   {
     "id": 29,
     "name": "Cambodia",
+    "name_fr": "Cambodge",
     "capital": "Phnom Penh",
+    "capital_fr": "Phnom Penh",
     "continent": "Asia",
     "iso_alpha2": "kh",
     "iso_alpha3": "khm",
@@ -292,7 +350,9 @@
   {
     "id": 30,
     "name": "Cameroon",
+    "name_fr": "Cameroun",
     "capital": "Yaoundé",
+    "capital_fr": "Yaoundé",
     "continent": "Africa",
     "iso_alpha2": "cm",
     "iso_alpha3": "cmr",
@@ -302,7 +362,9 @@
   {
     "id": 31,
     "name": "Canada",
+    "name_fr": "Canada",
     "capital": "Ottawa",
+    "capital_fr": "Ottawa",
     "continent": "North America",
     "iso_alpha2": "ca",
     "iso_alpha3": "can",
@@ -312,7 +374,9 @@
   {
     "id": 32,
     "name": "Cape Verde",
+    "name_fr": "Cap-Vert",
     "capital": "Praia",
+    "capital_fr": "Praia",
     "continent": "Africa",
     "iso_alpha2": "cv",
     "iso_alpha3": "cpv",
@@ -322,7 +386,9 @@
   {
     "id": 33,
     "name": "Central African Republic",
+    "name_fr": "République centrafricaine",
     "capital": "Bangui",
+    "capital_fr": "Bangui",
     "continent": "Africa",
     "iso_alpha2": "cf",
     "iso_alpha3": "caf",
@@ -332,7 +398,9 @@
   {
     "id": 34,
     "name": "Chad",
+    "name_fr": "Tchad",
     "capital": "N'Djamena",
+    "capital_fr": "N'Djaména",
     "continent": "Africa",
     "iso_alpha2": "td",
     "iso_alpha3": "tcd",
@@ -342,7 +410,9 @@
   {
     "id": 35,
     "name": "Chile",
+    "name_fr": "Chili",
     "capital": "Santiago",
+    "capital_fr": "Santiago",
     "continent": "South America",
     "iso_alpha2": "cl",
     "iso_alpha3": "chl",
@@ -352,7 +422,9 @@
   {
     "id": 36,
     "name": "China",
+    "name_fr": "Chine",
     "capital": "Beijing",
+    "capital_fr": "Pékin",
     "continent": "Asia",
     "iso_alpha2": "cn",
     "iso_alpha3": "chn",
@@ -362,7 +434,9 @@
   {
     "id": 37,
     "name": "Colombia",
+    "name_fr": "Colombie",
     "capital": "Bogotá",
+    "capital_fr": "Bogota",
     "continent": "South America",
     "iso_alpha2": "co",
     "iso_alpha3": "col",
@@ -372,7 +446,9 @@
   {
     "id": 38,
     "name": "Comoros",
+    "name_fr": "Comores",
     "capital": "Moroni",
+    "capital_fr": "Moroni",
     "continent": "Africa",
     "iso_alpha2": "km",
     "iso_alpha3": "com",
@@ -382,7 +458,9 @@
   {
     "id": 39,
     "name": "Costa Rica",
+    "name_fr": "Costa Rica",
     "capital": "San José",
+    "capital_fr": "San José",
     "continent": "North America",
     "iso_alpha2": "cr",
     "iso_alpha3": "cri",
@@ -392,7 +470,9 @@
   {
     "id": 40,
     "name": "Croatia",
+    "name_fr": "Croatie",
     "capital": "Zagreb",
+    "capital_fr": "Zagreb",
     "continent": "Europe",
     "iso_alpha2": "hr",
     "iso_alpha3": "hrv",
@@ -402,7 +482,9 @@
   {
     "id": 41,
     "name": "Cuba",
+    "name_fr": "Cuba",
     "capital": "Havana",
+    "capital_fr": "La Havane",
     "continent": "North America",
     "iso_alpha2": "cu",
     "iso_alpha3": "cub",
@@ -412,7 +494,9 @@
   {
     "id": 42,
     "name": "Cyprus",
+    "name_fr": "Chypre",
     "capital": "Nicosia",
+    "capital_fr": "Nicosie",
     "continent": "Europe",
     "iso_alpha2": "cy",
     "iso_alpha3": "cyp",
@@ -422,7 +506,9 @@
   {
     "id": 43,
     "name": "Czechia",
+    "name_fr": "Tchéquie",
     "capital": "Prague",
+    "capital_fr": "Prague",
     "continent": "Europe",
     "iso_alpha2": "cz",
     "iso_alpha3": "cze",
@@ -432,7 +518,9 @@
   {
     "id": 44,
     "name": "Denmark",
+    "name_fr": "Danemark",
     "capital": "Copenhagen",
+    "capital_fr": "Copenhague",
     "continent": "Europe",
     "iso_alpha2": "dk",
     "iso_alpha3": "dnk",
@@ -442,7 +530,9 @@
   {
     "id": 45,
     "name": "Djibouti",
+    "name_fr": "Djibouti",
     "capital": "Djibouti",
+    "capital_fr": "Djibouti",
     "continent": "Africa",
     "iso_alpha2": "dj",
     "iso_alpha3": "dji",
@@ -452,7 +542,9 @@
   {
     "id": 46,
     "name": "Dominica",
+    "name_fr": "Dominique",
     "capital": "Roseau",
+    "capital_fr": "Roseau",
     "continent": "North America",
     "iso_alpha2": "dm",
     "iso_alpha3": "dma",
@@ -462,7 +554,9 @@
   {
     "id": 47,
     "name": "Dominican Republic",
+    "name_fr": "République dominicaine",
     "capital": "Santo Domingo",
+    "capital_fr": "Saint-Domingue",
     "continent": "North America",
     "iso_alpha2": "do",
     "iso_alpha3": "dom",
@@ -472,7 +566,9 @@
   {
     "id": 48,
     "name": "DR Congo",
+    "name_fr": "République démocratique du Congo",
     "capital": "Kinshasa",
+    "capital_fr": "Kinshasa",
     "continent": "Africa",
     "iso_alpha2": "cd",
     "iso_alpha3": "cod",
@@ -482,7 +578,9 @@
   {
     "id": 49,
     "name": "Ecuador",
+    "name_fr": "Équateur",
     "capital": "Quito",
+    "capital_fr": "Quito",
     "continent": "South America",
     "iso_alpha2": "ec",
     "iso_alpha3": "ecu",
@@ -492,7 +590,9 @@
   {
     "id": 50,
     "name": "Egypt",
+    "name_fr": "Égypte",
     "capital": "Cairo",
+    "capital_fr": "Le Caire",
     "continent": "Africa",
     "iso_alpha2": "eg",
     "iso_alpha3": "egy",
@@ -502,7 +602,9 @@
   {
     "id": 51,
     "name": "El Salvador",
+    "name_fr": "Salvador",
     "capital": "San Salvador",
+    "capital_fr": "San Salvador",
     "continent": "North America",
     "iso_alpha2": "sv",
     "iso_alpha3": "slv",
@@ -512,7 +614,9 @@
   {
     "id": 52,
     "name": "Equatorial Guinea",
+    "name_fr": "Guinée équatoriale",
     "capital": "Ciudad de la Paz",
+    "capital_fr": "Ciudad de la Paz",
     "continent": "Africa",
     "iso_alpha2": "gq",
     "iso_alpha3": "gnq",
@@ -522,7 +626,9 @@
   {
     "id": 53,
     "name": "Eritrea",
+    "name_fr": "Érythrée",
     "capital": "Asmara",
+    "capital_fr": "Asmara",
     "continent": "Africa",
     "iso_alpha2": "er",
     "iso_alpha3": "eri",
@@ -532,7 +638,9 @@
   {
     "id": 54,
     "name": "Estonia",
+    "name_fr": "Estonie",
     "capital": "Tallinn",
+    "capital_fr": "Tallinn",
     "continent": "Europe",
     "iso_alpha2": "ee",
     "iso_alpha3": "est",
@@ -542,7 +650,9 @@
   {
     "id": 55,
     "name": "Eswatini",
+    "name_fr": "Eswatini",
     "capital": "Mbabane",
+    "capital_fr": "Mbabane",
     "continent": "Africa",
     "iso_alpha2": "sz",
     "iso_alpha3": "swz",
@@ -552,7 +662,9 @@
   {
     "id": 56,
     "name": "Ethiopia",
+    "name_fr": "Éthiopie",
     "capital": "Addis Ababa",
+    "capital_fr": "Addis-Abeba",
     "continent": "Africa",
     "iso_alpha2": "et",
     "iso_alpha3": "eth",
@@ -562,7 +674,9 @@
   {
     "id": 57,
     "name": "Fiji",
+    "name_fr": "Fidji",
     "capital": "Suva",
+    "capital_fr": "Suva",
     "continent": "Oceania",
     "iso_alpha2": "fj",
     "iso_alpha3": "fji",
@@ -572,7 +686,9 @@
   {
     "id": 58,
     "name": "Finland",
+    "name_fr": "Finlande",
     "capital": "Helsinki",
+    "capital_fr": "Helsinki",
     "continent": "Europe",
     "iso_alpha2": "fi",
     "iso_alpha3": "fin",
@@ -582,7 +698,9 @@
   {
     "id": 59,
     "name": "France",
+    "name_fr": "France",
     "capital": "Paris",
+    "capital_fr": "Paris",
     "continent": "Europe",
     "iso_alpha2": "fr",
     "iso_alpha3": "fra",
@@ -592,7 +710,9 @@
   {
     "id": 60,
     "name": "Gabon",
+    "name_fr": "Gabon",
     "capital": "Libreville",
+    "capital_fr": "Libreville",
     "continent": "Africa",
     "iso_alpha2": "ga",
     "iso_alpha3": "gab",
@@ -602,7 +722,9 @@
   {
     "id": 61,
     "name": "Gambia",
+    "name_fr": "Gambie",
     "capital": "Banjul",
+    "capital_fr": "Banjul",
     "continent": "Africa",
     "iso_alpha2": "gm",
     "iso_alpha3": "gmb",
@@ -612,7 +734,9 @@
   {
     "id": 62,
     "name": "Georgia",
+    "name_fr": "Géorgie",
     "capital": "Tbilisi",
+    "capital_fr": "Tbilissi",
     "continent": "Asia",
     "iso_alpha2": "ge",
     "iso_alpha3": "geo",
@@ -622,7 +746,9 @@
   {
     "id": 63,
     "name": "Germany",
+    "name_fr": "Allemagne",
     "capital": "Berlin",
+    "capital_fr": "Berlin",
     "continent": "Europe",
     "iso_alpha2": "de",
     "iso_alpha3": "deu",
@@ -632,7 +758,9 @@
   {
     "id": 64,
     "name": "Ghana",
+    "name_fr": "Ghana",
     "capital": "Accra",
+    "capital_fr": "Accra",
     "continent": "Africa",
     "iso_alpha2": "gh",
     "iso_alpha3": "gha",
@@ -642,7 +770,9 @@
   {
     "id": 65,
     "name": "Greece",
+    "name_fr": "Grèce",
     "capital": "Athens",
+    "capital_fr": "Athènes",
     "continent": "Europe",
     "iso_alpha2": "gr",
     "iso_alpha3": "grc",
@@ -652,7 +782,9 @@
   {
     "id": 66,
     "name": "Grenada",
+    "name_fr": "Grenade",
     "capital": "St. George's",
+    "capital_fr": "Saint-Georges",
     "continent": "North America",
     "iso_alpha2": "gd",
     "iso_alpha3": "grd",
@@ -662,7 +794,9 @@
   {
     "id": 67,
     "name": "Guatemala",
+    "name_fr": "Guatemala",
     "capital": "Guatemala City",
+    "capital_fr": "Guatemala",
     "continent": "North America",
     "iso_alpha2": "gt",
     "iso_alpha3": "gtm",
@@ -672,7 +806,9 @@
   {
     "id": 68,
     "name": "Guinea",
+    "name_fr": "Guinée",
     "capital": "Conakry",
+    "capital_fr": "Conakry",
     "continent": "Africa",
     "iso_alpha2": "gn",
     "iso_alpha3": "gin",
@@ -682,7 +818,9 @@
   {
     "id": 69,
     "name": "Guinea-Bissau",
+    "name_fr": "Guinée-Bissau",
     "capital": "Bissau",
+    "capital_fr": "Bissau",
     "continent": "Africa",
     "iso_alpha2": "gw",
     "iso_alpha3": "gnb",
@@ -692,7 +830,9 @@
   {
     "id": 70,
     "name": "Guyana",
+    "name_fr": "Guyana",
     "capital": "Georgetown",
+    "capital_fr": "Georgetown",
     "continent": "South America",
     "iso_alpha2": "gy",
     "iso_alpha3": "guy",
@@ -702,7 +842,9 @@
   {
     "id": 71,
     "name": "Haiti",
+    "name_fr": "Haïti",
     "capital": "Port-au-Prince",
+    "capital_fr": "Port-au-Prince",
     "continent": "North America",
     "iso_alpha2": "ht",
     "iso_alpha3": "hti",
@@ -712,7 +854,9 @@
   {
     "id": 72,
     "name": "Honduras",
+    "name_fr": "Honduras",
     "capital": "Tegucigalpa",
+    "capital_fr": "Tegucigalpa",
     "continent": "North America",
     "iso_alpha2": "hn",
     "iso_alpha3": "hnd",
@@ -722,7 +866,9 @@
   {
     "id": 73,
     "name": "Hungary",
+    "name_fr": "Hongrie",
     "capital": "Budapest",
+    "capital_fr": "Budapest",
     "continent": "Europe",
     "iso_alpha2": "hu",
     "iso_alpha3": "hun",
@@ -732,7 +878,9 @@
   {
     "id": 74,
     "name": "Iceland",
+    "name_fr": "Islande",
     "capital": "Reykjavik",
+    "capital_fr": "Reykjavik",
     "continent": "Europe",
     "iso_alpha2": "is",
     "iso_alpha3": "isl",
@@ -742,7 +890,9 @@
   {
     "id": 75,
     "name": "India",
+    "name_fr": "Inde",
     "capital": "New Delhi",
+    "capital_fr": "New Delhi",
     "continent": "Asia",
     "iso_alpha2": "in",
     "iso_alpha3": "ind",
@@ -752,7 +902,9 @@
   {
     "id": 76,
     "name": "Indonesia",
+    "name_fr": "Indonésie",
     "capital": "Jakarta",
+    "capital_fr": "Jakarta",
     "continent": "Asia",
     "iso_alpha2": "id",
     "iso_alpha3": "idn",
@@ -762,7 +914,9 @@
   {
     "id": 77,
     "name": "Iran",
+    "name_fr": "Iran",
     "capital": "Tehran",
+    "capital_fr": "Téhéran",
     "continent": "Asia",
     "iso_alpha2": "ir",
     "iso_alpha3": "irn",
@@ -772,7 +926,9 @@
   {
     "id": 78,
     "name": "Iraq",
+    "name_fr": "Irak",
     "capital": "Baghdad",
+    "capital_fr": "Bagdad",
     "continent": "Asia",
     "iso_alpha2": "iq",
     "iso_alpha3": "irq",
@@ -782,7 +938,9 @@
   {
     "id": 79,
     "name": "Ireland",
+    "name_fr": "Irlande",
     "capital": "Dublin",
+    "capital_fr": "Dublin",
     "continent": "Europe",
     "iso_alpha2": "ie",
     "iso_alpha3": "irl",
@@ -792,7 +950,9 @@
   {
     "id": 80,
     "name": "Israel",
+    "name_fr": "Israël",
     "capital": "Jerusalem",
+    "capital_fr": "Jérusalem",
     "continent": "Asia",
     "iso_alpha2": "il",
     "iso_alpha3": "isr",
@@ -802,7 +962,9 @@
   {
     "id": 81,
     "name": "Italy",
+    "name_fr": "Italie",
     "capital": "Rome",
+    "capital_fr": "Rome",
     "continent": "Europe",
     "iso_alpha2": "it",
     "iso_alpha3": "ita",
@@ -812,7 +974,9 @@
   {
     "id": 82,
     "name": "Ivory Coast",
+    "name_fr": "Côte d'Ivoire",
     "capital": "Yamoussoukro",
+    "capital_fr": "Yamoussoukro",
     "continent": "Africa",
     "iso_alpha2": "ci",
     "iso_alpha3": "civ",
@@ -822,7 +986,9 @@
   {
     "id": 83,
     "name": "Jamaica",
+    "name_fr": "Jamaïque",
     "capital": "Kingston",
+    "capital_fr": "Kingston",
     "continent": "North America",
     "iso_alpha2": "jm",
     "iso_alpha3": "jam",
@@ -832,7 +998,9 @@
   {
     "id": 84,
     "name": "Japan",
+    "name_fr": "Japon",
     "capital": "Tokyo",
+    "capital_fr": "Tokyo",
     "continent": "Asia",
     "iso_alpha2": "jp",
     "iso_alpha3": "jpn",
@@ -842,7 +1010,9 @@
   {
     "id": 85,
     "name": "Jordan",
+    "name_fr": "Jordanie",
     "capital": "Amman",
+    "capital_fr": "Amman",
     "continent": "Asia",
     "iso_alpha2": "jo",
     "iso_alpha3": "jor",
@@ -852,7 +1022,9 @@
   {
     "id": 86,
     "name": "Kazakhstan",
+    "name_fr": "Kazakhstan",
     "capital": "Astana",
+    "capital_fr": "Astana",
     "continent": "Asia",
     "iso_alpha2": "kz",
     "iso_alpha3": "kaz",
@@ -862,7 +1034,9 @@
   {
     "id": 87,
     "name": "Kenya",
+    "name_fr": "Kenya",
     "capital": "Nairobi",
+    "capital_fr": "Nairobi",
     "continent": "Africa",
     "iso_alpha2": "ke",
     "iso_alpha3": "ken",
@@ -872,7 +1046,9 @@
   {
     "id": 88,
     "name": "Kiribati",
+    "name_fr": "Kiribati",
     "capital": "South Tarawa",
+    "capital_fr": "Tarawa-Sud",
     "continent": "Oceania",
     "iso_alpha2": "ki",
     "iso_alpha3": "kir",
@@ -882,7 +1058,9 @@
   {
     "id": 89,
     "name": "Kuwait",
+    "name_fr": "Koweït",
     "capital": "Kuwait City",
+    "capital_fr": "Koweït",
     "continent": "Asia",
     "iso_alpha2": "kw",
     "iso_alpha3": "kwt",
@@ -892,7 +1070,9 @@
   {
     "id": 90,
     "name": "Kyrgyzstan",
+    "name_fr": "Kirghizistan",
     "capital": "Bishkek",
+    "capital_fr": "Bichkek",
     "continent": "Asia",
     "iso_alpha2": "kg",
     "iso_alpha3": "kgz",
@@ -902,7 +1082,9 @@
   {
     "id": 91,
     "name": "Laos",
+    "name_fr": "Laos",
     "capital": "Vientiane",
+    "capital_fr": "Vientiane",
     "continent": "Asia",
     "iso_alpha2": "la",
     "iso_alpha3": "lao",
@@ -912,7 +1094,9 @@
   {
     "id": 92,
     "name": "Latvia",
+    "name_fr": "Lettonie",
     "capital": "Riga",
+    "capital_fr": "Riga",
     "continent": "Europe",
     "iso_alpha2": "lv",
     "iso_alpha3": "lva",
@@ -922,7 +1106,9 @@
   {
     "id": 93,
     "name": "Lebanon",
+    "name_fr": "Liban",
     "capital": "Beirut",
+    "capital_fr": "Beyrouth",
     "continent": "Asia",
     "iso_alpha2": "lb",
     "iso_alpha3": "lbn",
@@ -932,7 +1118,9 @@
   {
     "id": 94,
     "name": "Lesotho",
+    "name_fr": "Lesotho",
     "capital": "Maseru",
+    "capital_fr": "Maseru",
     "continent": "Africa",
     "iso_alpha2": "ls",
     "iso_alpha3": "lso",
@@ -942,7 +1130,9 @@
   {
     "id": 95,
     "name": "Liberia",
+    "name_fr": "Liberia",
     "capital": "Monrovia",
+    "capital_fr": "Monrovia",
     "continent": "Africa",
     "iso_alpha2": "lr",
     "iso_alpha3": "lbr",
@@ -952,7 +1142,9 @@
   {
     "id": 96,
     "name": "Libya",
+    "name_fr": "Libye",
     "capital": "Tripoli",
+    "capital_fr": "Tripoli",
     "continent": "Africa",
     "iso_alpha2": "ly",
     "iso_alpha3": "lby",
@@ -962,7 +1154,9 @@
   {
     "id": 97,
     "name": "Liechtenstein",
+    "name_fr": "Liechtenstein",
     "capital": "Vaduz",
+    "capital_fr": "Vaduz",
     "continent": "Europe",
     "iso_alpha2": "li",
     "iso_alpha3": "lie",
@@ -972,7 +1166,9 @@
   {
     "id": 98,
     "name": "Lithuania",
+    "name_fr": "Lituanie",
     "capital": "Vilnius",
+    "capital_fr": "Vilnius",
     "continent": "Europe",
     "iso_alpha2": "lt",
     "iso_alpha3": "ltu",
@@ -982,7 +1178,9 @@
   {
     "id": 99,
     "name": "Luxembourg",
+    "name_fr": "Luxembourg",
     "capital": "Luxembourg",
+    "capital_fr": "Luxembourg",
     "continent": "Europe",
     "iso_alpha2": "lu",
     "iso_alpha3": "lux",
@@ -992,7 +1190,9 @@
   {
     "id": 100,
     "name": "Madagascar",
+    "name_fr": "Madagascar",
     "capital": "Antananarivo",
+    "capital_fr": "Antananarivo",
     "continent": "Africa",
     "iso_alpha2": "mg",
     "iso_alpha3": "mdg",
@@ -1002,7 +1202,9 @@
   {
     "id": 101,
     "name": "Malawi",
+    "name_fr": "Malawi",
     "capital": "Lilongwe",
+    "capital_fr": "Lilongwe",
     "continent": "Africa",
     "iso_alpha2": "mw",
     "iso_alpha3": "mwi",
@@ -1012,7 +1214,9 @@
   {
     "id": 102,
     "name": "Malaysia",
+    "name_fr": "Malaisie",
     "capital": "Kuala Lumpur",
+    "capital_fr": "Kuala Lumpur",
     "continent": "Asia",
     "iso_alpha2": "my",
     "iso_alpha3": "mys",
@@ -1022,7 +1226,9 @@
   {
     "id": 103,
     "name": "Maldives",
+    "name_fr": "Maldives",
     "capital": "Malé",
+    "capital_fr": "Malé",
     "continent": "Asia",
     "iso_alpha2": "mv",
     "iso_alpha3": "mdv",
@@ -1032,7 +1238,9 @@
   {
     "id": 104,
     "name": "Mali",
+    "name_fr": "Mali",
     "capital": "Bamako",
+    "capital_fr": "Bamako",
     "continent": "Africa",
     "iso_alpha2": "ml",
     "iso_alpha3": "mli",
@@ -1042,7 +1250,9 @@
   {
     "id": 105,
     "name": "Malta",
+    "name_fr": "Malte",
     "capital": "Valletta",
+    "capital_fr": "La Valette",
     "continent": "Europe",
     "iso_alpha2": "mt",
     "iso_alpha3": "mlt",
@@ -1052,7 +1262,9 @@
   {
     "id": 106,
     "name": "Marshall Islands",
+    "name_fr": "Îles Marshall",
     "capital": "Majuro",
+    "capital_fr": "Majuro",
     "continent": "Oceania",
     "iso_alpha2": "mh",
     "iso_alpha3": "mhl",
@@ -1062,7 +1274,9 @@
   {
     "id": 107,
     "name": "Mauritania",
+    "name_fr": "Mauritanie",
     "capital": "Nouakchott",
+    "capital_fr": "Nouakchott",
     "continent": "Africa",
     "iso_alpha2": "mr",
     "iso_alpha3": "mrt",
@@ -1072,7 +1286,9 @@
   {
     "id": 108,
     "name": "Mauritius",
+    "name_fr": "Maurice",
     "capital": "Port Louis",
+    "capital_fr": "Port-Louis",
     "continent": "Africa",
     "iso_alpha2": "mu",
     "iso_alpha3": "mus",
@@ -1082,7 +1298,9 @@
   {
     "id": 109,
     "name": "Mexico",
+    "name_fr": "Mexique",
     "capital": "Mexico City",
+    "capital_fr": "Mexico",
     "continent": "North America",
     "iso_alpha2": "mx",
     "iso_alpha3": "mex",
@@ -1092,7 +1310,9 @@
   {
     "id": 110,
     "name": "Micronesia",
+    "name_fr": "Micronésie",
     "capital": "Palikir",
+    "capital_fr": "Palikir",
     "continent": "Oceania",
     "iso_alpha2": "fm",
     "iso_alpha3": "fsm",
@@ -1102,7 +1322,9 @@
   {
     "id": 111,
     "name": "Moldova",
+    "name_fr": "Moldavie",
     "capital": "Chișinău",
+    "capital_fr": "Chișinău",
     "continent": "Europe",
     "iso_alpha2": "md",
     "iso_alpha3": "mda",
@@ -1112,7 +1334,9 @@
   {
     "id": 112,
     "name": "Monaco",
+    "name_fr": "Monaco",
     "capital": "Monaco",
+    "capital_fr": "Monaco",
     "continent": "Europe",
     "iso_alpha2": "mc",
     "iso_alpha3": "mco",
@@ -1122,7 +1346,9 @@
   {
     "id": 113,
     "name": "Mongolia",
+    "name_fr": "Mongolie",
     "capital": "Ulan Bator",
+    "capital_fr": "Oulan-Bator",
     "continent": "Asia",
     "iso_alpha2": "mn",
     "iso_alpha3": "mng",
@@ -1132,7 +1358,9 @@
   {
     "id": 114,
     "name": "Montenegro",
+    "name_fr": "Monténégro",
     "capital": "Podgorica",
+    "capital_fr": "Podgorica",
     "continent": "Europe",
     "iso_alpha2": "me",
     "iso_alpha3": "mne",
@@ -1142,7 +1370,9 @@
   {
     "id": 115,
     "name": "Morocco",
+    "name_fr": "Maroc",
     "capital": "Rabat",
+    "capital_fr": "Rabat",
     "continent": "Africa",
     "iso_alpha2": "ma",
     "iso_alpha3": "mar",
@@ -1152,7 +1382,9 @@
   {
     "id": 116,
     "name": "Mozambique",
+    "name_fr": "Mozambique",
     "capital": "Maputo",
+    "capital_fr": "Maputo",
     "continent": "Africa",
     "iso_alpha2": "mz",
     "iso_alpha3": "moz",
@@ -1162,7 +1394,9 @@
   {
     "id": 117,
     "name": "Myanmar",
+    "name_fr": "Birmanie",
     "capital": "Naypyidaw",
+    "capital_fr": "Naypyidaw",
     "continent": "Asia",
     "iso_alpha2": "mm",
     "iso_alpha3": "mmr",
@@ -1172,7 +1406,9 @@
   {
     "id": 118,
     "name": "Namibia",
+    "name_fr": "Namibie",
     "capital": "Windhoek",
+    "capital_fr": "Windhoek",
     "continent": "Africa",
     "iso_alpha2": "na",
     "iso_alpha3": "nam",
@@ -1182,7 +1418,9 @@
   {
     "id": 119,
     "name": "Nauru",
+    "name_fr": "Nauru",
     "capital": "Yaren",
+    "capital_fr": "Yaren",
     "continent": "Oceania",
     "iso_alpha2": "nr",
     "iso_alpha3": "nru",
@@ -1192,7 +1430,9 @@
   {
     "id": 120,
     "name": "Nepal",
+    "name_fr": "Népal",
     "capital": "Kathmandu",
+    "capital_fr": "Katmandou",
     "continent": "Asia",
     "iso_alpha2": "np",
     "iso_alpha3": "npl",
@@ -1202,7 +1442,9 @@
   {
     "id": 121,
     "name": "Netherlands",
+    "name_fr": "Pays-Bas",
     "capital": "Amsterdam",
+    "capital_fr": "Amsterdam",
     "continent": "Europe",
     "iso_alpha2": "nl",
     "iso_alpha3": "nld",
@@ -1212,7 +1454,9 @@
   {
     "id": 122,
     "name": "New Zealand",
+    "name_fr": "Nouvelle-Zélande",
     "capital": "Wellington",
+    "capital_fr": "Wellington",
     "continent": "Oceania",
     "iso_alpha2": "nz",
     "iso_alpha3": "nzl",
@@ -1222,7 +1466,9 @@
   {
     "id": 123,
     "name": "Nicaragua",
+    "name_fr": "Nicaragua",
     "capital": "Managua",
+    "capital_fr": "Managua",
     "continent": "North America",
     "iso_alpha2": "ni",
     "iso_alpha3": "nic",
@@ -1232,7 +1478,9 @@
   {
     "id": 124,
     "name": "Niger",
+    "name_fr": "Niger",
     "capital": "Niamey",
+    "capital_fr": "Niamey",
     "continent": "Africa",
     "iso_alpha2": "ne",
     "iso_alpha3": "ner",
@@ -1242,7 +1490,9 @@
   {
     "id": 125,
     "name": "Nigeria",
+    "name_fr": "Nigeria",
     "capital": "Abuja",
+    "capital_fr": "Abuja",
     "continent": "Africa",
     "iso_alpha2": "ng",
     "iso_alpha3": "nga",
@@ -1252,7 +1502,9 @@
   {
     "id": 126,
     "name": "North Korea",
+    "name_fr": "Corée du Nord",
     "capital": "Pyongyang",
+    "capital_fr": "Pyongyang",
     "continent": "Asia",
     "iso_alpha2": "kp",
     "iso_alpha3": "prk",
@@ -1262,7 +1514,9 @@
   {
     "id": 127,
     "name": "North Macedonia",
+    "name_fr": "Macédoine du Nord",
     "capital": "Skopje",
+    "capital_fr": "Skopje",
     "continent": "Europe",
     "iso_alpha2": "mk",
     "iso_alpha3": "mkd",
@@ -1272,7 +1526,9 @@
   {
     "id": 128,
     "name": "Norway",
+    "name_fr": "Norvège",
     "capital": "Oslo",
+    "capital_fr": "Oslo",
     "continent": "Europe",
     "iso_alpha2": "no",
     "iso_alpha3": "nor",
@@ -1282,7 +1538,9 @@
   {
     "id": 129,
     "name": "Oman",
+    "name_fr": "Oman",
     "capital": "Muscat",
+    "capital_fr": "Mascate",
     "continent": "Asia",
     "iso_alpha2": "om",
     "iso_alpha3": "omn",
@@ -1292,7 +1550,9 @@
   {
     "id": 130,
     "name": "Pakistan",
+    "name_fr": "Pakistan",
     "capital": "Islamabad",
+    "capital_fr": "Islamabad",
     "continent": "Asia",
     "iso_alpha2": "pk",
     "iso_alpha3": "pak",
@@ -1302,7 +1562,9 @@
   {
     "id": 131,
     "name": "Palau",
+    "name_fr": "Palaos",
     "capital": "Ngerulmud",
+    "capital_fr": "Ngerulmud",
     "continent": "Oceania",
     "iso_alpha2": "pw",
     "iso_alpha3": "plw",
@@ -1312,7 +1574,9 @@
   {
     "id": 132,
     "name": "Palestine",
+    "name_fr": "Palestine",
     "capital": "Ramallah",
+    "capital_fr": "Ramallah",
     "continent": "Asia",
     "iso_alpha2": "ps",
     "iso_alpha3": "pse",
@@ -1322,7 +1586,9 @@
   {
     "id": 133,
     "name": "Panama",
+    "name_fr": "Panama",
     "capital": "Panama City",
+    "capital_fr": "Panama",
     "continent": "North America",
     "iso_alpha2": "pa",
     "iso_alpha3": "pan",
@@ -1332,7 +1598,9 @@
   {
     "id": 134,
     "name": "Papua New Guinea",
+    "name_fr": "Papouasie-Nouvelle-Guinée",
     "capital": "Port Moresby",
+    "capital_fr": "Port Moresby",
     "continent": "Oceania",
     "iso_alpha2": "pg",
     "iso_alpha3": "png",
@@ -1342,7 +1610,9 @@
   {
     "id": 135,
     "name": "Paraguay",
+    "name_fr": "Paraguay",
     "capital": "Asunción",
+    "capital_fr": "Asunción",
     "continent": "South America",
     "iso_alpha2": "py",
     "iso_alpha3": "pry",
@@ -1352,7 +1622,9 @@
   {
     "id": 136,
     "name": "Peru",
+    "name_fr": "Pérou",
     "capital": "Lima",
+    "capital_fr": "Lima",
     "continent": "South America",
     "iso_alpha2": "pe",
     "iso_alpha3": "per",
@@ -1362,7 +1634,9 @@
   {
     "id": 137,
     "name": "Philippines",
+    "name_fr": "Philippines",
     "capital": "Manila",
+    "capital_fr": "Manille",
     "continent": "Asia",
     "iso_alpha2": "ph",
     "iso_alpha3": "phl",
@@ -1372,7 +1646,9 @@
   {
     "id": 138,
     "name": "Poland",
+    "name_fr": "Pologne",
     "capital": "Warsaw",
+    "capital_fr": "Varsovie",
     "continent": "Europe",
     "iso_alpha2": "pl",
     "iso_alpha3": "pol",
@@ -1382,7 +1658,9 @@
   {
     "id": 139,
     "name": "Portugal",
+    "name_fr": "Portugal",
     "capital": "Lisbon",
+    "capital_fr": "Lisbonne",
     "continent": "Europe",
     "iso_alpha2": "pt",
     "iso_alpha3": "prt",
@@ -1392,7 +1670,9 @@
   {
     "id": 140,
     "name": "Qatar",
+    "name_fr": "Qatar",
     "capital": "Doha",
+    "capital_fr": "Doha",
     "continent": "Asia",
     "iso_alpha2": "qa",
     "iso_alpha3": "qat",
@@ -1402,7 +1682,9 @@
   {
     "id": 141,
     "name": "Republic of the Congo",
+    "name_fr": "République du Congo",
     "capital": "Brazzaville",
+    "capital_fr": "Brazzaville",
     "continent": "Africa",
     "iso_alpha2": "cg",
     "iso_alpha3": "cog",
@@ -1412,7 +1694,9 @@
   {
     "id": 142,
     "name": "Romania",
+    "name_fr": "Roumanie",
     "capital": "Bucharest",
+    "capital_fr": "Bucarest",
     "continent": "Europe",
     "iso_alpha2": "ro",
     "iso_alpha3": "rou",
@@ -1422,7 +1706,9 @@
   {
     "id": 143,
     "name": "Russia",
+    "name_fr": "Russie",
     "capital": "Moscow",
+    "capital_fr": "Moscou",
     "continent": "Asia",
     "iso_alpha2": "ru",
     "iso_alpha3": "rus",
@@ -1432,7 +1718,9 @@
   {
     "id": 144,
     "name": "Rwanda",
+    "name_fr": "Rwanda",
     "capital": "Kigali",
+    "capital_fr": "Kigali",
     "continent": "Africa",
     "iso_alpha2": "rw",
     "iso_alpha3": "rwa",
@@ -1442,7 +1730,9 @@
   {
     "id": 145,
     "name": "Saint Kitts and Nevis",
+    "name_fr": "Saint-Christophe-et-Niévès",
     "capital": "Basseterre",
+    "capital_fr": "Basseterre",
     "continent": "North America",
     "iso_alpha2": "kn",
     "iso_alpha3": "kna",
@@ -1452,7 +1742,9 @@
   {
     "id": 146,
     "name": "Saint Lucia",
+    "name_fr": "Sainte-Lucie",
     "capital": "Castries",
+    "capital_fr": "Castries",
     "continent": "North America",
     "iso_alpha2": "lc",
     "iso_alpha3": "lca",
@@ -1462,7 +1754,9 @@
   {
     "id": 147,
     "name": "Saint Vincent and the Grenadines",
+    "name_fr": "Saint-Vincent-et-les-Grenadines",
     "capital": "Kingstown",
+    "capital_fr": "Kingstown",
     "continent": "North America",
     "iso_alpha2": "vc",
     "iso_alpha3": "vct",
@@ -1472,7 +1766,9 @@
   {
     "id": 148,
     "name": "Samoa",
+    "name_fr": "Samoa",
     "capital": "Apia",
+    "capital_fr": "Apia",
     "continent": "Oceania",
     "iso_alpha2": "ws",
     "iso_alpha3": "wsm",
@@ -1482,7 +1778,9 @@
   {
     "id": 149,
     "name": "San Marino",
+    "name_fr": "Saint-Marin",
     "capital": "City of San Marino",
+    "capital_fr": "Saint-Marin",
     "continent": "Europe",
     "iso_alpha2": "sm",
     "iso_alpha3": "smr",
@@ -1492,7 +1790,9 @@
   {
     "id": 150,
     "name": "São Tomé and Príncipe",
+    "name_fr": "Sao Tomé-et-Principe",
     "capital": "São Tomé",
+    "capital_fr": "São Tomé",
     "continent": "Africa",
     "iso_alpha2": "st",
     "iso_alpha3": "stp",
@@ -1502,7 +1802,9 @@
   {
     "id": 151,
     "name": "Saudi Arabia",
+    "name_fr": "Arabie saoudite",
     "capital": "Riyadh",
+    "capital_fr": "Riyad",
     "continent": "Asia",
     "iso_alpha2": "sa",
     "iso_alpha3": "sau",
@@ -1512,7 +1814,9 @@
   {
     "id": 152,
     "name": "Senegal",
+    "name_fr": "Sénégal",
     "capital": "Dakar",
+    "capital_fr": "Dakar",
     "continent": "Africa",
     "iso_alpha2": "sn",
     "iso_alpha3": "sen",
@@ -1522,7 +1826,9 @@
   {
     "id": 153,
     "name": "Serbia",
+    "name_fr": "Serbie",
     "capital": "Belgrade",
+    "capital_fr": "Belgrade",
     "continent": "Europe",
     "iso_alpha2": "rs",
     "iso_alpha3": "srb",
@@ -1532,7 +1838,9 @@
   {
     "id": 154,
     "name": "Seychelles",
+    "name_fr": "Seychelles",
     "capital": "Victoria",
+    "capital_fr": "Victoria",
     "continent": "Africa",
     "iso_alpha2": "sc",
     "iso_alpha3": "syc",
@@ -1542,7 +1850,9 @@
   {
     "id": 155,
     "name": "Sierra Leone",
+    "name_fr": "Sierra Leone",
     "capital": "Freetown",
+    "capital_fr": "Freetown",
     "continent": "Africa",
     "iso_alpha2": "sl",
     "iso_alpha3": "sle",
@@ -1552,7 +1862,9 @@
   {
     "id": 156,
     "name": "Singapore",
+    "name_fr": "Singapour",
     "capital": "Singapore",
+    "capital_fr": "Singapour",
     "continent": "Asia",
     "iso_alpha2": "sg",
     "iso_alpha3": "sgp",
@@ -1562,7 +1874,9 @@
   {
     "id": 157,
     "name": "Slovakia",
+    "name_fr": "Slovaquie",
     "capital": "Bratislava",
+    "capital_fr": "Bratislava",
     "continent": "Europe",
     "iso_alpha2": "sk",
     "iso_alpha3": "svk",
@@ -1572,7 +1886,9 @@
   {
     "id": 158,
     "name": "Slovenia",
+    "name_fr": "Slovénie",
     "capital": "Ljubljana",
+    "capital_fr": "Ljubljana",
     "continent": "Europe",
     "iso_alpha2": "si",
     "iso_alpha3": "svn",
@@ -1582,7 +1898,9 @@
   {
     "id": 159,
     "name": "Solomon Islands",
+    "name_fr": "Îles Salomon",
     "capital": "Honiara",
+    "capital_fr": "Honiara",
     "continent": "Oceania",
     "iso_alpha2": "sb",
     "iso_alpha3": "slb",
@@ -1592,7 +1910,9 @@
   {
     "id": 160,
     "name": "Somalia",
+    "name_fr": "Somalie",
     "capital": "Mogadishu",
+    "capital_fr": "Mogadiscio",
     "continent": "Africa",
     "iso_alpha2": "so",
     "iso_alpha3": "som",
@@ -1602,7 +1922,9 @@
   {
     "id": 161,
     "name": "South Africa",
+    "name_fr": "Afrique du Sud",
     "capital": "Pretoria",
+    "capital_fr": "Pretoria",
     "continent": "Africa",
     "iso_alpha2": "za",
     "iso_alpha3": "zaf",
@@ -1612,7 +1934,9 @@
   {
     "id": 162,
     "name": "South Korea",
+    "name_fr": "Corée du Sud",
     "capital": "Seoul",
+    "capital_fr": "Séoul",
     "continent": "Asia",
     "iso_alpha2": "kr",
     "iso_alpha3": "kor",
@@ -1622,7 +1946,9 @@
   {
     "id": 163,
     "name": "South Sudan",
+    "name_fr": "Soudan du Sud",
     "capital": "Juba",
+    "capital_fr": "Djouba",
     "continent": "Africa",
     "iso_alpha2": "ss",
     "iso_alpha3": "ssd",
@@ -1632,7 +1958,9 @@
   {
     "id": 164,
     "name": "Spain",
+    "name_fr": "Espagne",
     "capital": "Madrid",
+    "capital_fr": "Madrid",
     "continent": "Europe",
     "iso_alpha2": "es",
     "iso_alpha3": "esp",
@@ -1642,7 +1970,9 @@
   {
     "id": 165,
     "name": "Sri Lanka",
+    "name_fr": "Sri Lanka",
     "capital": "Sri Jayawardenepura Kotte",
+    "capital_fr": "Sri Jayawardenepura Kotte",
     "continent": "Asia",
     "iso_alpha2": "lk",
     "iso_alpha3": "lka",
@@ -1652,7 +1982,9 @@
   {
     "id": 166,
     "name": "Sudan",
+    "name_fr": "Soudan",
     "capital": "Khartoum",
+    "capital_fr": "Khartoum",
     "continent": "Africa",
     "iso_alpha2": "sd",
     "iso_alpha3": "sdn",
@@ -1662,7 +1994,9 @@
   {
     "id": 167,
     "name": "Suriname",
+    "name_fr": "Suriname",
     "capital": "Paramaribo",
+    "capital_fr": "Paramaribo",
     "continent": "South America",
     "iso_alpha2": "sr",
     "iso_alpha3": "sur",
@@ -1672,7 +2006,9 @@
   {
     "id": 168,
     "name": "Sweden",
+    "name_fr": "Suède",
     "capital": "Stockholm",
+    "capital_fr": "Stockholm",
     "continent": "Europe",
     "iso_alpha2": "se",
     "iso_alpha3": "swe",
@@ -1682,7 +2018,9 @@
   {
     "id": 169,
     "name": "Switzerland",
+    "name_fr": "Suisse",
     "capital": "Bern",
+    "capital_fr": "Berne",
     "continent": "Europe",
     "iso_alpha2": "ch",
     "iso_alpha3": "che",
@@ -1692,7 +2030,9 @@
   {
     "id": 170,
     "name": "Syria",
+    "name_fr": "Syrie",
     "capital": "Damascus",
+    "capital_fr": "Damas",
     "continent": "Asia",
     "iso_alpha2": "sy",
     "iso_alpha3": "syr",
@@ -1702,7 +2042,9 @@
   {
     "id": 171,
     "name": "Tajikistan",
+    "name_fr": "Tadjikistan",
     "capital": "Dushanbe",
+    "capital_fr": "Douchanbé",
     "continent": "Asia",
     "iso_alpha2": "tj",
     "iso_alpha3": "tjk",
@@ -1712,7 +2054,9 @@
   {
     "id": 172,
     "name": "Tanzania",
+    "name_fr": "Tanzanie",
     "capital": "Dodoma",
+    "capital_fr": "Dodoma",
     "continent": "Africa",
     "iso_alpha2": "tz",
     "iso_alpha3": "tza",
@@ -1722,7 +2066,9 @@
   {
     "id": 173,
     "name": "Thailand",
+    "name_fr": "Thaïlande",
     "capital": "Bangkok",
+    "capital_fr": "Bangkok",
     "continent": "Asia",
     "iso_alpha2": "th",
     "iso_alpha3": "tha",
@@ -1732,7 +2078,9 @@
   {
     "id": 174,
     "name": "Timor-Leste",
+    "name_fr": "Timor oriental",
     "capital": "Dili",
+    "capital_fr": "Dili",
     "continent": "Asia",
     "iso_alpha2": "tl",
     "iso_alpha3": "tls",
@@ -1742,7 +2090,9 @@
   {
     "id": 175,
     "name": "Togo",
+    "name_fr": "Togo",
     "capital": "Lomé",
+    "capital_fr": "Lomé",
     "continent": "Africa",
     "iso_alpha2": "tg",
     "iso_alpha3": "tgo",
@@ -1752,7 +2102,9 @@
   {
     "id": 176,
     "name": "Tonga",
+    "name_fr": "Tonga",
     "capital": "Nuku'alofa",
+    "capital_fr": "Nuku'alofa",
     "continent": "Oceania",
     "iso_alpha2": "to",
     "iso_alpha3": "ton",
@@ -1762,7 +2114,9 @@
   {
     "id": 177,
     "name": "Trinidad and Tobago",
+    "name_fr": "Trinité-et-Tobago",
     "capital": "Port of Spain",
+    "capital_fr": "Port-d'Espagne",
     "continent": "North America",
     "iso_alpha2": "tt",
     "iso_alpha3": "tto",
@@ -1772,7 +2126,9 @@
   {
     "id": 178,
     "name": "Tunisia",
+    "name_fr": "Tunisie",
     "capital": "Tunis",
+    "capital_fr": "Tunis",
     "continent": "Africa",
     "iso_alpha2": "tn",
     "iso_alpha3": "tun",
@@ -1782,7 +2138,9 @@
   {
     "id": 179,
     "name": "Turkey",
+    "name_fr": "Turquie",
     "capital": "Ankara",
+    "capital_fr": "Ankara",
     "continent": "Asia",
     "iso_alpha2": "tr",
     "iso_alpha3": "tur",
@@ -1792,7 +2150,9 @@
   {
     "id": 180,
     "name": "Turkmenistan",
+    "name_fr": "Turkménistan",
     "capital": "Ashgabat",
+    "capital_fr": "Achgabat",
     "continent": "Asia",
     "iso_alpha2": "tm",
     "iso_alpha3": "tkm",
@@ -1802,7 +2162,9 @@
   {
     "id": 181,
     "name": "Tuvalu",
+    "name_fr": "Tuvalu",
     "capital": "Funafuti",
+    "capital_fr": "Funafuti",
     "continent": "Oceania",
     "iso_alpha2": "tv",
     "iso_alpha3": "tuv",
@@ -1812,7 +2174,9 @@
   {
     "id": 182,
     "name": "Uganda",
+    "name_fr": "Ouganda",
     "capital": "Kampala",
+    "capital_fr": "Kampala",
     "continent": "Africa",
     "iso_alpha2": "ug",
     "iso_alpha3": "uga",
@@ -1822,7 +2186,9 @@
   {
     "id": 183,
     "name": "Ukraine",
+    "name_fr": "Ukraine",
     "capital": "Kyiv",
+    "capital_fr": "Kiev",
     "continent": "Europe",
     "iso_alpha2": "ua",
     "iso_alpha3": "ukr",
@@ -1832,7 +2198,9 @@
   {
     "id": 184,
     "name": "United Arab Emirates",
+    "name_fr": "Émirats arabes unis",
     "capital": "Abu Dhabi",
+    "capital_fr": "Abou Dabi",
     "continent": "Asia",
     "iso_alpha2": "ae",
     "iso_alpha3": "are",
@@ -1842,7 +2210,9 @@
   {
     "id": 185,
     "name": "United Kingdom",
+    "name_fr": "Royaume-Uni",
     "capital": "London",
+    "capital_fr": "Londres",
     "continent": "Europe",
     "iso_alpha2": "gb",
     "iso_alpha3": "gbr",
@@ -1852,7 +2222,9 @@
   {
     "id": 186,
     "name": "United States",
+    "name_fr": "États-Unis",
     "capital": "Washington, D.C.",
+    "capital_fr": "Washington",
     "continent": "North America",
     "iso_alpha2": "us",
     "iso_alpha3": "usa",
@@ -1862,7 +2234,9 @@
   {
     "id": 187,
     "name": "Uruguay",
+    "name_fr": "Uruguay",
     "capital": "Montevideo",
+    "capital_fr": "Montevideo",
     "continent": "South America",
     "iso_alpha2": "uy",
     "iso_alpha3": "ury",
@@ -1872,7 +2246,9 @@
   {
     "id": 188,
     "name": "Uzbekistan",
+    "name_fr": "Ouzbékistan",
     "capital": "Tashkent",
+    "capital_fr": "Tachkent",
     "continent": "Asia",
     "iso_alpha2": "uz",
     "iso_alpha3": "uzb",
@@ -1882,7 +2258,9 @@
   {
     "id": 189,
     "name": "Vanuatu",
+    "name_fr": "Vanuatu",
     "capital": "Port Vila",
+    "capital_fr": "Port-Vila",
     "continent": "Oceania",
     "iso_alpha2": "vu",
     "iso_alpha3": "vut",
@@ -1892,7 +2270,9 @@
   {
     "id": 190,
     "name": "Vatican City",
+    "name_fr": "Cité du Vatican",
     "capital": "Vatican City",
+    "capital_fr": "Cité du Vatican",
     "continent": "Europe",
     "iso_alpha2": "va",
     "iso_alpha3": "vat",
@@ -1902,7 +2282,9 @@
   {
     "id": 191,
     "name": "Venezuela",
+    "name_fr": "Venezuela",
     "capital": "Caracas",
+    "capital_fr": "Caracas",
     "continent": "South America",
     "iso_alpha2": "ve",
     "iso_alpha3": "ven",
@@ -1912,7 +2294,9 @@
   {
     "id": 192,
     "name": "Vietnam",
+    "name_fr": "Viêt Nam",
     "capital": "Hanoi",
+    "capital_fr": "Hanoï",
     "continent": "Asia",
     "iso_alpha2": "vn",
     "iso_alpha3": "vnm",
@@ -1922,7 +2306,9 @@
   {
     "id": 193,
     "name": "Yemen",
+    "name_fr": "Yémen",
     "capital": "Sana'a",
+    "capital_fr": "Sanaa",
     "continent": "Asia",
     "iso_alpha2": "ye",
     "iso_alpha3": "yem",
@@ -1932,7 +2318,9 @@
   {
     "id": 194,
     "name": "Zambia",
+    "name_fr": "Zambie",
     "capital": "Lusaka",
+    "capital_fr": "Lusaka",
     "continent": "Africa",
     "iso_alpha2": "zm",
     "iso_alpha3": "zmb",
@@ -1942,7 +2330,9 @@
   {
     "id": 195,
     "name": "Zimbabwe",
+    "name_fr": "Zimbabwe",
     "capital": "Harare",
+    "capital_fr": "Harare",
     "continent": "Africa",
     "iso_alpha2": "zw",
     "iso_alpha3": "zwe",

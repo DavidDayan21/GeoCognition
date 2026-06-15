@@ -7,8 +7,10 @@ import {
   XAxis,
   YAxis,
 } from "recharts";
+import { useTranslation } from "react-i18next";
 import { getProgression } from "../../api/tauri-api";
 import { formatDayTick } from "../../lib/format";
+import { localeOf } from "../../lib/language";
 import { useAsync } from "../../lib/use-async";
 import { tooltipStyle, useChartColors } from "./chart-theme";
 import { StatPlaceholder } from "./StatPlaceholder";
@@ -17,21 +19,19 @@ const DAYS = 30;
 
 /** Daily accuracy over the last 30 days (Recharts line). */
 export function ProgressionChart() {
+  const { t, i18n } = useTranslation();
+  const locale = localeOf(i18n.language === "fr" ? "fr" : "en");
   const { data, status } = useAsync(() => getProgression(DAYS), DAYS);
   const colors = useChartColors();
 
   if (status === "loading") {
-    return <StatPlaceholder>Loading…</StatPlaceholder>;
+    return <StatPlaceholder>{t("stats.loading")}</StatPlaceholder>;
   }
   if (status === "error") {
-    return <StatPlaceholder>Couldn&apos;t load progression.</StatPlaceholder>;
+    return <StatPlaceholder>{t("stats.progressionLoadError")}</StatPlaceholder>;
   }
   if (!data || data.length === 0) {
-    return (
-      <StatPlaceholder>
-        Answer questions on a few days to see your accuracy trend.
-      </StatPlaceholder>
-    );
+    return <StatPlaceholder>{t("stats.progressionEmpty")}</StatPlaceholder>;
   }
 
   const points = data.map((day) => ({
@@ -53,7 +53,7 @@ export function ProgressionChart() {
         />
         <XAxis
           dataKey="date"
-          tickFormatter={formatDayTick}
+          tickFormatter={(value: string) => formatDayTick(value, locale)}
           tick={{ fill: colors["--text-muted"], fontSize: 12 }}
           stroke={colors["--border"]}
           minTickGap={24}
@@ -67,8 +67,8 @@ export function ProgressionChart() {
         />
         <Tooltip
           contentStyle={tooltipStyle(colors)}
-          labelFormatter={(label) => formatDayTick(String(label))}
-          formatter={(value) => [`${value}%`, "Accuracy"]}
+          labelFormatter={(label) => formatDayTick(String(label), locale)}
+          formatter={(value) => [`${value}%`, t("stats.accuracy")]}
         />
         <Line
           type="monotone"

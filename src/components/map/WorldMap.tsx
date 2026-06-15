@@ -1,5 +1,6 @@
 import { useReducedMotion } from "framer-motion";
 import { useState } from "react";
+import { useTranslation } from "react-i18next";
 import { ComposableMap, Geographies, Geography } from "react-simple-maps";
 import { CONTINENT_GEO_URL } from "./map-utils";
 import type { ContinentGeography } from "./map-utils";
@@ -21,6 +22,7 @@ export function WorldMap({
   selectedContinents,
   onToggleContinent,
 }: WorldMapProps) {
+  const { t } = useTranslation();
   const [hovered, setHovered] = useState<string | null>(null);
   const prefersReducedMotion = useReducedMotion() ?? false;
 
@@ -37,7 +39,7 @@ export function WorldMap({
         width={800}
         height={370}
         style={{ width: "100%", height: "auto" }}
-        aria-label="World map for selecting continents"
+        aria-label={t("home.selectMapAria")}
       >
         <Geographies geography={CONTINENT_GEO_URL}>
           {({ geographies }) => {

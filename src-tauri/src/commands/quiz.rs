@@ -90,20 +90,23 @@ pub async fn apply_answer(
     response_time_ms: i64,
 ) -> Result<AnswerResult, AppError> {
     let settings = db::load_settings(pool).await?;
-    let (name, capital): (String, String) =
-        sqlx::query_as("SELECT name, capital FROM countries WHERE id = ?")
+    let (name, name_fr, capital, capital_fr): (String, String, String, String) =
+        sqlx::query_as("SELECT name, name_fr, capital, capital_fr FROM countries WHERE id = ?")
             .bind(country_id)
             .fetch_optional(pool)
             .await?
             .ok_or_else(|| AppError::NotFound(format!("country {country_id}")))?;
 
-    let correct_answer = match mode {
-        QuestionMode::Capital => capital,
-        QuestionMode::Flag => name.clone(),
+    // Grade against both languages and keep the better score, so the user
+    // may answer in English or French regardless of the active UI language.
+    let (correct_answer, correct_answer_fr) = match mode {
+        QuestionMode::Capital => (capital, capital_fr),
+        QuestionMode::Flag => (name.clone(), name_fr.clone()),
     };
-    let quality = grading::grade_with_tolerance(
+    let quality = grading::grade_bilingual_with_tolerance(
         user_input,
         &correct_answer,
+        &correct_answer_fr,
         settings.fuzzy_tolerance.ratio(),
     );
     let is_correct = quality >= 3;
@@ -186,7 +189,9 @@ pub async fn apply_answer(
         quality,
         is_correct,
         correct_answer,
+        correct_answer_fr,
         country_name: name,
+        country_name_fr: name_fr,
         ef: next.ef,
         interval_days: next.interval_days,
         next_review: next_review_s,
@@ -293,16 +298,18 @@ async fn question_payload(
     mode: QuestionMode,
     question_index: u64,
 ) -> Result<QuestionPayload, AppError> {
-    let (name, iso_alpha2): (String, String) =
-        sqlx::query_as("SELECT name, iso_alpha2 FROM countries WHERE id = ?")
+    let (name, name_fr, iso_alpha2): (String, String, String) =
+        sqlx::query_as("SELECT name, name_fr, iso_alpha2 FROM countries WHERE id = ?")
             .bind(country_id)
             .fetch_optional(pool)
             .await?
             .ok_or_else(|| AppError::NotFound(format!("country {country_id}")))?;
+    let is_capital = matches!(mode, QuestionMode::Capital);
     Ok(QuestionPayload {
         country_id,
         mode,
-        country_name: matches!(mode, QuestionMode::Capital).then_some(name),
+        country_name: is_capital.then_some(name),
+        country_name_fr: is_capital.then_some(name_fr),
         iso_alpha2: matches!(mode, QuestionMode::Flag).then_some(iso_alpha2),
         question_index,
     })

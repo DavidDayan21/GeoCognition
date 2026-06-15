@@ -1,5 +1,7 @@
+import { useTranslation } from "react-i18next";
 import { getGlobalStats } from "../../api/tauri-api";
-import { formatPercent } from "../../lib/format";
+import { formatCount, formatPercent } from "../../lib/format";
+import { localeOf } from "../../lib/language";
 import { useAsync } from "../../lib/use-async";
 import { Card } from "../ui/Card";
 
@@ -7,12 +9,14 @@ const GRID = "grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-6";
 
 /** Lifetime totals: mastered, seen, answers, accuracy, current/best streak. */
 export function GlobalStatsStrip() {
+  const { t, i18n } = useTranslation();
+  const locale = localeOf(i18n.language === "fr" ? "fr" : "en");
   const { data, status } = useAsync(() => getGlobalStats(), 0);
 
   if (status === "error") {
     return (
       <Card className="p-6 text-sm text-text-muted">
-        Couldn&apos;t load your stats.
+        {t("stats.loadError")}
       </Card>
     );
   }
@@ -31,16 +35,33 @@ export function GlobalStatsStrip() {
   }
 
   const items = [
-    { label: "Mastered", value: String(data.total_mastered) },
-    { label: "Countries seen", value: String(data.countries_seen) },
-    { label: "Answers", value: String(data.total_answers) },
     {
-      label: "Accuracy",
-      value:
-        data.total_answers === 0 ? "—" : formatPercent(data.lifetime_accuracy),
+      label: t("stats.mastered"),
+      value: formatCount(data.total_mastered, locale),
     },
-    { label: "Current streak", value: String(data.current_streak) },
-    { label: "Best streak", value: String(data.longest_streak) },
+    {
+      label: t("stats.countriesSeen"),
+      value: formatCount(data.countries_seen, locale),
+    },
+    {
+      label: t("stats.answers"),
+      value: formatCount(data.total_answers, locale),
+    },
+    {
+      label: t("stats.accuracy"),
+      value:
+        data.total_answers === 0
+          ? "—"
+          : formatPercent(data.lifetime_accuracy, locale),
+    },
+    {
+      label: t("stats.currentStreak"),
+      value: formatCount(data.current_streak, locale),
+    },
+    {
+      label: t("stats.bestStreak"),
+      value: formatCount(data.longest_streak, locale),
+    },
   ];
 
   return (

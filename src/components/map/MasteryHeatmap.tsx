@@ -1,4 +1,5 @@
 import { useMemo, useState } from "react";
+import { useTranslation } from "react-i18next";
 import { ComposableMap, Geographies, Geography } from "react-simple-maps";
 import { getMasteryMap } from "../../api/tauri-api";
 import { useAsync } from "../../lib/use-async";
@@ -8,18 +9,13 @@ import type { QuestionMode } from "../../types/domain";
 import { buildMasteryByIso, masteryFill, WORLD_GEO_URL } from "./map-utils";
 import type { MapGeography } from "./map-utils";
 
-const MODE_OPTIONS: ReadonlyArray<SegmentedOption<QuestionMode>> = [
-  { value: "capital", label: "Capitals" },
-  { value: "flag", label: "Flags" },
-];
-
 const LEGEND = [
-  { label: "Unseen", color: "var(--surface-2)" },
-  { label: "Struggling", color: "var(--mastery-0)" },
-  { label: "Learning", color: "var(--mastery-1)" },
-  { label: "Familiar", color: "var(--mastery-2)" },
-  { label: "Mastered", color: "var(--mastery-3)" },
-];
+  { key: "heatmap.unseen", color: "var(--surface-2)" },
+  { key: "heatmap.struggling", color: "var(--mastery-0)" },
+  { key: "heatmap.learning", color: "var(--mastery-1)" },
+  { key: "heatmap.familiar", color: "var(--mastery-2)" },
+  { key: "heatmap.mastered", color: "var(--mastery-3)" },
+] as const;
 
 /**
  * World map colored by easiness factor per country, for the selected mode.
@@ -27,16 +23,22 @@ const LEGEND = [
  * mastery still appears in the other charts.
  */
 export function MasteryHeatmap() {
+  const { t } = useTranslation();
   const [mode, setMode] = useState<QuestionMode>("capital");
   const { data } = useAsync(() => getMasteryMap(mode), mode);
+
+  const modeOptions: ReadonlyArray<SegmentedOption<QuestionMode>> = [
+    { value: "capital", label: t("common.capitals") },
+    { value: "flag", label: t("common.flags") },
+  ];
 
   const byIso = useMemo(() => buildMasteryByIso(data ?? []), [data]);
 
   return (
     <div className="flex flex-col gap-4">
       <Segmented
-        ariaLabel="Heatmap mode"
-        options={MODE_OPTIONS}
+        ariaLabel={t("heatmap.mode")}
+        options={modeOptions}
         value={mode}
         onChange={setMode}
       />
@@ -48,7 +50,7 @@ export function MasteryHeatmap() {
           width={800}
           height={380}
           style={{ width: "100%", height: "auto" }}
-          aria-label="World map colored by mastery"
+          aria-label={t("heatmap.ariaMap")}
         >
           <Geographies geography={WORLD_GEO_URL}>
             {({ geographies }) =>
@@ -92,7 +94,7 @@ export function MasteryHeatmap() {
       <ul className="flex flex-wrap gap-x-4 gap-y-2">
         {LEGEND.map((item) => (
           <li
-            key={item.label}
+            key={item.key}
             className="flex items-center gap-1.5 text-xs text-text-muted"
           >
             <span
@@ -100,7 +102,7 @@ export function MasteryHeatmap() {
               className="h-3 w-3 rounded-sm border border-border"
               style={{ backgroundColor: item.color }}
             />
-            {item.label}
+            {t(item.key)}
           </li>
         ))}
       </ul>
