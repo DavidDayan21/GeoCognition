@@ -1,0 +1,30 @@
+[package]
+name = "geocognition"
+version = "0.1.0"
+description = "Adaptive geography mastery desktop app (capitals + flags, SM-2 spaced repetition)"
+authors = ["David Dayan"]
+license = "MIT"
+edition = "2021"
+
+[lib]
+# The `_lib` suffix is necessary so the lib name does not conflict with the
+# bin name on Windows, see https://github.com/rust-lang/cargo/issues/8519
+name = "geocognition_lib"
+crate-type = ["staticlib", "cdylib", "rlib"]
+
+[build-dependencies]
+tauri-build = { version = "2", features = [] }
+
+[dependencies]
+tauri = { version = "2", features = [] }
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+chrono = { version = "0.4", features = ["serde"] }
+thiserror = "2"
+strsim = "0.11"
+rand = "0.9"
+unicode-normalization = "0.1"
+sqlx = { version = "0.8", features = ["runtime-tokio", "sqlite"] }
+
+[dev-dependencies]
+tokio = { version = "1", features = ["macros", "rt"] }
