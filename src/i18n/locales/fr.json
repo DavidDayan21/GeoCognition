@@ -43,7 +43,34 @@
     },
     "start": "Lancer Border Run",
     "exit": "Retour à l'accueil",
-    "comingSoon": "La carte et le jeu arrivent à la prochaine étape."
+    "loading": "Préparation de votre itinéraire…",
+    "loadError": "Impossible de lancer une partie de Border Run.",
+    "retry": "Réessayer",
+    "route": "Itinéraire",
+    "attempts": "Essais",
+    "attemptsRemaining_one": "{{count}} essai restant",
+    "attemptsRemaining_other": "{{count}} essais restants",
+    "input": {
+      "placeholder": "Tapez un pays…",
+      "submit": "Valider la proposition",
+      "accepted": "Ajouté à votre itinéraire.",
+      "notRecognized": "Pays non reconnu",
+      "notAdjacent": "{{country}} ne touche pas votre itinéraire",
+      "alreadyInChain": "{{country}} est déjà dans votre itinéraire"
+    },
+    "playAgain": "Rejouer",
+    "changeDifficulty": "Changer de difficulté",
+    "downgraded": "Aucun itinéraire à cette difficulté — passage à une difficulté plus facile.",
+    "win": {
+      "title": "Connecté !",
+      "attempts": "{{used}} essais sur {{limit}} utilisés",
+      "optimal": "Vous avez trouvé l'itinéraire le plus court !",
+      "withDetour": "Relié — avec un détour ou deux."
+    },
+    "lose": {
+      "title": "Plus d'essais",
+      "reveal": "L'itinéraire le plus court est révélé en vert sur la carte."
+    }
   },
   "practice": {
     "capital": "Capitale",

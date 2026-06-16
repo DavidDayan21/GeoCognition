@@ -17,6 +17,14 @@
   --mastery-1: #fbbf24; /* learning, 1.6–2.2 */
   --mastery-2: #a3e635; /* familiar, 2.2–2.6 */
   --mastery-3: #22c55e; /* mastered, > 2.6 */
+
+  /* Border Run map states */
+  --br-start: #2563eb; /* start country (blue) */
+  --br-end: #dc2626; /* end country (red) */
+  --br-path: #16a34a; /* correct guess on a shortest path (green) */
+  --br-detour: #ea580c; /* correct guess, valid detour (orange) */
+  --br-flash: #dc2626; /* non-adjacent guess flash (red) */
+  --br-blank: #d6d3d1; /* mystery-map silhouette fill */
 }
 
 .dark {
@@ -36,4 +44,12 @@
   --mastery-1: #e6b84c;
   --mastery-2: #9fd454;
   --mastery-3: #4caf6e;
+
+  /* Border Run map states (brighter on dark surfaces) */
+  --br-start: #3b82f6;
+  --br-end: #ef4444;
+  --br-path: #22c55e;
+  --br-detour: #f97316;
+  --br-flash: #ef4444;
+  --br-blank: #44403c;
 }

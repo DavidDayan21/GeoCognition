@@ -43,7 +43,34 @@
     },
     "start": "Start Border Run",
     "exit": "Exit to home",
-    "comingSoon": "The map and gameplay arrive in the next phase."
+    "loading": "Setting up your route…",
+    "loadError": "Couldn't start a Border Run game.",
+    "retry": "Try again",
+    "route": "Route",
+    "attempts": "Attempts",
+    "attemptsRemaining_one": "{{count}} attempt left",
+    "attemptsRemaining_other": "{{count}} attempts left",
+    "input": {
+      "placeholder": "Type a country…",
+      "submit": "Submit guess",
+      "accepted": "Added to your route.",
+      "notRecognized": "Country not recognized",
+      "notAdjacent": "{{country}} doesn't border your route",
+      "alreadyInChain": "{{country}} is already in your route"
+    },
+    "playAgain": "Play again",
+    "changeDifficulty": "Change difficulty",
+    "downgraded": "No route found at that difficulty — trying an easier one.",
+    "win": {
+      "title": "Connected!",
+      "attempts": "{{used}} of {{limit}} attempts used",
+      "optimal": "You found the shortest route!",
+      "withDetour": "Connected — with a detour or two."
+    },
+    "lose": {
+      "title": "Out of attempts",
+      "reveal": "The shortest route is revealed on the map in green."
+    }
   },
   "practice": {
     "capital": "Capital",
