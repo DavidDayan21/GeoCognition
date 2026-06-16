@@ -8,6 +8,20 @@ export type QuestionMode = "capital" | "flag";
 export type Theme = "light" | "dark" | "system";
 export type FuzzyTolerance = "strict" | "normal" | "lenient";
 export type Language = "en" | "fr";
+/** The active home-screen game mode. */
+export type AppMode = "practice" | "border_run";
+/** Border Run difficulty, by shortest-path length. */
+export type Difficulty = "easy" | "medium" | "hard";
+/** Lifecycle of a single Border Run game. */
+export type GameStatus = "in_progress" | "won" | "lost";
+/** Classification of a submitted Border Run guess. */
+export type GuessKind =
+  | "accepted"
+  | "not_adjacent"
+  | "already_in_chain"
+  | "not_recognized"
+  | "won"
+  | "lost";
 
 export interface Country {
   id: number;
@@ -20,6 +34,8 @@ export interface Country {
   iso_alpha3: string;
   lat: number;
   lng: number;
+  /** ISO alpha-3 codes of land-bordering countries; empty for islands. */
+  borders: string[];
 }
 
 export interface ModesEnabled {
@@ -33,6 +49,10 @@ export interface Settings {
   theme: Theme;
   fuzzy_tolerance: FuzzyTolerance;
   language: Language;
+  /** The active home-screen game mode. */
+  current_mode: AppMode;
+  /** The selected Border Run difficulty. */
+  border_run_difficulty: Difficulty;
 }
 
 export interface QuestionPayload {
@@ -106,4 +126,34 @@ export interface GlobalStats {
   lifetime_accuracy: number;
   current_streak: number;
   longest_streak: number;
+}
+
+/**
+ * Snapshot of a Border Run game. The shortest-path set is intentionally not
+ * exposed; on-path hints arrive per guess via {@link GuessOutcomeDto}.
+ */
+export interface BorderRunGameDto {
+  /** Start country (ISO alpha-3). */
+  start: string;
+  /** End country (ISO alpha-3). */
+  end: string;
+  /** Accepted guesses in order (ISO alpha-3). */
+  chain: string[];
+  attempts_used: number;
+  attempts_limit: number;
+  attempts_remaining: number;
+  status: GameStatus;
+  difficulty: Difficulty;
+}
+
+export interface GuessOutcomeDto {
+  kind: GuessKind;
+  /** Resolved country (ISO alpha-3); null only for "not_recognized". */
+  iso3: string | null;
+  /** Whether the resolved country lies on a shortest path (green vs orange). */
+  on_shortest_path: boolean;
+  /** For a losing guess, whether it was a valid (chained) move. */
+  accepted: boolean;
+  /** Game state after applying this guess. */
+  game: BorderRunGameDto;
 }

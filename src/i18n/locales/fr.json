@@ -21,7 +21,29 @@
     "accuracy": "précision",
     "noPracticeYet": "Pas encore de pratique — commencez votre première session.",
     "loadingMap": "Chargement de la carte",
-    "selectMapAria": "Carte du monde pour sélectionner les continents"
+    "selectMapAria": "Carte du monde pour sélectionner les continents",
+    "subtitle": {
+      "practice": "Entraînement",
+      "borderRun": "Border Run"
+    },
+    "modeSwitcher": {
+      "label": "Mode de jeu",
+      "practice": "Entraînement",
+      "borderRun": "Border Run"
+    }
+  },
+  "borderRun": {
+    "title": "Border Run",
+    "subtitle": "Reliez le pays de départ au pays d'arrivée en passant par leurs frontières terrestres.",
+    "difficulty": {
+      "label": "Difficulté",
+      "easy": "Facile",
+      "medium": "Moyen",
+      "hard": "Difficile"
+    },
+    "start": "Lancer Border Run",
+    "exit": "Retour à l'accueil",
+    "comingSoon": "La carte et le jeu arrivent à la prochaine étape."
   },
   "practice": {
     "capital": "Capitale",

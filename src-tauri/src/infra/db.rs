@@ -34,6 +34,24 @@ pub async fn connect_in_memory() -> Result<SqlitePool, AppError> {
 /// Applies the initial schema. Safe to call on every startup.
 pub async fn init_schema(pool: &SqlitePool) -> Result<(), AppError> {
     sqlx::raw_sql(INIT_SQL).execute(pool).await?;
+    ensure_borders_column(pool).await?;
+    Ok(())
+}
+
+/// Adds the `countries.borders` column to databases created before Border
+/// Run shipped. New databases already have it from `001_init.sql`; SQLite
+/// lacks `ADD COLUMN IF NOT EXISTS`, so the column list is inspected first.
+async fn ensure_borders_column(pool: &SqlitePool) -> Result<(), AppError> {
+    let columns: Vec<(i64, String, String, i64, Option<String>, i64)> =
+        sqlx::query_as("PRAGMA table_info(countries)")
+            .fetch_all(pool)
+            .await?;
+    let has_borders = columns.iter().any(|(_, name, ..)| name == "borders");
+    if !has_borders {
+        sqlx::query("ALTER TABLE countries ADD COLUMN borders TEXT NOT NULL DEFAULT '[]'")
+            .execute(pool)
+            .await?;
+    }
     Ok(())
 }
 
@@ -51,6 +69,10 @@ pub async fn load_settings(pool: &SqlitePool) -> Result<Settings, AppError> {
             "theme" => settings.theme = serde_json::from_str(&value)?,
             "fuzzy_tolerance" => settings.fuzzy_tolerance = serde_json::from_str(&value)?,
             "language" => settings.language = serde_json::from_str(&value)?,
+            "current_mode" => settings.current_mode = serde_json::from_str(&value)?,
+            "border_run_difficulty" => {
+                settings.border_run_difficulty = serde_json::from_str(&value)?
+            }
             _ => {}
         }
     }
@@ -88,6 +110,14 @@ pub async fn save_settings(pool: &SqlitePool, settings: &Settings) -> Result<(),
             serde_json::to_string(&settings.fuzzy_tolerance)?,
         ),
         ("language", serde_json::to_string(&settings.language)?),
+        (
+            "current_mode",
+            serde_json::to_string(&settings.current_mode)?,
+        ),
+        (
+            "border_run_difficulty",
+            serde_json::to_string(&settings.border_run_difficulty)?,
+        ),
     ];
     let mut tx = pool.begin().await?;
     for (key, value) in entries {

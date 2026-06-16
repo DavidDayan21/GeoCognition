@@ -27,6 +27,8 @@ const base: Settings = {
   theme: "system",
   fuzzy_tolerance: "normal",
   language: "en",
+  current_mode: "practice",
+  border_run_difficulty: "medium",
 };
 
 /** The settings object passed to the most recent updateSettings call. */

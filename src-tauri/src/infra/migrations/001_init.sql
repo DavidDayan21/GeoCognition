@@ -11,7 +11,9 @@ CREATE TABLE IF NOT EXISTS countries (
   iso_alpha2 TEXT NOT NULL UNIQUE,
   iso_alpha3 TEXT NOT NULL UNIQUE,
   lat REAL,
-  lng REAL
+  lng REAL,
+  -- JSON-encoded array of bordering ISO alpha-3 codes (Border Run mode).
+  borders TEXT NOT NULL DEFAULT '[]'
 );
 
 CREATE TABLE IF NOT EXISTS user_stats (

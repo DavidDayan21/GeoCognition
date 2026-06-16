@@ -21,7 +21,29 @@
     "accuracy": "accuracy",
     "noPracticeYet": "No practice yet — start your first session.",
     "loadingMap": "Loading map",
-    "selectMapAria": "World map for selecting continents"
+    "selectMapAria": "World map for selecting continents",
+    "subtitle": {
+      "practice": "Practice",
+      "borderRun": "Border Run"
+    },
+    "modeSwitcher": {
+      "label": "Game mode",
+      "practice": "Practice",
+      "borderRun": "Border Run"
+    }
+  },
+  "borderRun": {
+    "title": "Border Run",
+    "subtitle": "Connect the start and end countries through their shared land borders.",
+    "difficulty": {
+      "label": "Difficulty",
+      "easy": "Easy",
+      "medium": "Medium",
+      "hard": "Hard"
+    },
+    "start": "Start Border Run",
+    "exit": "Exit to home",
+    "comingSoon": "The map and gameplay arrive in the next phase."
   },
   "practice": {
     "capital": "Capital",

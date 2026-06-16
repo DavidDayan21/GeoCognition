@@ -18,8 +18,10 @@ import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { Link, useNavigate } from "react-router-dom";
 import { getGlobalStats } from "../api/tauri-api";
+import { BorderRunSetup } from "../components/border-run/BorderRunSetup";
 import { WorldMap } from "../components/map/WorldMap";
 import { Button } from "../components/ui/Button";
+import { SegmentedControl } from "../components/ui/SegmentedControl";
 import { Toggle } from "../components/ui/Toggle";
 import { LanguageSelector } from "../components/LanguageSelector";
 import { EASE_CALM } from "../lib/animations";
@@ -27,8 +29,9 @@ import { formatPercent } from "../lib/format";
 import { localeOf } from "../lib/language";
 import { useAsync } from "../lib/use-async";
 import { useIntroStore } from "../store/intro-store";
+import { useModeStore } from "../store/mode-store";
 import { useSettingsStore } from "../store/settings-store";
-import type { QuestionMode } from "../types/domain";
+import type { AppMode, QuestionMode } from "../types/domain";
 
 // ---------------------------------------------------------------------------
 // Animation variants
@@ -141,6 +144,10 @@ export default function HomePage() {
   const setMode = useSettingsStore((s) => s.setMode);
   const setLanguage = useSettingsStore((s) => s.setLanguage);
 
+  // Active game mode (Practice vs. Border Run)
+  const currentMode = useModeStore((s) => s.currentMode);
+  const setCurrentMode = useModeStore((s) => s.setMode);
+
   useEffect(() => {
     if (status === "idle") void load();
   }, [status, load]);
@@ -203,15 +210,24 @@ export default function HomePage() {
       {/* ── Home content ── */}
       {showContent && (
         <main className="mx-auto flex min-h-screen max-w-4xl flex-col gap-8 px-8 py-10">
-          {/* Header: title (layoutId morph target) + nav icons + language */}
-          <header className="flex items-center justify-between">
-            <motion.h1
-              layoutId="geo-title"
-              className="font-display text-4xl text-text"
-              transition={{ duration: 0.8, ease: EASE_CALM }}
-            >
-              GeoCognition
-            </motion.h1>
+          {/* Header: title + mode subtitle (left), nav icons + language (right) */}
+          <header className="flex items-start justify-between">
+            <div className="flex flex-col gap-1">
+              <motion.h1
+                layoutId="geo-title"
+                className="font-display text-4xl text-text"
+                transition={{ duration: 0.8, ease: EASE_CALM }}
+              >
+                GeoCognition
+              </motion.h1>
+              <p className="text-sm text-text-muted">
+                {t(
+                  currentMode === "practice"
+                    ? "home.subtitle.practice"
+                    : "home.subtitle.borderRun",
+                )}
+              </p>
+            </div>
 
             <div className="flex items-center gap-1">
               <NavIcon to="/stats" label={t("nav.stats")}>
@@ -234,91 +250,120 @@ export default function HomePage() {
             initial="initial"
             animate="animate"
           >
-            {/* World map */}
-            <motion.div variants={contentItem}>
-              {settings ? (
-                <WorldMap
-                  selectedContinents={settings.selected_continents}
-                  onToggleContinent={toggleContinent}
-                />
-              ) : (
-                <div
-                  className="h-80 animate-pulse rounded-card bg-surface-2"
-                  role="status"
-                  aria-label={t("home.loadingMap")}
-                />
-              )}
+            {/* Mode switcher: primary navigation between the two game modes */}
+            <motion.div variants={contentItem} className="flex justify-center">
+              <SegmentedControl
+                ariaLabel={t("home.modeSwitcher.label")}
+                value={currentMode}
+                onChange={(mode: AppMode) => setCurrentMode(mode)}
+                className="text-base"
+                options={[
+                  {
+                    value: "practice",
+                    label: t("home.modeSwitcher.practice"),
+                  },
+                  {
+                    value: "border_run",
+                    label: t("home.modeSwitcher.borderRun"),
+                  },
+                ]}
+              />
             </motion.div>
 
-            {/* Mode toggles + Start practicing CTA */}
-            <motion.div
-              variants={contentItem}
-              className="flex flex-col items-center gap-5"
-            >
-              {settings && (
-                <div className="flex flex-wrap items-center justify-center gap-8">
-                  <ModeToggle
-                    label={t("common.capitals")}
-                    checked={settings.modes_enabled.capital}
-                    disabled={
-                      settings.modes_enabled.capital &&
-                      !settings.modes_enabled.flag
-                    }
-                    onChange={(checked) =>
-                      setMode("capital" as QuestionMode, checked)
-                    }
-                  />
-                  <ModeToggle
-                    label={t("common.flags")}
-                    checked={settings.modes_enabled.flag}
-                    disabled={
-                      settings.modes_enabled.flag &&
-                      !settings.modes_enabled.capital
-                    }
-                    onChange={(checked) =>
-                      setMode("flag" as QuestionMode, checked)
-                    }
-                  />
-                </div>
-              )}
-              <Button
-                onClick={() => navigate("/practice")}
-                className="px-12 py-4 text-base font-semibold"
-              >
-                <Play size={20} aria-hidden />
-                {t("home.startPracticing")}
-              </Button>
-            </motion.div>
+            {currentMode === "practice" ? (
+              <>
+                {/* World map */}
+                <motion.div variants={contentItem}>
+                  {settings ? (
+                    <WorldMap
+                      selectedContinents={settings.selected_continents}
+                      onToggleContinent={toggleContinent}
+                    />
+                  ) : (
+                    <div
+                      className="h-80 animate-pulse rounded-card bg-surface-2"
+                      role="status"
+                      aria-label={t("home.loadingMap")}
+                    />
+                  )}
+                </motion.div>
 
-            {/* Lifetime stats strip */}
-            <motion.div
-              variants={contentItem}
-              className="flex min-h-[1.5rem] flex-wrap items-center justify-center gap-x-6 gap-y-2"
-            >
-              {stats && stats.total_answers > 0 ? (
-                <>
-                  <HomeStat
-                    icon={<Flame size={16} />}
-                    value={String(stats.current_streak)}
-                    label={t("home.streak")}
-                  />
-                  <HomeStat
-                    icon={<Trophy size={16} />}
-                    value={String(stats.total_mastered)}
-                    label={t("home.mastered")}
-                  />
-                  <HomeStat
-                    icon={<Target size={16} />}
-                    value={formatPercent(stats.lifetime_accuracy, locale)}
-                    label={t("home.accuracy")}
-                  />
-                </>
-              ) : (
-                <p className="text-sm text-text-muted">
-                  {stats ? t("home.noPracticeYet") : ""}
-                </p>
-              )}
-            </motion.div>
+                {/* Mode toggles + Start practicing CTA */}
+                <motion.div
+                  variants={contentItem}
+                  className="flex flex-col items-center gap-5"
+                >
+                  {settings && (
+                    <div className="flex flex-wrap items-center justify-center gap-8">
+                      <ModeToggle
+                        label={t("common.capitals")}
+                        checked={settings.modes_enabled.capital}
+                        disabled={
+                          settings.modes_enabled.capital &&
+                          !settings.modes_enabled.flag
+                        }
+                        onChange={(checked) =>
+                          setMode("capital" as QuestionMode, checked)
+                        }
+                      />
+                      <ModeToggle
+                        label={t("common.flags")}
+                        checked={settings.modes_enabled.flag}
+                        disabled={
+                          settings.modes_enabled.flag &&
+                          !settings.modes_enabled.capital
+                        }
+                        onChange={(checked) =>
+                          setMode("flag" as QuestionMode, checked)
+                        }
+                      />
+                    </div>
+                  )}
+                  <Button
+                    onClick={() => navigate("/practice")}
+                    className="px-12 py-4 text-base font-semibold"
+                  >
+                    <Play size={20} aria-hidden />
+                    {t("home.startPracticing")}
+                  </Button>
+                </motion.div>
+
+                {/* Lifetime stats strip */}
+                <motion.div
+                  variants={contentItem}
+                  className="flex min-h-[1.5rem] flex-wrap items-center justify-center gap-x-6 gap-y-2"
+                >
+                  {stats && stats.total_answers > 0 ? (
+                    <>
+                      <HomeStat
+                        icon={<Flame size={16} />}
+                        value={String(stats.current_streak)}
+                        label={t("home.streak")}
+                      />
+                      <HomeStat
+                        icon={<Trophy size={16} />}
+                        value={String(stats.total_mastered)}
+                        label={t("home.mastered")}
+                      />
+                      <HomeStat
+                        icon={<Target size={16} />}
+                        value={formatPercent(stats.lifetime_accuracy, locale)}
+                        label={t("home.accuracy")}
+                      />
+                    </>
+                  ) : (
+                    <p className="text-sm text-text-muted">
+                      {stats ? t("home.noPracticeYet") : ""}
+                    </p>
+                  )}
+                </motion.div>
+              </>
+            ) : (
+              /* Border Run setup: difficulty slider + start CTA */
+              <motion.div variants={contentItem} className="pt-6">
+                <BorderRunSetup />
+              </motion.div>
+            )}
           </motion.div>
         </main>
       )}

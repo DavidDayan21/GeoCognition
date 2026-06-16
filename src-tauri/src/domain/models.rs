@@ -19,6 +19,12 @@ pub struct Country {
     pub iso_alpha3: String,
     pub lat: f64,
     pub lng: f64,
+    /// ISO alpha-3 codes of countries sharing a land border, restricted to
+    /// the countries present in this dataset. Empty for island nations.
+    /// Persisted in the `countries.borders` column as a JSON string, hence
+    /// the `sqlx(json)` mapping for `FromRow`.
+    #[sqlx(json)]
+    pub borders: Vec<String>,
 }
 
 /// Persistent SM-2 state for one (country, mode) card, as stored in the
@@ -53,6 +59,101 @@ pub enum Theme {
 pub enum Language {
     En,
     Fr,
+}
+
+/// The active home-screen game mode. Persisted as `current_mode` in the
+/// `settings` table and restored on launch.
+#[derive(Debug, Clone, Copy, PartialEq, Eq, Serialize, Deserialize)]
+#[serde(rename_all = "snake_case")]
+pub enum AppMode {
+    Practice,
+    BorderRun,
+}
+
+/// Border Run difficulty, classified by shortest-path length between the
+/// start and end countries. Persisted as `border_run_difficulty`.
+#[derive(Debug, Clone, Copy, PartialEq, Eq, Serialize, Deserialize)]
+#[serde(rename_all = "lowercase")]
+pub enum Difficulty {
+    Easy,
+    Medium,
+    Hard,
+}
+
+impl Difficulty {
+    /// Inclusive shortest-path-length range accepted for this difficulty,
+    /// measured in edges (border crossings) between start and end. Easy
+    /// `2..=3` means 1–2 intermediate countries; `Hard` has no upper bound,
+    /// represented by `usize::MAX`.
+    pub fn path_length_range(self) -> (usize, usize) {
+        match self {
+            Difficulty::Easy => (2, 3),
+            Difficulty::Medium => (4, 6),
+            Difficulty::Hard => (7, usize::MAX),
+        }
+    }
+
+    /// Number of guess attempts allowed at this difficulty.
+    pub fn attempts_limit(self) -> u32 {
+        match self {
+            Difficulty::Easy => 6,
+            Difficulty::Medium => 10,
+            Difficulty::Hard => 15,
+        }
+    }
+}
+
+/// Lifecycle of a single Border Run game.
+#[derive(Debug, Clone, Copy, PartialEq, Eq, Serialize, Deserialize)]
+#[serde(rename_all = "snake_case")]
+pub enum GameStatus {
+    InProgress,
+    Won,
+    Lost,
+}
+
+/// The classification of a submitted Border Run guess, sent to the frontend.
+#[derive(Debug, Clone, Copy, PartialEq, Eq, Serialize, Deserialize)]
+#[serde(rename_all = "snake_case")]
+pub enum GuessKind {
+    Accepted,
+    NotAdjacent,
+    AlreadyInChain,
+    NotRecognized,
+    Won,
+    Lost,
+}
+
+/// Snapshot of a Border Run game handed to the frontend. Deliberately omits
+/// the shortest-path set so the solution is never leaked mid-game; on-path
+/// hints arrive per guess via [`GuessOutcomeDto`].
+#[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
+pub struct BorderRunGameDto {
+    /// Start country (ISO alpha-3).
+    pub start: String,
+    /// End country (ISO alpha-3).
+    pub end: String,
+    /// Accepted guesses in order (ISO alpha-3).
+    pub chain: Vec<String>,
+    pub attempts_used: u32,
+    pub attempts_limit: u32,
+    pub attempts_remaining: u32,
+    pub status: GameStatus,
+    pub difficulty: Difficulty,
+}
+
+/// Outcome of one submitted guess, with the updated game snapshot.
+#[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
+pub struct GuessOutcomeDto {
+    pub kind: GuessKind,
+    /// The resolved country (ISO alpha-3); `None` only for `not_recognized`.
+    pub iso3: Option<String>,
+    /// Whether the resolved country lies on a shortest path (green vs orange).
+    pub on_shortest_path: bool,
+    /// For a losing guess, whether it was a valid (chained) move.
+    pub accepted: bool,
+    /// The game state after applying this guess.
+    pub game: BorderRunGameDto,
 }
 
 /// Near-miss tolerance presets for answer grading.
@@ -91,6 +192,10 @@ pub struct Settings {
     pub theme: Theme,
     pub fuzzy_tolerance: FuzzyTolerance,
     pub language: Language,
+    /// The active home-screen game mode.
+    pub current_mode: AppMode,
+    /// The selected Border Run difficulty.
+    pub border_run_difficulty: Difficulty,
 }
 
 /// The six continents available for selection.
@@ -116,6 +221,8 @@ impl Default for Settings {
             theme: Theme::System,
             fuzzy_tolerance: FuzzyTolerance::Normal,
             language: Language::En,
+            current_mode: AppMode::Practice,
+            border_run_difficulty: Difficulty::Medium,
         }
     }
 }

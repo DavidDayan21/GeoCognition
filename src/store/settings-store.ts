@@ -11,6 +11,8 @@ import { sortContinents } from "../lib/continents";
 import { applyLanguage } from "../lib/language";
 import i18n from "../i18n";
 import type {
+  AppMode,
+  Difficulty,
   FuzzyTolerance,
   Language,
   QuestionMode,
@@ -32,6 +34,10 @@ interface SettingsStoreState {
   setMode: (mode: QuestionMode, enabled: boolean) => void;
   setTheme: (theme: Theme) => void;
   setFuzzyTolerance: (tolerance: FuzzyTolerance) => void;
+  /** Persists the active home-screen game mode. */
+  setCurrentMode: (mode: AppMode) => void;
+  /** Persists the selected Border Run difficulty. */
+  setBorderRunDifficulty: (difficulty: Difficulty) => void;
   /** Switches the UI language, applies it to i18next, and persists it. */
   setLanguage: (language: Language) => void;
   /** Deletes all SM-2 progress and the answer log via the backend. */
@@ -101,6 +107,18 @@ export const useSettingsStore = create<SettingsStoreState>((set, get) => {
       const current = get().settings;
       if (!current) return;
       persist({ ...current, fuzzy_tolerance });
+    },
+
+    setCurrentMode: (current_mode) => {
+      const current = get().settings;
+      if (!current) return;
+      persist({ ...current, current_mode });
+    },
+
+    setBorderRunDifficulty: (border_run_difficulty) => {
+      const current = get().settings;
+      if (!current) return;
+      persist({ ...current, border_run_difficulty });
     },
 
     setLanguage: (language) => {

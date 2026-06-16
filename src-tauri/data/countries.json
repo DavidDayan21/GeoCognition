@@ -9,7 +9,15 @@
     "iso_alpha2": "af",
     "iso_alpha3": "afg",
     "lat": 33,
-    "lng": 65
+    "lng": 65,
+    "borders": [
+      "chn",
+      "irn",
+      "pak",
+      "tjk",
+      "tkm",
+      "uzb"
+    ]
   },
   {
     "id": 2,
@@ -21,7 +29,12 @@
     "iso_alpha2": "al",
     "iso_alpha3": "alb",
     "lat": 41,
-    "lng": 20
+    "lng": 20,
+    "borders": [
+      "grc",
+      "mkd",
+      "mne"
+    ]
   },
   {
     "id": 3,
@@ -33,7 +46,15 @@
     "iso_alpha2": "dz",
     "iso_alpha3": "dza",
     "lat": 28,
-    "lng": 3
+    "lng": 3,
+    "borders": [
+      "lby",
+      "mar",
+      "mli",
+      "mrt",
+      "ner",
+      "tun"
+    ]
   },
   {
     "id": 4,
@@ -45,7 +66,11 @@
     "iso_alpha2": "ad",
     "iso_alpha3": "and",
     "lat": 42.5,
-    "lng": 1.5
+    "lng": 1.5,
+    "borders": [
+      "esp",
+      "fra"
+    ]
   },
   {
     "id": 5,
@@ -57,7 +82,13 @@
     "iso_alpha2": "ao",
     "iso_alpha3": "ago",
     "lat": -12.5,
-    "lng": 18.5
+    "lng": 18.5,
+    "borders": [
+      "cod",
+      "cog",
+      "nam",
+      "zmb"
+    ]
   },
   {
     "id": 6,
@@ -69,7 +100,8 @@
     "iso_alpha2": "ag",
     "iso_alpha3": "atg",
     "lat": 17.05,
-    "lng": -61.8
+    "lng": -61.8,
+    "borders": []
   },
   {
     "id": 7,
@@ -81,7 +113,14 @@
     "iso_alpha2": "ar",
     "iso_alpha3": "arg",
     "lat": -34,
-    "lng": -64
+    "lng": -64,
+    "borders": [
+      "bol",
+      "bra",
+      "chl",
+      "pry",
+      "ury"
+    ]
   },
   {
     "id": 8,
@@ -93,7 +132,13 @@
     "iso_alpha2": "am",
     "iso_alpha3": "arm",
     "lat": 40,
-    "lng": 45
+    "lng": 45,
+    "borders": [
+      "aze",
+      "geo",
+      "irn",
+      "tur"
+    ]
   },
   {
     "id": 9,
@@ -105,7 +150,8 @@
     "iso_alpha2": "au",
     "iso_alpha3": "aus",
     "lat": -27,
-    "lng": 133
+    "lng": 133,
+    "borders": []
   },
   {
     "id": 10,
@@ -117,7 +163,17 @@
     "iso_alpha2": "at",
     "iso_alpha3": "aut",
     "lat": 47.33333333,
-    "lng": 13.33333333
+    "lng": 13.33333333,
+    "borders": [
+      "che",
+      "cze",
+      "deu",
+      "hun",
+      "ita",
+      "lie",
+      "svk",
+      "svn"
+    ]
   },
   {
     "id": 11,
@@ -129,7 +185,14 @@
     "iso_alpha2": "az",
     "iso_alpha3": "aze",
     "lat": 40.5,
-    "lng": 47.5
+    "lng": 47.5,
+    "borders": [
+      "arm",
+      "geo",
+      "irn",
+      "rus",
+      "tur"
+    ]
   },
   {
     "id": 12,
@@ -141,7 +204,8 @@
     "iso_alpha2": "bs",
     "iso_alpha3": "bhs",
     "lat": 25.0343,
-    "lng": -77.3963
+    "lng": -77.3963,
+    "borders": []
   },
   {
     "id": 13,
@@ -153,7 +217,8 @@
     "iso_alpha2": "bh",
     "iso_alpha3": "bhr",
     "lat": 26,
-    "lng": 50.55
+    "lng": 50.55,
+    "borders": []
   },
   {
     "id": 14,
@@ -165,7 +230,11 @@
     "iso_alpha2": "bd",
     "iso_alpha3": "bgd",
     "lat": 24,
-    "lng": 90
+    "lng": 90,
+    "borders": [
+      "ind",
+      "mmr"
+    ]
   },
   {
     "id": 15,
@@ -177,7 +246,8 @@
     "iso_alpha2": "bb",
     "iso_alpha3": "brb",
     "lat": 13.16666666,
-    "lng": -59.53333333
+    "lng": -59.53333333,
+    "borders": []
   },
   {
     "id": 16,
@@ -189,7 +259,14 @@
     "iso_alpha2": "by",
     "iso_alpha3": "blr",
     "lat": 53,
-    "lng": 28
+    "lng": 28,
+    "borders": [
+      "ltu",
+      "lva",
+      "pol",
+      "rus",
+      "ukr"
+    ]
   },
   {
     "id": 17,
@@ -201,7 +278,13 @@
     "iso_alpha2": "be",
     "iso_alpha3": "bel",
     "lat": 50.83333333,
-    "lng": 4
+    "lng": 4,
+    "borders": [
+      "deu",
+      "fra",
+      "lux",
+      "nld"
+    ]
   },
   {
     "id": 18,
@@ -213,7 +296,11 @@
     "iso_alpha2": "bz",
     "iso_alpha3": "blz",
     "lat": 17.25,
-    "lng": -88.75
+    "lng": -88.75,
+    "borders": [
+      "gtm",
+      "mex"
+    ]
   },
   {
     "id": 19,
@@ -225,7 +312,13 @@
     "iso_alpha2": "bj",
     "iso_alpha3": "ben",
     "lat": 9.5,
-    "lng": 2.25
+    "lng": 2.25,
+    "borders": [
+      "bfa",
+      "ner",
+      "nga",
+      "tgo"
+    ]
   },
   {
     "id": 20,
@@ -237,7 +330,11 @@
     "iso_alpha2": "bt",
     "iso_alpha3": "btn",
     "lat": 27.5,
-    "lng": 90.5
+    "lng": 90.5,
+    "borders": [
+      "chn",
+      "ind"
+    ]
   },
   {
     "id": 21,
@@ -249,7 +346,14 @@
     "iso_alpha2": "bo",
     "iso_alpha3": "bol",
     "lat": -17,
-    "lng": -65
+    "lng": -65,
+    "borders": [
+      "arg",
+      "bra",
+      "chl",
+      "per",
+      "pry"
+    ]
   },
   {
     "id": 22,
@@ -261,7 +365,12 @@
     "iso_alpha2": "ba",
     "iso_alpha3": "bih",
     "lat": 44,
-    "lng": 18
+    "lng": 18,
+    "borders": [
+      "hrv",
+      "mne",
+      "srb"
+    ]
   },
   {
     "id": 23,
@@ -273,7 +382,13 @@
     "iso_alpha2": "bw",
     "iso_alpha3": "bwa",
     "lat": -22,
-    "lng": 24
+    "lng": 24,
+    "borders": [
+      "nam",
+      "zaf",
+      "zmb",
+      "zwe"
+    ]
   },
   {
     "id": 24,
@@ -285,7 +400,18 @@
     "iso_alpha2": "br",
     "iso_alpha3": "bra",
     "lat": -10,
-    "lng": -55
+    "lng": -55,
+    "borders": [
+      "arg",
+      "bol",
+      "col",
+      "guy",
+      "per",
+      "pry",
+      "sur",
+      "ury",
+      "ven"
+    ]
   },
   {
     "id": 25,
@@ -297,7 +423,10 @@
     "iso_alpha2": "bn",
     "iso_alpha3": "brn",
     "lat": 4.5,
-    "lng": 114.66666666
+    "lng": 114.66666666,
+    "borders": [
+      "mys"
+    ]
   },
   {
     "id": 26,
@@ -309,7 +438,14 @@
     "iso_alpha2": "bg",
     "iso_alpha3": "bgr",
     "lat": 43,
-    "lng": 25
+    "lng": 25,
+    "borders": [
+      "grc",
+      "mkd",
+      "rou",
+      "srb",
+      "tur"
+    ]
   },
   {
     "id": 27,
@@ -321,7 +457,15 @@
     "iso_alpha2": "bf",
     "iso_alpha3": "bfa",
     "lat": 13,
-    "lng": -2
+    "lng": -2,
+    "borders": [
+      "ben",
+      "civ",
+      "gha",
+      "mli",
+      "ner",
+      "tgo"
+    ]
   },
   {
     "id": 28,
@@ -333,7 +477,12 @@
     "iso_alpha2": "bi",
     "iso_alpha3": "bdi",
     "lat": -3.5,
-    "lng": 30
+    "lng": 30,
+    "borders": [
+      "cod",
+      "rwa",
+      "tza"
+    ]
   },
   {
     "id": 29,
@@ -345,7 +494,12 @@
     "iso_alpha2": "kh",
     "iso_alpha3": "khm",
     "lat": 13,
-    "lng": 105
+    "lng": 105,
+    "borders": [
+      "lao",
+      "tha",
+      "vnm"
+    ]
   },
   {
     "id": 30,
@@ -357,7 +511,15 @@
     "iso_alpha2": "cm",
     "iso_alpha3": "cmr",
     "lat": 6,
-    "lng": 12
+    "lng": 12,
+    "borders": [
+      "caf",
+      "cog",
+      "gab",
+      "gnq",
+      "nga",
+      "tcd"
+    ]
   },
   {
     "id": 31,
@@ -369,7 +531,10 @@
     "iso_alpha2": "ca",
     "iso_alpha3": "can",
     "lat": 60,
-    "lng": -95
+    "lng": -95,
+    "borders": [
+      "usa"
+    ]
   },
   {
     "id": 32,
@@ -381,7 +546,8 @@
     "iso_alpha2": "cv",
     "iso_alpha3": "cpv",
     "lat": 16.5388,
-    "lng": -23.0418
+    "lng": -23.0418,
+    "borders": []
   },
   {
     "id": 33,
@@ -393,7 +559,15 @@
     "iso_alpha2": "cf",
     "iso_alpha3": "caf",
     "lat": 7,
-    "lng": 21
+    "lng": 21,
+    "borders": [
+      "cmr",
+      "cod",
+      "cog",
+      "sdn",
+      "ssd",
+      "tcd"
+    ]
   },
   {
     "id": 34,
@@ -405,7 +579,15 @@
     "iso_alpha2": "td",
     "iso_alpha3": "tcd",
     "lat": 15,
-    "lng": 19
+    "lng": 19,
+    "borders": [
+      "caf",
+      "cmr",
+      "lby",
+      "ner",
+      "nga",
+      "sdn"
+    ]
   },
   {
     "id": 35,
@@ -417,7 +599,12 @@
     "iso_alpha2": "cl",
     "iso_alpha3": "chl",
     "lat": -30,
-    "lng": -71
+    "lng": -71,
+    "borders": [
+      "arg",
+      "bol",
+      "per"
+    ]
   },
   {
     "id": 36,
@@ -429,7 +616,23 @@
     "iso_alpha2": "cn",
     "iso_alpha3": "chn",
     "lat": 35,
-    "lng": 105
+    "lng": 105,
+    "borders": [
+      "afg",
+      "btn",
+      "ind",
+      "kaz",
+      "kgz",
+      "lao",
+      "mmr",
+      "mng",
+      "npl",
+      "pak",
+      "prk",
+      "rus",
+      "tjk",
+      "vnm"
+    ]
   },
   {
     "id": 37,
@@ -441,7 +644,14 @@
     "iso_alpha2": "co",
     "iso_alpha3": "col",
     "lat": 4,
-    "lng": -72
+    "lng": -72,
+    "borders": [
+      "bra",
+      "ecu",
+      "pan",
+      "per",
+      "ven"
+    ]
   },
   {
     "id": 38,
@@ -453,7 +663,8 @@
     "iso_alpha2": "km",
     "iso_alpha3": "com",
     "lat": -12.16666666,
-    "lng": 44.25
+    "lng": 44.25,
+    "borders": []
   },
   {
     "id": 39,
@@ -465,7 +676,11 @@
     "iso_alpha2": "cr",
     "iso_alpha3": "cri",
     "lat": 10,
-    "lng": -84
+    "lng": -84,
+    "borders": [
+      "nic",
+      "pan"
+    ]
   },
   {
     "id": 40,
@@ -477,7 +692,14 @@
     "iso_alpha2": "hr",
     "iso_alpha3": "hrv",
     "lat": 45.16666666,
-    "lng": 15.5
+    "lng": 15.5,
+    "borders": [
+      "bih",
+      "hun",
+      "mne",
+      "srb",
+      "svn"
+    ]
   },
   {
     "id": 41,
@@ -489,7 +711,8 @@
     "iso_alpha2": "cu",
     "iso_alpha3": "cub",
     "lat": 21.5,
-    "lng": -80
+    "lng": -80,
+    "borders": []
   },
   {
     "id": 42,
@@ -501,7 +724,8 @@
     "iso_alpha2": "cy",
     "iso_alpha3": "cyp",
     "lat": 35,
-    "lng": 33
+    "lng": 33,
+    "borders": []
   },
   {
     "id": 43,
@@ -513,7 +737,13 @@
     "iso_alpha2": "cz",
     "iso_alpha3": "cze",
     "lat": 49.75,
-    "lng": 15.5
+    "lng": 15.5,
+    "borders": [
+      "aut",
+      "deu",
+      "pol",
+      "svk"
+    ]
   },
   {
     "id": 44,
@@ -525,7 +755,10 @@
     "iso_alpha2": "dk",
     "iso_alpha3": "dnk",
     "lat": 56,
-    "lng": 10
+    "lng": 10,
+    "borders": [
+      "deu"
+    ]
   },
   {
     "id": 45,
@@ -537,7 +770,12 @@
     "iso_alpha2": "dj",
     "iso_alpha3": "dji",
     "lat": 11.5,
-    "lng": 43
+    "lng": 43,
+    "borders": [
+      "eri",
+      "eth",
+      "som"
+    ]
   },
   {
     "id": 46,
@@ -549,7 +787,8 @@
     "iso_alpha2": "dm",
     "iso_alpha3": "dma",
     "lat": 15.41666666,
-    "lng": -61.33333333
+    "lng": -61.33333333,
+    "borders": []
   },
   {
     "id": 47,
@@ -561,7 +800,10 @@
     "iso_alpha2": "do",
     "iso_alpha3": "dom",
     "lat": 19,
-    "lng": -70.66666666
+    "lng": -70.66666666,
+    "borders": [
+      "hti"
+    ]
   },
   {
     "id": 48,
@@ -573,7 +815,18 @@
     "iso_alpha2": "cd",
     "iso_alpha3": "cod",
     "lat": 0,
-    "lng": 25
+    "lng": 25,
+    "borders": [
+      "ago",
+      "bdi",
+      "caf",
+      "cog",
+      "rwa",
+      "ssd",
+      "tza",
+      "uga",
+      "zmb"
+    ]
   },
   {
     "id": 49,
@@ -585,7 +838,11 @@
     "iso_alpha2": "ec",
     "iso_alpha3": "ecu",
     "lat": -2,
-    "lng": -77.5
+    "lng": -77.5,
+    "borders": [
+      "col",
+      "per"
+    ]
   },
   {
     "id": 50,
@@ -597,7 +854,13 @@
     "iso_alpha2": "eg",
     "iso_alpha3": "egy",
     "lat": 27,
-    "lng": 30
+    "lng": 30,
+    "borders": [
+      "isr",
+      "lby",
+      "pse",
+      "sdn"
+    ]
   },
   {
     "id": 51,
@@ -609,7 +872,11 @@
     "iso_alpha2": "sv",
     "iso_alpha3": "slv",
     "lat": 13.83333333,
-    "lng": -88.91666666
+    "lng": -88.91666666,
+    "borders": [
+      "gtm",
+      "hnd"
+    ]
   },
   {
     "id": 52,
@@ -621,7 +888,11 @@
     "iso_alpha2": "gq",
     "iso_alpha3": "gnq",
     "lat": 2,
-    "lng": 10
+    "lng": 10,
+    "borders": [
+      "cmr",
+      "gab"
+    ]
   },
   {
     "id": 53,
@@ -633,7 +904,12 @@
     "iso_alpha2": "er",
     "iso_alpha3": "eri",
     "lat": 15,
-    "lng": 39
+    "lng": 39,
+    "borders": [
+      "dji",
+      "eth",
+      "sdn"
+    ]
   },
   {
     "id": 54,
@@ -645,7 +921,11 @@
     "iso_alpha2": "ee",
     "iso_alpha3": "est",
     "lat": 59,
-    "lng": 26
+    "lng": 26,
+    "borders": [
+      "lva",
+      "rus"
+    ]
   },
   {
     "id": 55,
@@ -657,7 +937,11 @@
     "iso_alpha2": "sz",
     "iso_alpha3": "swz",
     "lat": -26.5,
-    "lng": 31.5
+    "lng": 31.5,
+    "borders": [
+      "moz",
+      "zaf"
+    ]
   },
   {
     "id": 56,
@@ -669,7 +953,15 @@
     "iso_alpha2": "et",
     "iso_alpha3": "eth",
     "lat": 8,
-    "lng": 38
+    "lng": 38,
+    "borders": [
+      "dji",
+      "eri",
+      "ken",
+      "sdn",
+      "som",
+      "ssd"
+    ]
   },
   {
     "id": 57,
@@ -681,7 +973,8 @@
     "iso_alpha2": "fj",
     "iso_alpha3": "fji",
     "lat": -17.7134,
-    "lng": 178.065
+    "lng": 178.065,
+    "borders": []
   },
   {
     "id": 58,
@@ -693,7 +986,12 @@
     "iso_alpha2": "fi",
     "iso_alpha3": "fin",
     "lat": 64,
-    "lng": 26
+    "lng": 26,
+    "borders": [
+      "nor",
+      "rus",
+      "swe"
+    ]
   },
   {
     "id": 59,
@@ -705,7 +1003,17 @@
     "iso_alpha2": "fr",
     "iso_alpha3": "fra",
     "lat": 46,
-    "lng": 2
+    "lng": 2,
+    "borders": [
+      "and",
+      "bel",
+      "che",
+      "deu",
+      "esp",
+      "ita",
+      "lux",
+      "mco"
+    ]
   },
   {
     "id": 60,
@@ -717,7 +1025,12 @@
     "iso_alpha2": "ga",
     "iso_alpha3": "gab",
     "lat": -1,
-    "lng": 11.75
+    "lng": 11.75,
+    "borders": [
+      "cmr",
+      "cog",
+      "gnq"
+    ]
   },
   {
     "id": 61,
@@ -729,7 +1042,10 @@
     "iso_alpha2": "gm",
     "iso_alpha3": "gmb",
     "lat": 13.46666666,
-    "lng": -16.56666666
+    "lng": -16.56666666,
+    "borders": [
+      "sen"
+    ]
   },
   {
     "id": 62,
@@ -741,7 +1057,13 @@
     "iso_alpha2": "ge",
     "iso_alpha3": "geo",
     "lat": 42,
-    "lng": 43.5
+    "lng": 43.5,
+    "borders": [
+      "arm",
+      "aze",
+      "rus",
+      "tur"
+    ]
   },
   {
     "id": 63,
@@ -753,7 +1075,18 @@
     "iso_alpha2": "de",
     "iso_alpha3": "deu",
     "lat": 51,
-    "lng": 9
+    "lng": 9,
+    "borders": [
+      "aut",
+      "bel",
+      "che",
+      "cze",
+      "dnk",
+      "fra",
+      "lux",
+      "nld",
+      "pol"
+    ]
   },
   {
     "id": 64,
@@ -765,7 +1098,12 @@
     "iso_alpha2": "gh",
     "iso_alpha3": "gha",
     "lat": 8,
-    "lng": -2
+    "lng": -2,
+    "borders": [
+      "bfa",
+      "civ",
+      "tgo"
+    ]
   },
   {
     "id": 65,
@@ -777,7 +1115,13 @@
     "iso_alpha2": "gr",
     "iso_alpha3": "grc",
     "lat": 39,
-    "lng": 22
+    "lng": 22,
+    "borders": [
+      "alb",
+      "bgr",
+      "mkd",
+      "tur"
+    ]
   },
   {
     "id": 66,
@@ -789,7 +1133,8 @@
     "iso_alpha2": "gd",
     "iso_alpha3": "grd",
     "lat": 12.11666666,
-    "lng": -61.66666666
+    "lng": -61.66666666,
+    "borders": []
   },
   {
     "id": 67,
@@ -801,7 +1146,13 @@
     "iso_alpha2": "gt",
     "iso_alpha3": "gtm",
     "lat": 15.5,
-    "lng": -90.25
+    "lng": -90.25,
+    "borders": [
+      "blz",
+      "hnd",
+      "mex",
+      "slv"
+    ]
   },
   {
     "id": 68,
@@ -813,7 +1164,15 @@
     "iso_alpha2": "gn",
     "iso_alpha3": "gin",
     "lat": 11,
-    "lng": -10
+    "lng": -10,
+    "borders": [
+      "civ",
+      "gnb",
+      "lbr",
+      "mli",
+      "sen",
+      "sle"
+    ]
   },
   {
     "id": 69,
@@ -825,7 +1184,11 @@
     "iso_alpha2": "gw",
     "iso_alpha3": "gnb",
     "lat": 12,
-    "lng": -15
+    "lng": -15,
+    "borders": [
+      "gin",
+      "sen"
+    ]
   },
   {
     "id": 70,
@@ -837,7 +1200,12 @@
     "iso_alpha2": "gy",
     "iso_alpha3": "guy",
     "lat": 5,
-    "lng": -59
+    "lng": -59,
+    "borders": [
+      "bra",
+      "sur",
+      "ven"
+    ]
   },
   {
     "id": 71,
@@ -849,7 +1217,10 @@
     "iso_alpha2": "ht",
     "iso_alpha3": "hti",
     "lat": 19,
-    "lng": -72.41666666
+    "lng": -72.41666666,
+    "borders": [
+      "dom"
+    ]
   },
   {
     "id": 72,
@@ -861,7 +1232,12 @@
     "iso_alpha2": "hn",
     "iso_alpha3": "hnd",
     "lat": 15,
-    "lng": -86.5
+    "lng": -86.5,
+    "borders": [
+      "gtm",
+      "nic",
+      "slv"
+    ]
   },
   {
     "id": 73,
@@ -873,7 +1249,16 @@
     "iso_alpha2": "hu",
     "iso_alpha3": "hun",
     "lat": 47,
-    "lng": 20
+    "lng": 20,
+    "borders": [
+      "aut",
+      "hrv",
+      "rou",
+      "srb",
+      "svk",
+      "svn",
+      "ukr"
+    ]
   },
   {
     "id": 74,
@@ -885,7 +1270,8 @@
     "iso_alpha2": "is",
     "iso_alpha3": "isl",
     "lat": 65,
-    "lng": -18
+    "lng": -18,
+    "borders": []
   },
   {
     "id": 75,
@@ -897,7 +1283,15 @@
     "iso_alpha2": "in",
     "iso_alpha3": "ind",
     "lat": 20,
-    "lng": 77
+    "lng": 77,
+    "borders": [
+      "bgd",
+      "btn",
+      "chn",
+      "mmr",
+      "npl",
+      "pak"
+    ]
   },
   {
     "id": 76,
@@ -909,7 +1303,12 @@
     "iso_alpha2": "id",
     "iso_alpha3": "idn",
     "lat": -5,
-    "lng": 120
+    "lng": 120,
+    "borders": [
+      "mys",
+      "png",
+      "tls"
+    ]
   },
   {
     "id": 77,
@@ -921,7 +1320,16 @@
     "iso_alpha2": "ir",
     "iso_alpha3": "irn",
     "lat": 32,
-    "lng": 53
+    "lng": 53,
+    "borders": [
+      "afg",
+      "arm",
+      "aze",
+      "irq",
+      "pak",
+      "tkm",
+      "tur"
+    ]
   },
   {
     "id": 78,
@@ -933,7 +1341,15 @@
     "iso_alpha2": "iq",
     "iso_alpha3": "irq",
     "lat": 33,
-    "lng": 44
+    "lng": 44,
+    "borders": [
+      "irn",
+      "jor",
+      "kwt",
+      "sau",
+      "syr",
+      "tur"
+    ]
   },
   {
     "id": 79,
@@ -945,7 +1361,10 @@
     "iso_alpha2": "ie",
     "iso_alpha3": "irl",
     "lat": 53,
-    "lng": -8
+    "lng": -8,
+    "borders": [
+      "gbr"
+    ]
   },
   {
     "id": 80,
@@ -957,7 +1376,14 @@
     "iso_alpha2": "il",
     "iso_alpha3": "isr",
     "lat": 31.47,
-    "lng": 35.13
+    "lng": 35.13,
+    "borders": [
+      "egy",
+      "jor",
+      "lbn",
+      "pse",
+      "syr"
+    ]
   },
   {
     "id": 81,
@@ -969,7 +1395,15 @@
     "iso_alpha2": "it",
     "iso_alpha3": "ita",
     "lat": 42.83333333,
-    "lng": 12.83333333
+    "lng": 12.83333333,
+    "borders": [
+      "aut",
+      "che",
+      "fra",
+      "smr",
+      "svn",
+      "vat"
+    ]
   },
   {
     "id": 82,
@@ -981,7 +1415,14 @@
     "iso_alpha2": "ci",
     "iso_alpha3": "civ",
     "lat": 8,
-    "lng": -5
+    "lng": -5,
+    "borders": [
+      "bfa",
+      "gha",
+      "gin",
+      "lbr",
+      "mli"
+    ]
   },
   {
     "id": 83,
@@ -993,7 +1434,8 @@
     "iso_alpha2": "jm",
     "iso_alpha3": "jam",
     "lat": 18.25,
-    "lng": -77.5
+    "lng": -77.5,
+    "borders": []
   },
   {
     "id": 84,
@@ -1005,7 +1447,8 @@
     "iso_alpha2": "jp",
     "iso_alpha3": "jpn",
     "lat": 36,
-    "lng": 138
+    "lng": 138,
+    "borders": []
   },
   {
     "id": 85,
@@ -1017,7 +1460,14 @@
     "iso_alpha2": "jo",
     "iso_alpha3": "jor",
     "lat": 31,
-    "lng": 36
+    "lng": 36,
+    "borders": [
+      "irq",
+      "isr",
+      "pse",
+      "sau",
+      "syr"
+    ]
   },
   {
     "id": 86,
@@ -1029,7 +1479,14 @@
     "iso_alpha2": "kz",
     "iso_alpha3": "kaz",
     "lat": 48.0196,
-    "lng": 66.9237
+    "lng": 66.9237,
+    "borders": [
+      "chn",
+      "kgz",
+      "rus",
+      "tkm",
+      "uzb"
+    ]
   },
   {
     "id": 87,
@@ -1041,7 +1498,14 @@
     "iso_alpha2": "ke",
     "iso_alpha3": "ken",
     "lat": 1,
-    "lng": 38
+    "lng": 38,
+    "borders": [
+      "eth",
+      "som",
+      "ssd",
+      "tza",
+      "uga"
+    ]
   },
   {
     "id": 88,
@@ -1053,7 +1517,8 @@
     "iso_alpha2": "ki",
     "iso_alpha3": "kir",
     "lat": 1.41666666,
-    "lng": 173
+    "lng": 173,
+    "borders": []
   },
   {
     "id": 89,
@@ -1065,7 +1530,11 @@
     "iso_alpha2": "kw",
     "iso_alpha3": "kwt",
     "lat": 29.5,
-    "lng": 45.75
+    "lng": 45.75,
+    "borders": [
+      "irq",
+      "sau"
+    ]
   },
   {
     "id": 90,
@@ -1077,7 +1546,13 @@
     "iso_alpha2": "kg",
     "iso_alpha3": "kgz",
     "lat": 41,
-    "lng": 75
+    "lng": 75,
+    "borders": [
+      "chn",
+      "kaz",
+      "tjk",
+      "uzb"
+    ]
   },
   {
     "id": 91,
@@ -1089,7 +1564,14 @@
     "iso_alpha2": "la",
     "iso_alpha3": "lao",
     "lat": 18,
-    "lng": 105
+    "lng": 105,
+    "borders": [
+      "chn",
+      "khm",
+      "mmr",
+      "tha",
+      "vnm"
+    ]
   },
   {
     "id": 92,
@@ -1101,7 +1583,13 @@
     "iso_alpha2": "lv",
     "iso_alpha3": "lva",
     "lat": 57,
-    "lng": 25
+    "lng": 25,
+    "borders": [
+      "blr",
+      "est",
+      "ltu",
+      "rus"
+    ]
   },
   {
     "id": 93,
@@ -1113,7 +1601,11 @@
     "iso_alpha2": "lb",
     "iso_alpha3": "lbn",
     "lat": 33.83333333,
-    "lng": 35.83333333
+    "lng": 35.83333333,
+    "borders": [
+      "isr",
+      "syr"
+    ]
   },
   {
     "id": 94,
@@ -1125,7 +1617,10 @@
     "iso_alpha2": "ls",
     "iso_alpha3": "lso",
     "lat": -29.5,
-    "lng": 28.5
+    "lng": 28.5,
+    "borders": [
+      "zaf"
+    ]
   },
   {
     "id": 95,
@@ -1137,7 +1632,12 @@
     "iso_alpha2": "lr",
     "iso_alpha3": "lbr",
     "lat": 6.5,
-    "lng": -9.5
+    "lng": -9.5,
+    "borders": [
+      "civ",
+      "gin",
+      "sle"
+    ]
   },
   {
     "id": 96,
@@ -1149,7 +1649,15 @@
     "iso_alpha2": "ly",
     "iso_alpha3": "lby",
     "lat": 25,
-    "lng": 17
+    "lng": 17,
+    "borders": [
+      "dza",
+      "egy",
+      "ner",
+      "sdn",
+      "tcd",
+      "tun"
+    ]
   },
   {
     "id": 97,
@@ -1161,7 +1669,11 @@
     "iso_alpha2": "li",
     "iso_alpha3": "lie",
     "lat": 47.26666666,
-    "lng": 9.53333333
+    "lng": 9.53333333,
+    "borders": [
+      "aut",
+      "che"
+    ]
   },
   {
     "id": 98,
@@ -1173,7 +1685,13 @@
     "iso_alpha2": "lt",
     "iso_alpha3": "ltu",
     "lat": 56,
-    "lng": 24
+    "lng": 24,
+    "borders": [
+      "blr",
+      "lva",
+      "pol",
+      "rus"
+    ]
   },
   {
     "id": 99,
@@ -1185,7 +1703,12 @@
     "iso_alpha2": "lu",
     "iso_alpha3": "lux",
     "lat": 49.75,
-    "lng": 6.16666666
+    "lng": 6.16666666,
+    "borders": [
+      "bel",
+      "deu",
+      "fra"
+    ]
   },
   {
     "id": 100,
@@ -1197,7 +1720,8 @@
     "iso_alpha2": "mg",
     "iso_alpha3": "mdg",
     "lat": -20,
-    "lng": 47
+    "lng": 47,
+    "borders": []
   },
   {
     "id": 101,
@@ -1209,7 +1733,12 @@
     "iso_alpha2": "mw",
     "iso_alpha3": "mwi",
     "lat": -13.5,
-    "lng": 34
+    "lng": 34,
+    "borders": [
+      "moz",
+      "tza",
+      "zmb"
+    ]
   },
   {
     "id": 102,
@@ -1221,7 +1750,12 @@
     "iso_alpha2": "my",
     "iso_alpha3": "mys",
     "lat": 2.5,
-    "lng": 112.5
+    "lng": 112.5,
+    "borders": [
+      "brn",
+      "idn",
+      "tha"
+    ]
   },
   {
     "id": 103,
@@ -1233,7 +1767,8 @@
     "iso_alpha2": "mv",
     "iso_alpha3": "mdv",
     "lat": 3.25,
-    "lng": 73
+    "lng": 73,
+    "borders": []
   },
   {
     "id": 104,
@@ -1245,7 +1780,16 @@
     "iso_alpha2": "ml",
     "iso_alpha3": "mli",
     "lat": 17,
-    "lng": -4
+    "lng": -4,
+    "borders": [
+      "bfa",
+      "civ",
+      "dza",
+      "gin",
+      "mrt",
+      "ner",
+      "sen"
+    ]
   },
   {
     "id": 105,
@@ -1257,7 +1801,8 @@
     "iso_alpha2": "mt",
     "iso_alpha3": "mlt",
     "lat": 35.9375,
-    "lng": 14.3754
+    "lng": 14.3754,
+    "borders": []
   },
   {
     "id": 106,
@@ -1269,7 +1814,8 @@
     "iso_alpha2": "mh",
     "iso_alpha3": "mhl",
     "lat": 9,
-    "lng": 168
+    "lng": 168,
+    "borders": []
   },
   {
     "id": 107,
@@ -1281,7 +1827,12 @@
     "iso_alpha2": "mr",
     "iso_alpha3": "mrt",
     "lat": 20,
-    "lng": -12
+    "lng": -12,
+    "borders": [
+      "dza",
+      "mli",
+      "sen"
+    ]
   },
   {
     "id": 108,
@@ -1293,7 +1844,8 @@
     "iso_alpha2": "mu",
     "iso_alpha3": "mus",
     "lat": -20.28333333,
-    "lng": 57.55
+    "lng": 57.55,
+    "borders": []
   },
   {
     "id": 109,
@@ -1305,7 +1857,12 @@
     "iso_alpha2": "mx",
     "iso_alpha3": "mex",
     "lat": 23,
-    "lng": -102
+    "lng": -102,
+    "borders": [
+      "blz",
+      "gtm",
+      "usa"
+    ]
   },
   {
     "id": 110,
@@ -1317,7 +1874,8 @@
     "iso_alpha2": "fm",
     "iso_alpha3": "fsm",
     "lat": 6.91666666,
-    "lng": 158.25
+    "lng": 158.25,
+    "borders": []
   },
   {
     "id": 111,
@@ -1329,7 +1887,11 @@
     "iso_alpha2": "md",
     "iso_alpha3": "mda",
     "lat": 47,
-    "lng": 29
+    "lng": 29,
+    "borders": [
+      "rou",
+      "ukr"
+    ]
   },
   {
     "id": 112,
@@ -1341,7 +1903,10 @@
     "iso_alpha2": "mc",
     "iso_alpha3": "mco",
     "lat": 43.73333333,
-    "lng": 7.4
+    "lng": 7.4,
+    "borders": [
+      "fra"
+    ]
   },
   {
     "id": 113,
@@ -1353,7 +1918,11 @@
     "iso_alpha2": "mn",
     "iso_alpha3": "mng",
     "lat": 46,
-    "lng": 105
+    "lng": 105,
+    "borders": [
+      "chn",
+      "rus"
+    ]
   },
   {
     "id": 114,
@@ -1365,7 +1934,13 @@
     "iso_alpha2": "me",
     "iso_alpha3": "mne",
     "lat": 42.5,
-    "lng": 19.3
+    "lng": 19.3,
+    "borders": [
+      "alb",
+      "bih",
+      "hrv",
+      "srb"
+    ]
   },
   {
     "id": 115,
@@ -1377,7 +1952,11 @@
     "iso_alpha2": "ma",
     "iso_alpha3": "mar",
     "lat": 32,
-    "lng": -5
+    "lng": -5,
+    "borders": [
+      "dza",
+      "esp"
+    ]
   },
   {
     "id": 116,
@@ -1389,7 +1968,15 @@
     "iso_alpha2": "mz",
     "iso_alpha3": "moz",
     "lat": -18.25,
-    "lng": 35
+    "lng": 35,
+    "borders": [
+      "mwi",
+      "swz",
+      "tza",
+      "zaf",
+      "zmb",
+      "zwe"
+    ]
   },
   {
     "id": 117,
@@ -1401,7 +1988,14 @@
     "iso_alpha2": "mm",
     "iso_alpha3": "mmr",
     "lat": 22,
-    "lng": 98
+    "lng": 98,
+    "borders": [
+      "bgd",
+      "chn",
+      "ind",
+      "lao",
+      "tha"
+    ]
   },
   {
     "id": 118,
@@ -1413,7 +2007,13 @@
     "iso_alpha2": "na",
     "iso_alpha3": "nam",
     "lat": -22,
-    "lng": 17
+    "lng": 17,
+    "borders": [
+      "ago",
+      "bwa",
+      "zaf",
+      "zmb"
+    ]
   },
   {
     "id": 119,
@@ -1425,7 +2025,8 @@
     "iso_alpha2": "nr",
     "iso_alpha3": "nru",
     "lat": -0.53333333,
-    "lng": 166.91666666
+    "lng": 166.91666666,
+    "borders": []
   },
   {
     "id": 120,
@@ -1437,7 +2038,11 @@
     "iso_alpha2": "np",
     "iso_alpha3": "npl",
     "lat": 28,
-    "lng": 84
+    "lng": 84,
+    "borders": [
+      "chn",
+      "ind"
+    ]
   },
   {
     "id": 121,
@@ -1449,7 +2054,11 @@
     "iso_alpha2": "nl",
     "iso_alpha3": "nld",
     "lat": 52.5,
-    "lng": 5.75
+    "lng": 5.75,
+    "borders": [
+      "bel",
+      "deu"
+    ]
   },
   {
     "id": 122,
@@ -1461,7 +2070,8 @@
     "iso_alpha2": "nz",
     "iso_alpha3": "nzl",
     "lat": -41,
-    "lng": 174
+    "lng": 174,
+    "borders": []
   },
   {
     "id": 123,
@@ -1473,7 +2083,11 @@
     "iso_alpha2": "ni",
     "iso_alpha3": "nic",
     "lat": 13,
-    "lng": -85
+    "lng": -85,
+    "borders": [
+      "cri",
+      "hnd"
+    ]
   },
   {
     "id": 124,
@@ -1485,7 +2099,16 @@
     "iso_alpha2": "ne",
     "iso_alpha3": "ner",
     "lat": 16,
-    "lng": 8
+    "lng": 8,
+    "borders": [
+      "ben",
+      "bfa",
+      "dza",
+      "lby",
+      "mli",
+      "nga",
+      "tcd"
+    ]
   },
   {
     "id": 125,
@@ -1497,7 +2120,13 @@
     "iso_alpha2": "ng",
     "iso_alpha3": "nga",
     "lat": 10,
-    "lng": 8
+    "lng": 8,
+    "borders": [
+      "ben",
+      "cmr",
+      "ner",
+      "tcd"
+    ]
   },
   {
     "id": 126,
@@ -1509,7 +2138,12 @@
     "iso_alpha2": "kp",
     "iso_alpha3": "prk",
     "lat": 40,
-    "lng": 127
+    "lng": 127,
+    "borders": [
+      "chn",
+      "kor",
+      "rus"
+    ]
   },
   {
     "id": 127,
@@ -1521,7 +2155,13 @@
     "iso_alpha2": "mk",
     "iso_alpha3": "mkd",
     "lat": 41.83333333,
-    "lng": 22
+    "lng": 22,
+    "borders": [
+      "alb",
+      "bgr",
+      "grc",
+      "srb"
+    ]
   },
   {
     "id": 128,
@@ -1533,7 +2173,12 @@
     "iso_alpha2": "no",
     "iso_alpha3": "nor",
     "lat": 62,
-    "lng": 10
+    "lng": 10,
+    "borders": [
+      "fin",
+      "rus",
+      "swe"
+    ]
   },
   {
     "id": 129,
@@ -1545,7 +2190,12 @@
     "iso_alpha2": "om",
     "iso_alpha3": "omn",
     "lat": 21,
-    "lng": 57
+    "lng": 57,
+    "borders": [
+      "are",
+      "sau",
+      "yem"
+    ]
   },
   {
     "id": 130,
@@ -1557,7 +2207,13 @@
     "iso_alpha2": "pk",
     "iso_alpha3": "pak",
     "lat": 30,
-    "lng": 70
+    "lng": 70,
+    "borders": [
+      "afg",
+      "chn",
+      "ind",
+      "irn"
+    ]
   },
   {
     "id": 131,
@@ -1569,7 +2225,8 @@
     "iso_alpha2": "pw",
     "iso_alpha3": "plw",
     "lat": 7.5,
-    "lng": 134.5
+    "lng": 134.5,
+    "borders": []
   },
   {
     "id": 132,
@@ -1581,7 +2238,12 @@
     "iso_alpha2": "ps",
     "iso_alpha3": "pse",
     "lat": 31.9,
-    "lng": 35.2
+    "lng": 35.2,
+    "borders": [
+      "egy",
+      "isr",
+      "jor"
+    ]
   },
   {
     "id": 133,
@@ -1593,7 +2255,11 @@
     "iso_alpha2": "pa",
     "iso_alpha3": "pan",
     "lat": 9,
-    "lng": -80
+    "lng": -80,
+    "borders": [
+      "col",
+      "cri"
+    ]
   },
   {
     "id": 134,
@@ -1605,7 +2271,10 @@
     "iso_alpha2": "pg",
     "iso_alpha3": "png",
     "lat": -6,
-    "lng": 147
+    "lng": 147,
+    "borders": [
+      "idn"
+    ]
   },
   {
     "id": 135,
@@ -1617,7 +2286,12 @@
     "iso_alpha2": "py",
     "iso_alpha3": "pry",
     "lat": -23,
-    "lng": -58
+    "lng": -58,
+    "borders": [
+      "arg",
+      "bol",
+      "bra"
+    ]
   },
   {
     "id": 136,
@@ -1629,7 +2303,14 @@
     "iso_alpha2": "pe",
     "iso_alpha3": "per",
     "lat": -10,
-    "lng": -76
+    "lng": -76,
+    "borders": [
+      "bol",
+      "bra",
+      "chl",
+      "col",
+      "ecu"
+    ]
   },
   {
     "id": 137,
@@ -1641,7 +2322,8 @@
     "iso_alpha2": "ph",
     "iso_alpha3": "phl",
     "lat": 13,
-    "lng": 122
+    "lng": 122,
+    "borders": []
   },
   {
     "id": 138,
@@ -1653,7 +2335,16 @@
     "iso_alpha2": "pl",
     "iso_alpha3": "pol",
     "lat": 52,
-    "lng": 20
+    "lng": 20,
+    "borders": [
+      "blr",
+      "cze",
+      "deu",
+      "ltu",
+      "rus",
+      "svk",
+      "ukr"
+    ]
   },
   {
     "id": 139,
@@ -1665,7 +2356,10 @@
     "iso_alpha2": "pt",
     "iso_alpha3": "prt",
     "lat": 39.5,
-    "lng": -8
+    "lng": -8,
+    "borders": [
+      "esp"
+    ]
   },
   {
     "id": 140,
@@ -1677,7 +2371,10 @@
     "iso_alpha2": "qa",
     "iso_alpha3": "qat",
     "lat": 25.5,
-    "lng": 51.25
+    "lng": 51.25,
+    "borders": [
+      "sau"
+    ]
   },
   {
     "id": 141,
@@ -1689,7 +2386,14 @@
     "iso_alpha2": "cg",
     "iso_alpha3": "cog",
     "lat": -1,
-    "lng": 15
+    "lng": 15,
+    "borders": [
+      "ago",
+      "caf",
+      "cmr",
+      "cod",
+      "gab"
+    ]
   },
   {
     "id": 142,
@@ -1701,7 +2405,14 @@
     "iso_alpha2": "ro",
     "iso_alpha3": "rou",
     "lat": 46,
-    "lng": 25
+    "lng": 25,
+    "borders": [
+      "bgr",
+      "hun",
+      "mda",
+      "srb",
+      "ukr"
+    ]
   },
   {
     "id": 143,
@@ -1713,7 +2424,23 @@
     "iso_alpha2": "ru",
     "iso_alpha3": "rus",
     "lat": 60,
-    "lng": 100
+    "lng": 100,
+    "borders": [
+      "aze",
+      "blr",
+      "chn",
+      "est",
+      "fin",
+      "geo",
+      "kaz",
+      "ltu",
+      "lva",
+      "mng",
+      "nor",
+      "pol",
+      "prk",
+      "ukr"
+    ]
   },
   {
     "id": 144,
@@ -1725,7 +2452,13 @@
     "iso_alpha2": "rw",
     "iso_alpha3": "rwa",
     "lat": -2,
-    "lng": 30
+    "lng": 30,
+    "borders": [
+      "bdi",
+      "cod",
+      "tza",
+      "uga"
+    ]
   },
   {
     "id": 145,
@@ -1737,7 +2470,8 @@
     "iso_alpha2": "kn",
     "iso_alpha3": "kna",
     "lat": 17.33333333,
-    "lng": -62.75
+    "lng": -62.75,
+    "borders": []
   },
   {
     "id": 146,
@@ -1749,7 +2483,8 @@
     "iso_alpha2": "lc",
     "iso_alpha3": "lca",
     "lat": 13.88333333,
-    "lng": -60.96666666
+    "lng": -60.96666666,
+    "borders": []
   },
   {
     "id": 147,
@@ -1761,7 +2496,8 @@
     "iso_alpha2": "vc",
     "iso_alpha3": "vct",
     "lat": 13.25,
-    "lng": -61.2
+    "lng": -61.2,
+    "borders": []
   },
   {
     "id": 148,
@@ -1773,7 +2509,8 @@
     "iso_alpha2": "ws",
     "iso_alpha3": "wsm",
     "lat": -13.58333333,
-    "lng": -172.33333333
+    "lng": -172.33333333,
+    "borders": []
   },
   {
     "id": 149,
@@ -1785,7 +2522,10 @@
     "iso_alpha2": "sm",
     "iso_alpha3": "smr",
     "lat": 43.76666666,
-    "lng": 12.41666666
+    "lng": 12.41666666,
+    "borders": [
+      "ita"
+    ]
   },
   {
     "id": 150,
@@ -1797,7 +2537,8 @@
     "iso_alpha2": "st",
     "iso_alpha3": "stp",
     "lat": 1,
-    "lng": 7
+    "lng": 7,
+    "borders": []
   },
   {
     "id": 151,
@@ -1809,7 +2550,16 @@
     "iso_alpha2": "sa",
     "iso_alpha3": "sau",
     "lat": 25,
-    "lng": 45
+    "lng": 45,
+    "borders": [
+      "are",
+      "irq",
+      "jor",
+      "kwt",
+      "omn",
+      "qat",
+      "yem"
+    ]
   },
   {
     "id": 152,
@@ -1821,7 +2571,14 @@
     "iso_alpha2": "sn",
     "iso_alpha3": "sen",
     "lat": 14,
-    "lng": -14
+    "lng": -14,
+    "borders": [
+      "gin",
+      "gmb",
+      "gnb",
+      "mli",
+      "mrt"
+    ]
   },
   {
     "id": 153,
@@ -1833,7 +2590,16 @@
     "iso_alpha2": "rs",
     "iso_alpha3": "srb",
     "lat": 44,
-    "lng": 21
+    "lng": 21,
+    "borders": [
+      "bgr",
+      "bih",
+      "hrv",
+      "hun",
+      "mkd",
+      "mne",
+      "rou"
+    ]
   },
   {
     "id": 154,
@@ -1845,7 +2611,8 @@
     "iso_alpha2": "sc",
     "iso_alpha3": "syc",
     "lat": -4.58333333,
-    "lng": 55.66666666
+    "lng": 55.66666666,
+    "borders": []
   },
   {
     "id": 155,
@@ -1857,7 +2624,11 @@
     "iso_alpha2": "sl",
     "iso_alpha3": "sle",
     "lat": 8.5,
-    "lng": -11.5
+    "lng": -11.5,
+    "borders": [
+      "gin",
+      "lbr"
+    ]
   },
   {
     "id": 156,
@@ -1869,7 +2640,8 @@
     "iso_alpha2": "sg",
     "iso_alpha3": "sgp",
     "lat": 1.36666666,
-    "lng": 103.8
+    "lng": 103.8,
+    "borders": []
   },
   {
     "id": 157,
@@ -1881,7 +2653,14 @@
     "iso_alpha2": "sk",
     "iso_alpha3": "svk",
     "lat": 48.66666666,
-    "lng": 19.5
+    "lng": 19.5,
+    "borders": [
+      "aut",
+      "cze",
+      "hun",
+      "pol",
+      "ukr"
+    ]
   },
   {
     "id": 158,
@@ -1893,7 +2672,13 @@
     "iso_alpha2": "si",
     "iso_alpha3": "svn",
     "lat": 46.11666666,
-    "lng": 14.81666666
+    "lng": 14.81666666,
+    "borders": [
+      "aut",
+      "hrv",
+      "hun",
+      "ita"
+    ]
   },
   {
     "id": 159,
@@ -1905,7 +2690,8 @@
     "iso_alpha2": "sb",
     "iso_alpha3": "slb",
     "lat": -8,
-    "lng": 159
+    "lng": 159,
+    "borders": []
   },
   {
     "id": 160,
@@ -1917,7 +2703,12 @@
     "iso_alpha2": "so",
     "iso_alpha3": "som",
     "lat": 10,
-    "lng": 49
+    "lng": 49,
+    "borders": [
+      "dji",
+      "eth",
+      "ken"
+    ]
   },
   {
     "id": 161,
@@ -1929,7 +2720,15 @@
     "iso_alpha2": "za",
     "iso_alpha3": "zaf",
     "lat": -29,
-    "lng": 24
+    "lng": 24,
+    "borders": [
+      "bwa",
+      "lso",
+      "moz",
+      "nam",
+      "swz",
+      "zwe"
+    ]
   },
   {
     "id": 162,
@@ -1941,7 +2740,10 @@
     "iso_alpha2": "kr",
     "iso_alpha3": "kor",
     "lat": 37,
-    "lng": 127.5
+    "lng": 127.5,
+    "borders": [
+      "prk"
+    ]
   },
   {
     "id": 163,
@@ -1953,7 +2755,15 @@
     "iso_alpha2": "ss",
     "iso_alpha3": "ssd",
     "lat": 7,
-    "lng": 30
+    "lng": 30,
+    "borders": [
+      "caf",
+      "cod",
+      "eth",
+      "ken",
+      "sdn",
+      "uga"
+    ]
   },
   {
     "id": 164,
@@ -1965,7 +2775,13 @@
     "iso_alpha2": "es",
     "iso_alpha3": "esp",
     "lat": 40,
-    "lng": -4
+    "lng": -4,
+    "borders": [
+      "and",
+      "fra",
+      "mar",
+      "prt"
+    ]
   },
   {
     "id": 165,
@@ -1977,7 +2793,8 @@
     "iso_alpha2": "lk",
     "iso_alpha3": "lka",
     "lat": 7,
-    "lng": 81
+    "lng": 81,
+    "borders": []
   },
   {
     "id": 166,
@@ -1989,7 +2806,16 @@
     "iso_alpha2": "sd",
     "iso_alpha3": "sdn",
     "lat": 15,
-    "lng": 30
+    "lng": 30,
+    "borders": [
+      "caf",
+      "egy",
+      "eri",
+      "eth",
+      "lby",
+      "ssd",
+      "tcd"
+    ]
   },
   {
     "id": 167,
@@ -2001,7 +2827,11 @@
     "iso_alpha2": "sr",
     "iso_alpha3": "sur",
     "lat": 4,
-    "lng": -56
+    "lng": -56,
+    "borders": [
+      "bra",
+      "guy"
+    ]
   },
   {
     "id": 168,
@@ -2013,7 +2843,11 @@
     "iso_alpha2": "se",
     "iso_alpha3": "swe",
     "lat": 62,
-    "lng": 15
+    "lng": 15,
+    "borders": [
+      "fin",
+      "nor"
+    ]
   },
   {
     "id": 169,
@@ -2025,7 +2859,14 @@
     "iso_alpha2": "ch",
     "iso_alpha3": "che",
     "lat": 47,
-    "lng": 8
+    "lng": 8,
+    "borders": [
+      "aut",
+      "deu",
+      "fra",
+      "ita",
+      "lie"
+    ]
   },
   {
     "id": 170,
@@ -2037,7 +2878,14 @@
     "iso_alpha2": "sy",
     "iso_alpha3": "syr",
     "lat": 35,
-    "lng": 38
+    "lng": 38,
+    "borders": [
+      "irq",
+      "isr",
+      "jor",
+      "lbn",
+      "tur"
+    ]
   },
   {
     "id": 171,
@@ -2049,7 +2897,13 @@
     "iso_alpha2": "tj",
     "iso_alpha3": "tjk",
     "lat": 39,
-    "lng": 71
+    "lng": 71,
+    "borders": [
+      "afg",
+      "chn",
+      "kgz",
+      "uzb"
+    ]
   },
   {
     "id": 172,
@@ -2061,7 +2915,17 @@
     "iso_alpha2": "tz",
     "iso_alpha3": "tza",
     "lat": -6,
-    "lng": 35
+    "lng": 35,
+    "borders": [
+      "bdi",
+      "cod",
+      "ken",
+      "moz",
+      "mwi",
+      "rwa",
+      "uga",
+      "zmb"
+    ]
   },
   {
     "id": 173,
@@ -2073,7 +2937,13 @@
     "iso_alpha2": "th",
     "iso_alpha3": "tha",
     "lat": 15,
-    "lng": 100
+    "lng": 100,
+    "borders": [
+      "khm",
+      "lao",
+      "mmr",
+      "mys"
+    ]
   },
   {
     "id": 174,
@@ -2085,7 +2955,10 @@
     "iso_alpha2": "tl",
     "iso_alpha3": "tls",
     "lat": -8.83333333,
-    "lng": 125.91666666
+    "lng": 125.91666666,
+    "borders": [
+      "idn"
+    ]
   },
   {
     "id": 175,
@@ -2097,7 +2970,12 @@
     "iso_alpha2": "tg",
     "iso_alpha3": "tgo",
     "lat": 8,
-    "lng": 1.16666666
+    "lng": 1.16666666,
+    "borders": [
+      "ben",
+      "bfa",
+      "gha"
+    ]
   },
   {
     "id": 176,
@@ -2109,7 +2987,8 @@
     "iso_alpha2": "to",
     "iso_alpha3": "ton",
     "lat": -20,
-    "lng": -175
+    "lng": -175,
+    "borders": []
   },
   {
     "id": 177,
@@ -2121,7 +3000,8 @@
     "iso_alpha2": "tt",
     "iso_alpha3": "tto",
     "lat": 10.6918,
-    "lng": -61.2225
+    "lng": -61.2225,
+    "borders": []
   },
   {
     "id": 178,
@@ -2133,7 +3013,11 @@
     "iso_alpha2": "tn",
     "iso_alpha3": "tun",
     "lat": 34,
-    "lng": 9
+    "lng": 9,
+    "borders": [
+      "dza",
+      "lby"
+    ]
   },
   {
     "id": 179,
@@ -2145,7 +3029,17 @@
     "iso_alpha2": "tr",
     "iso_alpha3": "tur",
     "lat": 39,
-    "lng": 35
+    "lng": 35,
+    "borders": [
+      "arm",
+      "aze",
+      "bgr",
+      "geo",
+      "grc",
+      "irn",
+      "irq",
+      "syr"
+    ]
   },
   {
     "id": 180,
@@ -2157,7 +3051,13 @@
     "iso_alpha2": "tm",
     "iso_alpha3": "tkm",
     "lat": 40,
-    "lng": 60
+    "lng": 60,
+    "borders": [
+      "afg",
+      "irn",
+      "kaz",
+      "uzb"
+    ]
   },
   {
     "id": 181,
@@ -2169,7 +3069,8 @@
     "iso_alpha2": "tv",
     "iso_alpha3": "tuv",
     "lat": -8,
-    "lng": 178
+    "lng": 178,
+    "borders": []
   },
   {
     "id": 182,
@@ -2181,7 +3082,14 @@
     "iso_alpha2": "ug",
     "iso_alpha3": "uga",
     "lat": 1,
-    "lng": 32
+    "lng": 32,
+    "borders": [
+      "cod",
+      "ken",
+      "rwa",
+      "ssd",
+      "tza"
+    ]
   },
   {
     "id": 183,
@@ -2193,7 +3101,16 @@
     "iso_alpha2": "ua",
     "iso_alpha3": "ukr",
     "lat": 49,
-    "lng": 32
+    "lng": 32,
+    "borders": [
+      "blr",
+      "hun",
+      "mda",
+      "pol",
+      "rou",
+      "rus",
+      "svk"
+    ]
   },
   {
     "id": 184,
@@ -2205,7 +3122,11 @@
     "iso_alpha2": "ae",
     "iso_alpha3": "are",
     "lat": 24,
-    "lng": 54
+    "lng": 54,
+    "borders": [
+      "omn",
+      "sau"
+    ]
   },
   {
     "id": 185,
@@ -2217,7 +3138,10 @@
     "iso_alpha2": "gb",
     "iso_alpha3": "gbr",
     "lat": 54,
-    "lng": -2
+    "lng": -2,
+    "borders": [
+      "irl"
+    ]
   },
   {
     "id": 186,
@@ -2229,7 +3153,11 @@
     "iso_alpha2": "us",
     "iso_alpha3": "usa",
     "lat": 38,
-    "lng": -97
+    "lng": -97,
+    "borders": [
+      "can",
+      "mex"
+    ]
   },
   {
     "id": 187,
@@ -2241,7 +3169,11 @@
     "iso_alpha2": "uy",
     "iso_alpha3": "ury",
     "lat": -33,
-    "lng": -56
+    "lng": -56,
+    "borders": [
+      "arg",
+      "bra"
+    ]
   },
   {
     "id": 188,
@@ -2253,7 +3185,14 @@
     "iso_alpha2": "uz",
     "iso_alpha3": "uzb",
     "lat": 41,
-    "lng": 64
+    "lng": 64,
+    "borders": [
+      "afg",
+      "kaz",
+      "kgz",
+      "tjk",
+      "tkm"
+    ]
   },
   {
     "id": 189,
@@ -2265,7 +3204,8 @@
     "iso_alpha2": "vu",
     "iso_alpha3": "vut",
     "lat": -16,
-    "lng": 167
+    "lng": 167,
+    "borders": []
   },
   {
     "id": 190,
@@ -2277,7 +3217,10 @@
     "iso_alpha2": "va",
     "iso_alpha3": "vat",
     "lat": 41.9,
-    "lng": 12.45
+    "lng": 12.45,
+    "borders": [
+      "ita"
+    ]
   },
   {
     "id": 191,
@@ -2289,7 +3232,12 @@
     "iso_alpha2": "ve",
     "iso_alpha3": "ven",
     "lat": 8,
-    "lng": -66
+    "lng": -66,
+    "borders": [
+      "bra",
+      "col",
+      "guy"
+    ]
   },
   {
     "id": 192,
@@ -2301,7 +3249,12 @@
     "iso_alpha2": "vn",
     "iso_alpha3": "vnm",
     "lat": 16.16666666,
-    "lng": 107.83333333
+    "lng": 107.83333333,
+    "borders": [
+      "chn",
+      "khm",
+      "lao"
+    ]
   },
   {
     "id": 193,
@@ -2313,7 +3266,11 @@
     "iso_alpha2": "ye",
     "iso_alpha3": "yem",
     "lat": 15,
-    "lng": 48
+    "lng": 48,
+    "borders": [
+      "omn",
+      "sau"
+    ]
   },
   {
     "id": 194,
@@ -2325,7 +3282,17 @@
     "iso_alpha2": "zm",
     "iso_alpha3": "zmb",
     "lat": -15,
-    "lng": 30
+    "lng": 30,
+    "borders": [
+      "ago",
+      "bwa",
+      "cod",
+      "moz",
+      "mwi",
+      "nam",
+      "tza",
+      "zwe"
+    ]
   },
   {
     "id": 195,
@@ -2337,6 +3304,12 @@
     "iso_alpha2": "zw",
     "iso_alpha3": "zwe",
     "lat": -20,
-    "lng": 30
+    "lng": 30,
+    "borders": [
+      "bwa",
+      "moz",
+      "zaf",
+      "zmb"
+    ]
   }
 ]

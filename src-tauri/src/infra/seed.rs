@@ -20,10 +20,11 @@ pub async fn seed_countries(pool: &SqlitePool) -> Result<u64, AppError> {
     let mut inserted = 0u64;
     let mut tx = pool.begin().await?;
     for country in &countries {
+        let borders = serde_json::to_string(&country.borders)?;
         let result = sqlx::query(
             "INSERT OR IGNORE INTO countries \
-             (id, name, name_fr, capital, capital_fr, continent, iso_alpha2, iso_alpha3, lat, lng) \
-             VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
+             (id, name, name_fr, capital, capital_fr, continent, iso_alpha2, iso_alpha3, lat, lng, borders) \
+             VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
         )
         .bind(country.id)
         .bind(&country.name)
@@ -35,6 +36,7 @@ pub async fn seed_countries(pool: &SqlitePool) -> Result<u64, AppError> {
         .bind(&country.iso_alpha3)
         .bind(country.lat)
         .bind(country.lng)
+        .bind(borders)
         .execute(&mut *tx)
         .await?;
         inserted += result.rows_affected();

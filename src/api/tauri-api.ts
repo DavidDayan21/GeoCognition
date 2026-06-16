@@ -6,12 +6,15 @@
 import { invoke } from "@tauri-apps/api/core";
 import type {
   AnswerResult,
+  BorderRunGameDto,
   ContinentStat,
   Country,
   CountryMastery,
   DailyStat,
+  Difficulty,
   ForgettingPoint,
   GlobalStats,
+  GuessOutcomeDto,
   QuestionMode,
   QuestionPayload,
   Settings,
@@ -70,4 +73,21 @@ export function getAllCountries(): Promise<Country[]> {
 
 export function getContinents(): Promise<string[]> {
   return invoke("get_continents");
+}
+
+/** Starts a new Border Run game at the given difficulty. */
+export function borderRunStart(
+  difficulty: Difficulty,
+): Promise<BorderRunGameDto> {
+  return invoke("border_run_start", { difficulty });
+}
+
+/** Submits a typed country name against the active Border Run game. */
+export function borderRunGuess(input: string): Promise<GuessOutcomeDto> {
+  return invoke("border_run_guess", { input });
+}
+
+/** Reveals one shortest start→end path for the active game (lose screen). */
+export function borderRunRevealPath(): Promise<string[]> {
+  return invoke("border_run_reveal_path");
 }

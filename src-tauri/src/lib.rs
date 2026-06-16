@@ -22,7 +22,7 @@ pub fn run() {
                 infra::seed::seed_countries(&pool).await?;
                 Ok::<_, error::AppError>(pool)
             })?;
-            app.manage(state::AppState::new(pool));
+            app.manage(state::AppState::new(pool)?);
             Ok(())
         })
         .invoke_handler(tauri::generate_handler![
@@ -38,6 +38,9 @@ pub fn run() {
             commands::settings::reset_stats,
             commands::data::get_all_countries,
             commands::data::get_continents,
+            commands::border_run::border_run_start,
+            commands::border_run::border_run_guess,
+            commands::border_run::border_run_reveal_path,
         ])
         .run(tauri::generate_context!())
         .expect("error while running tauri application");

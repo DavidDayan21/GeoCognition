@@ -20,6 +20,7 @@ function country(iso_alpha3: string, continent: string, id: number): Country {
     iso_alpha3,
     lat: 0,
     lng: 0,
+    borders: [],
   };
 }
 
