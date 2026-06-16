@@ -232,7 +232,11 @@ export function PracticeView() {
                           ease: EASE_CALM,
                         }}
                       >
-                        <FeedbackLayer result={result} userInput={lastInput} />
+                        <FeedbackLayer
+                          result={result}
+                          userInput={lastInput}
+                          onContinue={handleAdvance}
+                        />
                       </motion.div>
                     ) : (
                       <motion.div

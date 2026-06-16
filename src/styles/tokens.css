@@ -20,10 +20,10 @@
 
   /* Border Run map states */
   --br-start: #2563eb; /* start country (blue) */
-  --br-end: #dc2626; /* end country (red) */
-  --br-path: #16a34a; /* correct guess on a shortest path (green) */
-  --br-detour: #ea580c; /* correct guess, valid detour (orange) */
-  --br-flash: #dc2626; /* non-adjacent guess flash (red) */
+  --br-end: #0ea5e9; /* end country (blue — a distinct sky shade) */
+  --br-path: #16a34a; /* guess on a shortest path (green) */
+  --br-detour: #ea580c; /* guess bordering the shortest path (orange) */
+  --br-disconnected: #dc2626; /* guess off the path entirely (red) */
   --br-blank: #d6d3d1; /* mystery-map silhouette fill */
 }
 
@@ -47,9 +47,9 @@
 
   /* Border Run map states (brighter on dark surfaces) */
   --br-start: #3b82f6;
-  --br-end: #ef4444;
+  --br-end: #38bdf8;
   --br-path: #22c55e;
   --br-detour: #f97316;
-  --br-flash: #ef4444;
+  --br-disconnected: #ef4444;
   --br-blank: #44403c;
 }

@@ -7,18 +7,19 @@ export interface AttemptsCounterProps {
 }
 
 /**
- * Compact "attempts left" indicator for the top bar. It turns amber when only
- * a couple of guesses remain and red on the last one, and pops briefly each
- * time the count drops (honoring reduced-motion via the app's MotionConfig).
+ * Compact "attempts left" indicator for the top bar. Because the attempt limit
+ * now varies per pair (shortest-path length + 3), the warning thresholds are
+ * proportional: amber once a third or less of the budget remains, red on the
+ * last attempt. It also pops briefly each time the count drops (honoring
+ * reduced-motion via the app's MotionConfig).
  */
 export function AttemptsCounter({ remaining, limit }: AttemptsCounterProps) {
   const { t } = useTranslation();
 
-  const lowThreshold = Math.max(2, Math.ceil(limit * 0.25));
   const tone =
     remaining <= 1
       ? "text-error"
-      : remaining <= lowThreshold
+      : limit > 0 && remaining / limit <= 0.33
         ? "text-warning"
         : "text-text";
 

@@ -1,4 +1,4 @@
-import { motion, useAnimationControls, useReducedMotion } from "framer-motion";
+import { motion } from "framer-motion";
 import { ArrowRight, X } from "lucide-react";
 import { useEffect, useMemo, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
@@ -7,6 +7,7 @@ import { getAllCountries } from "../api/tauri-api";
 import { AttemptsCounter } from "../components/border-run/AttemptsCounter";
 import { BorderRunMap } from "../components/border-run/BorderRunMap";
 import { BorderRunResult } from "../components/border-run/BorderRunResult";
+import { computeBorderRunFocus } from "../components/border-run/map-focus";
 import { ChainDisplay } from "../components/border-run/ChainDisplay";
 import { Button } from "../components/ui/Button";
 import { Input } from "../components/ui/Input";
@@ -17,9 +18,7 @@ import { useSettingsStore } from "../store/settings-store";
 import { useToastStore } from "../store/toast-store";
 import type { Country, GuessOutcomeDto } from "../types/domain";
 
-/** How long a rejected guess flashes red on the map / shakes the input. */
-const FLASH_MS = 750;
-/** How long the input keeps its green "accepted" pulse. */
+/** How long the input keeps its pulse ring after a guess. */
 const PULSE_MS = 600;
 
 /** Country flag + name, used for the start and end endpoints in the top bar. */
@@ -63,16 +62,12 @@ export default function BorderRunPage() {
   const status = useBorderRunStore((s) => s.status);
   const game = useBorderRunStore((s) => s.game);
   const colors = useBorderRunStore((s) => s.colors);
-  const flash = useBorderRunStore((s) => s.flash);
   const start = useBorderRunStore((s) => s.start);
   const guess = useBorderRunStore((s) => s.guess);
   const revealPath = useBorderRunStore((s) => s.revealPath);
-  const clearFlash = useBorderRunStore((s) => s.clearFlash);
   const reset = useBorderRunStore((s) => s.reset);
 
   const showToast = useToastStore((s) => s.show);
-  const prefersReducedMotion = useReducedMotion() ?? false;
-  const shake = useAnimationControls();
 
   const inputRef = useRef<HTMLInputElement>(null);
   const [value, setValue] = useState("");
@@ -96,6 +91,19 @@ export default function BorderRunPage() {
   const iso2Of = (iso3: string): string | null =>
     byIso.get(iso3)?.iso_alpha2 ?? null;
 
+  // Auto-zoom view for the active pair: the bounding region of start + end,
+  // or null (full world) when they're too far apart or not yet loaded.
+  const focus = useMemo(() => {
+    if (!game) return null;
+    const s = byIso.get(game.start);
+    const e = byIso.get(game.end);
+    if (!s || !e) return null;
+    return computeBorderRunFocus(
+      { lat: s.lat, lng: s.lng },
+      { lat: e.lat, lng: e.lng },
+    );
+  }, [game, byIso]);
+
   // Start exactly one game per page visit, once settings are available.
   const startedRef = useRef(false);
   useEffect(() => {
@@ -107,13 +115,6 @@ export default function BorderRunPage() {
 
   // Drop the in-memory game when leaving the route.
   useEffect(() => () => reset(), [reset]);
-
-  // Auto-clear the red map flash a beat after a non-adjacent guess.
-  useEffect(() => {
-    if (!flash) return;
-    const id = window.setTimeout(() => clearFlash(), FLASH_MS);
-    return () => window.clearTimeout(id);
-  }, [flash, clearFlash]);
 
   // Auto-clear the input pulse ring.
   useEffect(() => {
@@ -151,29 +152,17 @@ export default function BorderRunPage() {
     switch (kind) {
       case "accepted":
       case "won":
+      case "lost":
+        // Every recognized guess is placed, so it always reads as "ok".
         setPulse("ok");
         break;
       case "not_recognized":
         setPulse("bad");
         showToast(t("borderRun.input.notRecognized"), "error");
         break;
-      case "not_adjacent":
-        setPulse("bad");
-        if (!prefersReducedMotion) {
-          void shake.start({
-            x: [0, -8, 8, -5, 5, 0],
-            transition: { duration: 0.35 },
-          });
-        }
-        showToast(t("borderRun.input.notAdjacent", { country }), "error");
-        break;
       case "already_in_chain":
         setPulse("bad");
         showToast(t("borderRun.input.alreadyInChain", { country }), "info");
-        break;
-      case "lost":
-        if (outcome.accepted) setPulse("ok");
-        else setPulse("bad");
         break;
     }
   }
@@ -194,8 +183,12 @@ export default function BorderRunPage() {
 
   const steps = game ? [game.start, ...game.chain, game.end] : [];
   const ended = game != null && game.status !== "in_progress";
-  // The route is optimal when no guess landed off a shortest path (orange).
-  const optimal = !Object.values(colors).includes("detour");
+  // The route is optimal when every placed guess sits on a shortest path —
+  // i.e. nothing landed off it (orange "detour") or away from it (red
+  // "disconnected").
+  const optimal = !Object.values(colors).some(
+    (c) => c === "detour" || c === "disconnected",
+  );
   const pulseRing =
     pulse === "ok"
       ? "ring-2 ring-success"
@@ -265,7 +258,7 @@ export default function BorderRunPage() {
       {/* Active game */}
       {status === "ready" && game && (
         <>
-          <BorderRunMap colors={colors} flash={flash} />
+          <BorderRunMap colors={colors} focus={focus} />
 
           {/* Once the result overlay is dismissed, keep replay controls handy. */}
           {ended && !showResult && (
@@ -287,8 +280,7 @@ export default function BorderRunPage() {
           )}
 
           {!ended && (
-            <motion.form
-              animate={shake}
+            <form
               className="mx-auto w-full max-w-md"
               onSubmit={(event) => {
                 event.preventDefault();
@@ -308,7 +300,7 @@ export default function BorderRunPage() {
                 onChange={(event) => setValue(event.target.value)}
                 className={`text-center text-lg transition-shadow ${pulseRing}`}
               />
-            </motion.form>
+            </form>
           )}
 
           {steps.length > 0 && (

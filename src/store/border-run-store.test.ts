@@ -36,8 +36,7 @@ function outcome(overrides: Partial<GuessOutcomeDto> = {}): GuessOutcomeDto {
   return {
     kind: "accepted",
     iso3: "bel",
-    on_shortest_path: true,
-    accepted: true,
+    classification: "on_shortest_path",
     game: gameDto({ chain: ["bel"], attempts_used: 1, attempts_remaining: 5 }),
     ...overrides,
   };
@@ -58,7 +57,6 @@ describe("border run store", () => {
     expect(state.status).toBe("ready");
     expect(state.game?.start).toBe("fra");
     expect(state.colors).toEqual({ fra: "start", deu: "end" });
-    expect(state.flash).toBeNull();
   });
 
   it("start records an error status when the easiest difficulty fails", async () => {
@@ -99,7 +97,9 @@ describe("border run store", () => {
   it("colors an accepted on-path guess green", async () => {
     mockStart.mockResolvedValueOnce(gameDto());
     await useBorderRunStore.getState().start("easy");
-    mockGuess.mockResolvedValueOnce(outcome({ on_shortest_path: true }));
+    mockGuess.mockResolvedValueOnce(
+      outcome({ classification: "on_shortest_path" }),
+    );
 
     const result = await useBorderRunStore.getState().guess("Belgium");
 
@@ -108,51 +108,72 @@ describe("border run store", () => {
     expect(useBorderRunStore.getState().game?.chain).toEqual(["bel"]);
   });
 
-  it("colors an accepted detour guess orange", async () => {
+  it("colors a guess bordering the path orange", async () => {
     mockStart.mockResolvedValueOnce(gameDto());
     await useBorderRunStore.getState().start("easy");
-    mockGuess.mockResolvedValueOnce(outcome({ on_shortest_path: false }));
+    mockGuess.mockResolvedValueOnce(
+      outcome({ classification: "adjacent_to_shortest_path" }),
+    );
 
     await useBorderRunStore.getState().guess("Belgium");
 
     expect(useBorderRunStore.getState().colors.bel).toBe("detour");
   });
 
-  it("flashes a non-adjacent guess without coloring it", async () => {
+  it("colors a disconnected guess red instead of rejecting it", async () => {
     mockStart.mockResolvedValueOnce(gameDto());
     await useBorderRunStore.getState().start("easy");
     mockGuess.mockResolvedValueOnce(
       outcome({
-        kind: "not_adjacent",
-        iso3: "esp",
-        accepted: false,
-        on_shortest_path: false,
-        game: gameDto({ attempts_used: 1, attempts_remaining: 5 }),
+        iso3: "aus",
+        classification: "disconnected",
+        game: gameDto({
+          chain: ["aus"],
+          attempts_used: 1,
+          attempts_remaining: 5,
+        }),
       }),
     );
 
-    await useBorderRunStore.getState().guess("Spain");
+    await useBorderRunStore.getState().guess("Australia");
 
-    expect(useBorderRunStore.getState().flash).toBe("esp");
-    expect(useBorderRunStore.getState().colors.esp).toBeUndefined();
+    expect(useBorderRunStore.getState().colors.aus).toBe("disconnected");
   });
 
-  it("leaves state untouched for an unrecognized guess", async () => {
+  it("leaves the map untouched for an unrecognized guess", async () => {
     mockStart.mockResolvedValueOnce(gameDto());
     await useBorderRunStore.getState().start("easy");
     mockGuess.mockResolvedValueOnce(
       outcome({
         kind: "not_recognized",
         iso3: null,
-        accepted: false,
-        on_shortest_path: false,
+        classification: null,
         game: gameDto(),
       }),
     );
 
     await useBorderRunStore.getState().guess("zzz");
 
-    expect(useBorderRunStore.getState().flash).toBeNull();
+    expect(useBorderRunStore.getState().colors).toEqual({
+      fra: "start",
+      deu: "end",
+    });
+  });
+
+  it("leaves the map untouched for an already-placed guess", async () => {
+    mockStart.mockResolvedValueOnce(gameDto());
+    await useBorderRunStore.getState().start("easy");
+    mockGuess.mockResolvedValueOnce(
+      outcome({
+        kind: "already_in_chain",
+        iso3: "fra",
+        classification: null,
+        game: gameDto(),
+      }),
+    );
+
+    await useBorderRunStore.getState().guess("France");
+
     expect(useBorderRunStore.getState().colors).toEqual({
       fra: "start",
       deu: "end",
@@ -170,13 +191,9 @@ describe("border run store", () => {
     expect(useBorderRunStore.getState().game?.chain).toEqual([]);
   });
 
-  it("clearFlash and reset clear transient state", async () => {
+  it("reset clears the game and colors", async () => {
     mockStart.mockResolvedValueOnce(gameDto());
     await useBorderRunStore.getState().start("easy");
-
-    useBorderRunStore.setState({ flash: "esp" });
-    useBorderRunStore.getState().clearFlash();
-    expect(useBorderRunStore.getState().flash).toBeNull();
 
     useBorderRunStore.getState().reset();
     expect(useBorderRunStore.getState().game).toBeNull();

@@ -17,11 +17,18 @@ export type GameStatus = "in_progress" | "won" | "lost";
 /** Classification of a submitted Border Run guess. */
 export type GuessKind =
   | "accepted"
-  | "not_adjacent"
   | "already_in_chain"
   | "not_recognized"
   | "won"
   | "lost";
+
+/** How a placed Border Run country is colored on the map. */
+export type CountryClassification =
+  | "start"
+  | "end"
+  | "on_shortest_path"
+  | "adjacent_to_shortest_path"
+  | "disconnected";
 
 export interface Country {
   id: number;
@@ -150,10 +157,12 @@ export interface GuessOutcomeDto {
   kind: GuessKind;
   /** Resolved country (ISO alpha-3); null only for "not_recognized". */
   iso3: string | null;
-  /** Whether the resolved country lies on a shortest path (green vs orange). */
-  on_shortest_path: boolean;
-  /** For a losing guess, whether it was a valid (chained) move. */
-  accepted: boolean;
+  /**
+   * Map color of the placed country. Non-null for "accepted"/"won"/"lost"
+   * (every recognized guess is placed); null for "already_in_chain" and
+   * "not_recognized", which place nothing.
+   */
+  classification: CountryClassification | null;
   /** Game state after applying this guess. */
   game: BorderRunGameDto;
 }

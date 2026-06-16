@@ -124,31 +124,26 @@ fn to_game_dto(game: &BorderRunGame) -> BorderRunGameDto {
 }
 
 fn to_outcome_dto(outcome: GuessOutcome, game: &BorderRunGame) -> GuessOutcomeDto {
-    let (kind, iso3, on_shortest_path, accepted) = match outcome {
+    let (kind, iso3, classification) = match outcome {
         GuessOutcome::Accepted {
             iso3,
-            on_shortest_path,
-        } => (GuessKind::Accepted, Some(iso3), on_shortest_path, true),
-        GuessOutcome::NotAdjacent { iso3 } => (GuessKind::NotAdjacent, Some(iso3), false, false),
-        GuessOutcome::AlreadyInChain { iso3 } => {
-            (GuessKind::AlreadyInChain, Some(iso3), false, false)
-        }
-        GuessOutcome::NotRecognized => (GuessKind::NotRecognized, None, false, false),
+            classification,
+        } => (GuessKind::Accepted, Some(iso3), Some(classification)),
+        GuessOutcome::AlreadyInChain { iso3 } => (GuessKind::AlreadyInChain, Some(iso3), None),
+        GuessOutcome::NotRecognized => (GuessKind::NotRecognized, None, None),
         GuessOutcome::Won {
             iso3,
-            on_shortest_path,
-        } => (GuessKind::Won, Some(iso3), on_shortest_path, true),
+            classification,
+        } => (GuessKind::Won, Some(iso3), Some(classification)),
         GuessOutcome::Lost {
             iso3,
-            accepted,
-            on_shortest_path,
-        } => (GuessKind::Lost, Some(iso3), on_shortest_path, accepted),
+            classification,
+        } => (GuessKind::Lost, Some(iso3), Some(classification)),
     };
     GuessOutcomeDto {
         kind,
         iso3,
-        on_shortest_path,
-        accepted,
+        classification,
         game: to_game_dto(game),
     }
 }

@@ -1,7 +1,7 @@
 use geocognition_lib::commands::border_run::{process_guess, reveal_path, start_game};
 use geocognition_lib::domain::border_run::game::BorderRunGame;
 use geocognition_lib::domain::border_run::pathfinding::shortest_path_length;
-use geocognition_lib::domain::models::{Difficulty, GameStatus, GuessKind};
+use geocognition_lib::domain::models::{CountryClassification, Difficulty, GameStatus, GuessKind};
 use geocognition_lib::state::BorderRunResources;
 use rand::rngs::StdRng;
 use rand::SeedableRng;
@@ -26,8 +26,6 @@ fn start_game_produces_a_valid_in_progress_pair() {
     let dto = start_game(&resources, &mut slot, Difficulty::Easy, &mut rng).expect("start");
 
     assert_eq!(dto.status, GameStatus::InProgress);
-    assert_eq!(dto.attempts_limit, 6);
-    assert_eq!(dto.attempts_remaining, 6);
     assert!(dto.chain.is_empty());
     assert_ne!(dto.start, dto.end);
     let length = shortest_path_length(&resources.graph, &dto.start, &dto.end).expect("reachable");
@@ -35,6 +33,10 @@ fn start_game_produces_a_valid_in_progress_pair() {
         (2..=3).contains(&length),
         "Easy pair length {length} out of range"
     );
+    // The attempt limit is derived from this pair's path length plus padding.
+    let expected_limit = length as u32 + 3;
+    assert_eq!(dto.attempts_limit, expected_limit);
+    assert_eq!(dto.attempts_remaining, expected_limit);
     assert!(slot.is_some(), "the game is stored in the slot");
 }
 
@@ -47,9 +49,31 @@ fn known_adjacency_wins_the_game() {
 
     assert_eq!(outcome.kind, GuessKind::Won);
     assert_eq!(outcome.iso3.as_deref(), Some("esp"));
-    assert!(outcome.on_shortest_path);
+    assert_eq!(
+        outcome.classification,
+        Some(CountryClassification::OnShortestPath)
+    );
     assert_eq!(outcome.game.status, GameStatus::Won);
     assert_eq!(outcome.game.chain, vec!["esp".to_string()]);
+}
+
+#[test]
+fn any_recognized_country_is_accepted_even_when_disconnected() {
+    let resources = BorderRunResources::build().expect("resources");
+    let mut slot = portugal_to_andorra(&resources);
+
+    // Australia is an island, nowhere near the Portugal→Andorra route, yet it
+    // is accepted (adjacency is no longer validated) and spends an attempt.
+    let outcome = process_guess(&resources, &mut slot, "Australia").expect("guess");
+
+    assert_eq!(outcome.kind, GuessKind::Accepted);
+    assert_eq!(outcome.iso3.as_deref(), Some("aus"));
+    assert_eq!(
+        outcome.classification,
+        Some(CountryClassification::Disconnected)
+    );
+    assert_eq!(outcome.game.attempts_used, 1);
+    assert_eq!(outcome.game.chain, vec!["aus".to_string()]);
 }
 
 #[test]

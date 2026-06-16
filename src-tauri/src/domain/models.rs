@@ -92,15 +92,6 @@ impl Difficulty {
             Difficulty::Hard => (7, usize::MAX),
         }
     }
-
-    /// Number of guess attempts allowed at this difficulty.
-    pub fn attempts_limit(self) -> u32 {
-        match self {
-            Difficulty::Easy => 6,
-            Difficulty::Medium => 10,
-            Difficulty::Hard => 15,
-        }
-    }
 }
 
 /// Lifecycle of a single Border Run game.
@@ -113,15 +104,37 @@ pub enum GameStatus {
 }
 
 /// The classification of a submitted Border Run guess, sent to the frontend.
+///
+/// Adjacency is no longer validated: every recognized, not-yet-placed country
+/// is accepted, so there is no `NotAdjacent` kind. The map coloring of an
+/// accepted country comes from [`CountryClassification`] instead.
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Serialize, Deserialize)]
 #[serde(rename_all = "snake_case")]
 pub enum GuessKind {
     Accepted,
-    NotAdjacent,
     AlreadyInChain,
     NotRecognized,
     Won,
     Lost,
+}
+
+/// How a placed Border Run country is colored on the map, derived from the
+/// shortest-path set computed at game start. Pure function of the country and
+/// the immutable graph/shortest-path set, so it never changes once a game
+/// begins.
+#[derive(Debug, Clone, Copy, PartialEq, Eq, Serialize, Deserialize)]
+#[serde(rename_all = "snake_case")]
+pub enum CountryClassification {
+    /// The start country (blue).
+    Start,
+    /// The end country (blue).
+    End,
+    /// On at least one shortest start→end path (green).
+    OnShortestPath,
+    /// Not on a shortest path, but borders a country that is (orange).
+    AdjacentToShortestPath,
+    /// Neither on nor adjacent to the shortest-path set (red).
+    Disconnected,
 }
 
 /// Snapshot of a Border Run game handed to the frontend. Deliberately omits
@@ -148,10 +161,10 @@ pub struct GuessOutcomeDto {
     pub kind: GuessKind,
     /// The resolved country (ISO alpha-3); `None` only for `not_recognized`.
     pub iso3: Option<String>,
-    /// Whether the resolved country lies on a shortest path (green vs orange).
-    pub on_shortest_path: bool,
-    /// For a losing guess, whether it was a valid (chained) move.
-    pub accepted: bool,
+    /// Map color of the placed country. `Some` for `accepted`/`won`/`lost`
+    /// (every recognized guess is placed); `None` for `already_in_chain`
+    /// and `not_recognized`, which place nothing.
+    pub classification: Option<CountryClassification>,
     /// The game state after applying this guess.
     pub game: BorderRunGameDto,
 }

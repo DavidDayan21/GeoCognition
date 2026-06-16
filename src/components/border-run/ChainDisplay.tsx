@@ -24,9 +24,10 @@ function Chip({ label, color }: { label: string; color: CountryColor }) {
 }
 
 /**
- * The player's route as a left-to-right sequence of colored chips:
- * start → accepted guesses → end. Guesses inherit their map color (green for
- * on-path, orange for detour); endpoints keep the start/end accents.
+ * The player's placed countries as a left-to-right sequence of colored chips:
+ * start → accepted guesses (in the order they were typed) → end. Each chip
+ * inherits its map classification color (green on-path, orange bordering the
+ * path, red disconnected); endpoints keep the start/end accents.
  */
 export function ChainDisplay({ steps, colors, nameOf }: ChainDisplayProps) {
   const { t } = useTranslation();
@@ -41,7 +42,7 @@ export function ChainDisplay({ steps, colors, nameOf }: ChainDisplayProps) {
           {index > 0 && (
             <ArrowRight size={16} className="text-text-muted" aria-hidden />
           )}
-          <Chip label={nameOf(iso3)} color={colors[iso3] ?? "detour"} />
+          <Chip label={nameOf(iso3)} color={colors[iso3] ?? "disconnected"} />
         </li>
       ))}
     </ul>

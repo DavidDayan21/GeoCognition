@@ -33,11 +33,17 @@ export function WorldMap({
         // scale + center are derived from continents.geojson via
         // geoEqualEarth().fitExtent (see build-continents-geo.ts, which logs
         // the values when regenerating the geometry) so the 6 continents fill
-        // the 800x370 frame with no clipping and minimal dead space. Antarctica
-        // is excluded, so center latitude is shifted north to balance margins.
-        projectionConfig={{ scale: 146.09, center: [0, 6.847] }}
-        width={800}
-        height={370}
+        // the frame with no clipping and minimal dead space. Antarctica is
+        // excluded, so center latitude is shifted north to balance margins.
+        // The viewBox dimensions and scale are the original fitExtent values
+        // (800x370 @ 146.09) scaled uniformly by √0.75 ≈ 0.866 — equivalent to
+        // re-running fitExtent on the smaller frame, since the geometry/center
+        // is unchanged. Center (geographic) is unaffected by the rescale. The
+        // ~75% on-screen area reduction comes from the max-width container in
+        // HomePage; this rescale keeps the aspect ratio undistorted.
+        projectionConfig={{ scale: 126.5, center: [0, 6.847] }}
+        width={693}
+        height={320}
         style={{ width: "100%", height: "auto" }}
         aria-label={t("home.selectMapAria")}
       >

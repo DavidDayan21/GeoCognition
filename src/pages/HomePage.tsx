@@ -272,8 +272,12 @@ export default function HomePage() {
 
             {currentMode === "practice" ? (
               <>
-                {/* World map */}
-                <motion.div variants={contentItem}>
+                {/* World map — constrained to ~86.6% width (√0.75) so the
+                    rendered area is ~75% of the previous full-width map. */}
+                <motion.div
+                  variants={contentItem}
+                  className="mx-auto w-full max-w-[720px]"
+                >
                   {settings ? (
                     <WorldMap
                       selectedContinents={settings.selected_continents}
@@ -281,7 +285,7 @@ export default function HomePage() {
                     />
                   ) : (
                     <div
-                      className="h-80 animate-pulse rounded-card bg-surface-2"
+                      className="aspect-[693/320] animate-pulse rounded-card bg-surface-2"
                       role="status"
                       aria-label={t("home.loadingMap")}
                     />

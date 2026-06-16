@@ -9,6 +9,8 @@ export interface FeedbackLayerProps {
   result: AnswerResult;
   /** The text the user submitted, shown struck-through on a near miss. */
   userInput: string;
+  /** Advance to the next question (also bound to the Enter key in the view). */
+  onContinue: () => void;
 }
 
 /**
@@ -16,7 +18,11 @@ export interface FeedbackLayerProps {
  * amber near-miss reveal (quality 3), or a red reveal with a shake for a
  * wrong answer (quality 0). Honors `prefers-reduced-motion`.
  */
-export function FeedbackLayer({ result, userInput }: FeedbackLayerProps) {
+export function FeedbackLayer({
+  result,
+  userInput,
+  onContinue,
+}: FeedbackLayerProps) {
   const reduce = useReducedMotion();
   const { t, i18n } = useTranslation();
   const language: Language = i18n.language === "fr" ? "fr" : "en";
@@ -77,9 +83,15 @@ export function FeedbackLayer({ result, userInput }: FeedbackLayerProps) {
       <span className="text-xs text-text-muted">
         {t("practice.nextReview", { when: reviewWhen })}
       </span>
-      <span className="text-xs text-text-muted">
-        {t("practice.pressEnter")}
-      </span>
+      <button
+        type="button"
+        onClick={onContinue}
+        className={`rounded-input px-2 py-1 text-sm text-text-muted underline-offset-4 hover:text-text hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent ${
+          reduce ? "" : "ease-calm transition-colors duration-150"
+        }`}
+      >
+        {t("practice.continue")}
+      </button>
     </motion.div>
   );
 }

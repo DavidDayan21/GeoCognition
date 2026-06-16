@@ -2,25 +2,32 @@
 
 use std::collections::{HashSet, VecDeque};
 
-use crate::domain::models::{Difficulty, GameStatus};
+use crate::domain::models::{CountryClassification, Difficulty, GameStatus};
 
 use super::graph::Graph;
-use super::pathfinding::all_shortest_paths;
+use super::pathfinding::{all_shortest_paths, shortest_path_length};
+
+/// Attempts granted on top of the shortest-path length. The per-game limit is
+/// `shortest_path_length + ATTEMPTS_PADDING`, so it scales with how hard the
+/// generated pair actually is rather than the difficulty bucket. (Replaces the
+/// old per-`Difficulty` fixed limits.)
+pub const ATTEMPTS_PADDING: u32 = 3;
 
 /// The result of submitting one guess.
 ///
-/// `Won`/`Lost` are terminal and supersede `Accepted`/`NotAdjacent` on the
-/// move that ends the game; they carry the same coloring hints so the UI can
-/// render the final country. `NotRecognized` never consumes an attempt.
+/// Adjacency is no longer validated: every recognized, not-yet-placed country
+/// is accepted, placed on the map, and consumes an attempt. `Won`/`Lost` are
+/// terminal and supersede `Accepted` on the move that ends the game; all three
+/// carry the placed country's [`CountryClassification`] so the UI can color it
+/// immediately. `AlreadyInChain` and `NotRecognized` place nothing and never
+/// consume an attempt.
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub enum GuessOutcome {
-    /// Adjacent to the chain and added to it; the game continues.
+    /// Recognized and added to the chain; the game continues.
     Accepted {
         iso3: String,
-        on_shortest_path: bool,
+        classification: CountryClassification,
     },
-    /// A real country, but not adjacent to the chain. Consumes an attempt.
-    NotAdjacent { iso3: String },
     /// The country is already placed (start, end, or an accepted guess).
     /// User confusion rather than a strategic mistake — does not consume an
     /// attempt.
@@ -30,14 +37,12 @@ pub enum GuessOutcome {
     /// The accepted guess connected start to end.
     Won {
         iso3: String,
-        on_shortest_path: bool,
+        classification: CountryClassification,
     },
-    /// The guess used the final attempt without connecting. `accepted`
-    /// distinguishes a valid-but-too-late guess from a non-adjacent one.
+    /// The accepted guess used the final attempt without connecting.
     Lost {
         iso3: String,
-        accepted: bool,
-        on_shortest_path: bool,
+        classification: CountryClassification,
     },
 }
 
@@ -61,15 +66,20 @@ pub struct BorderRunGame {
 
 impl BorderRunGame {
     /// Starts a new game between `start` and `end` at `difficulty`. The set
-    /// of shortest-path countries is computed once, up front.
+    /// of shortest-path countries is computed once, up front, and the attempt
+    /// limit is derived from the pair's shortest-path length
+    /// (`length + ATTEMPTS_PADDING`). A disconnected pair (no path) yields a
+    /// length of 0; the generator only produces connected pairs, so this is a
+    /// safe floor rather than an expected case.
     pub fn new(start: String, end: String, difficulty: Difficulty, graph: &Graph) -> BorderRunGame {
         let shortest_path_set = all_shortest_paths(graph, &start, &end);
+        let path_length = shortest_path_length(graph, &start, &end).unwrap_or(0) as u32;
         BorderRunGame {
             start,
             end,
             chain: Vec::new(),
             attempts_used: 0,
-            attempts_limit: difficulty.attempts_limit(),
+            attempts_limit: path_length + ATTEMPTS_PADDING,
             status: GameStatus::InProgress,
             difficulty,
             shortest_path_set,
@@ -83,6 +93,11 @@ impl BorderRunGame {
 
     /// Submits a guess. `candidate` is the fuzzy-resolved ISO alpha-3 code,
     /// or `None` when the typed text matched no country.
+    ///
+    /// Adjacency is not checked: any recognized, not-yet-placed country is
+    /// accepted, placed on the map, and consumes an attempt. The game is won
+    /// the moment the placed countries connect start to end through the border
+    /// graph, and lost when the attempt limit is reached without that link.
     ///
     /// Must only be called while the game is [`GameStatus::InProgress`]; the
     /// command layer enforces this.
@@ -102,58 +117,57 @@ impl BorderRunGame {
             };
         }
 
-        if !self.is_adjacent_to_chain(graph, iso3) {
-            self.attempts_used += 1;
-            if self.attempts_used >= self.attempts_limit {
-                self.status = GameStatus::Lost;
-                return GuessOutcome::Lost {
-                    iso3: iso3.to_string(),
-                    accepted: false,
-                    on_shortest_path: false,
-                };
-            }
-            return GuessOutcome::NotAdjacent {
-                iso3: iso3.to_string(),
-            };
-        }
-
-        // Accepted: extend the chain.
+        // Accepted: place the country and spend an attempt.
         self.chain.push(iso3.to_string());
         self.attempts_used += 1;
-        let on_shortest_path = self.shortest_path_set.contains(iso3);
+        let classification = self.classify_country(iso3, graph);
 
         if self.connects_start_to_end(graph) {
             self.status = GameStatus::Won;
             return GuessOutcome::Won {
                 iso3: iso3.to_string(),
-                on_shortest_path,
+                classification,
             };
         }
         if self.attempts_used >= self.attempts_limit {
             self.status = GameStatus::Lost;
             return GuessOutcome::Lost {
                 iso3: iso3.to_string(),
-                accepted: true,
-                on_shortest_path,
+                classification,
             };
         }
         GuessOutcome::Accepted {
             iso3: iso3.to_string(),
-            on_shortest_path,
+            classification,
         }
+    }
+
+    /// Classifies a country for map coloring, relative to the shortest-path
+    /// set fixed at game start. The result depends only on the (immutable)
+    /// graph and shortest-path set, so it is stable for the whole game.
+    pub fn classify_country(&self, iso3: &str, graph: &Graph) -> CountryClassification {
+        if iso3 == self.start {
+            return CountryClassification::Start;
+        }
+        if iso3 == self.end {
+            return CountryClassification::End;
+        }
+        if self.shortest_path_set.contains(iso3) {
+            return CountryClassification::OnShortestPath;
+        }
+        if graph
+            .neighbors(iso3)
+            .iter()
+            .any(|n| self.shortest_path_set.contains(n))
+        {
+            return CountryClassification::AdjacentToShortestPath;
+        }
+        CountryClassification::Disconnected
     }
 
     /// True if `iso3` is the start, the end, or an already-accepted guess.
     fn is_placed(&self, iso3: &str) -> bool {
         iso3 == self.start || iso3 == self.end || self.chain.iter().any(|c| c == iso3)
-    }
-
-    /// True if `iso3` borders any country currently in the chain, where the
-    /// chain is `start` + accepted guesses + `end`.
-    fn is_adjacent_to_chain(&self, graph: &Graph, iso3: &str) -> bool {
-        graph.is_adjacent(iso3, &self.start)
-            || graph.is_adjacent(iso3, &self.end)
-            || self.chain.iter().any(|c| graph.is_adjacent(iso3, c))
     }
 
     /// True if a path of placed countries connects start to end. Traversal
