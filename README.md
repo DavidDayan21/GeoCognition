@@ -69,14 +69,14 @@ Fully offline. No account. No ads. Available in **English and French**.
 
 ## Why this stack?
 
-| Layer | Technology | Rationale |
-|---|---|---|
-| Desktop shell | **Tauri 2** | Native binary < 10 MB, strict sandboxing model, no bundled Chromium |
-| Backend logic | **Rust** | Memory-safe systems language; SM-2 and graph algorithms as pure, fully-tested functions |
-| Frontend | **React 18 + TypeScript** (strict) | Component-driven UI with zero `any` tolerance |
-| Persistence | **SQLite** (via sqlx) | Local-first, no network dependency, structured queries |
-| Styling | **Tailwind CSS + Framer Motion** | Design-token–based theming, smooth animations |
-| Maps | **react-simple-maps + d3-geo** | Declarative SVG geography with projection math |
+| Layer         | Technology                         | Rationale                                                                               |
+| ------------- | ---------------------------------- | --------------------------------------------------------------------------------------- |
+| Desktop shell | **Tauri 2**                        | Native binary < 10 MB, strict sandboxing model, no bundled Chromium                     |
+| Backend logic | **Rust**                           | Memory-safe systems language; SM-2 and graph algorithms as pure, fully-tested functions |
+| Frontend      | **React 18 + TypeScript** (strict) | Component-driven UI with zero `any` tolerance                                           |
+| Persistence   | **SQLite** (via sqlx)              | Local-first, no network dependency, structured queries                                  |
+| Styling       | **Tailwind CSS + Framer Motion**   | Design-token–based theming, smooth animations                                           |
+| Maps          | **react-simple-maps + d3-geo**     | Declarative SVG geography with projection math                                          |
 
 ---
 
@@ -115,6 +115,7 @@ Pairs are pre-bucketed by path length at startup (Easy: 2–3, Medium: 4–6, Ha
 ## Features
 
 ### Practice mode
+
 - **Infinite adaptive loop** — no fixed session length; the SM-2 queue always surfaces the most overdue or least mastered country
 - **Two question types**: capitals (country name → type the capital) and flags (flag image → type the country name)
 - **Bilingual answers** — correct answers accepted in English or French regardless of UI language
@@ -124,6 +125,7 @@ Pairs are pre-bucketed by path length at startup (Easy: 2–3, Medium: 4–6, Ha
 - **Mode toggles** — Capitals only, Flags only, or both mixed (weighted toward the less-practiced mode)
 
 ### Border Run mode
+
 - **Path-finding challenge**: connect start → end by naming bordering countries
 - **No adjacency restriction** — place any country; the game tracks whether your chain is actually connected
 - **Color coding**: blue (start/end) · green (on shortest path) · orange (adjacent to shortest path) · red (disconnected)
@@ -134,6 +136,7 @@ Pairs are pre-bucketed by path length at startup (Easy: 2–3, Medium: 4–6, Ha
 - **Result bar** — compact bottom bar on win/lose; auto-reveals the optimal path for non-optimal wins and losses
 
 ### General
+
 - **Light / Dark / System** theme
 - **English / French** UI with fully localized strings
 - **Stats page**: world mastery heatmap, progression chart, forgetting curve overlay, continent radar, global counters
@@ -183,19 +186,21 @@ The architecture enforces a strict separation between **pure domain logic** (tes
 
 ### Prerequisites
 
-| Tool | Version |
-|---|---|
-| Rust + Cargo | 1.78+ |
-| Node.js | 20+ |
-| pnpm | 9+ |
-| Tauri CLI | 2.x (`cargo install tauri-cli --version "^2.0"`) |
+| Tool         | Version                                          |
+| ------------ | ------------------------------------------------ |
+| Rust + Cargo | 1.78+                                            |
+| Node.js      | 20+                                              |
+| pnpm         | 9+                                               |
+| Tauri CLI    | 2.x (`cargo install tauri-cli --version "^2.0"`) |
 
 On Linux, install the Tauri system dependencies:
+
 ```bash
 sudo apt install libwebkit2gtk-4.1-dev libgtk-3-dev libayatana-appindicator3-dev librsvg2-dev
 ```
 
 ### Run in development
+
 ```bash
 git clone https://github.com/DavidDayan21/GeoCognition.git
 cd GeoCognition
@@ -206,6 +211,7 @@ pnpm tauri dev
 The SQLite database is created automatically in your OS app-data directory on first launch and seeded with all 195 countries.
 
 ### Build for production
+
 ```bash
 pnpm tauri build
 ```
@@ -213,6 +219,7 @@ pnpm tauri build
 Outputs a native installer for your platform (`.msi` on Windows, `.dmg` on macOS, `.AppImage`/`.deb` on Linux).
 
 ### Run tests
+
 ```bash
 cargo test          # Rust domain + integration tests
 pnpm test:unit      # TypeScript unit tests (Vitest)

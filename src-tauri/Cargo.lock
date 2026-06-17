@@ -1131,7 +1131,7 @@ dependencies = [
 
 [[package]]
 name = "geocognition"
-version = "0.1.0"
+version = "1.0.0"
 dependencies = [
  "chrono",
  "rand 0.9.4",

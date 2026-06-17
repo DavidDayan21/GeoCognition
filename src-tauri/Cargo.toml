@@ -1,6 +1,6 @@
 [package]
 name = "geocognition"
-version = "0.1.0"
+version = "1.0.0"
 description = "Adaptive geography mastery desktop app (capitals + flags, SM-2 spaced repetition)"
 authors = ["David Dayan"]
 license = "MIT"
