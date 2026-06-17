@@ -25,6 +25,7 @@
   --br-detour: #ea580c; /* guess bordering the shortest path (orange) */
   --br-disconnected: #dc2626; /* guess off the path entirely (red) */
   --br-blank: #d6d3d1; /* mystery-map silhouette fill */
+  --br-stroke: #ffffff; /* outline around placed (colored) countries */
 }
 
 .dark {
@@ -52,4 +53,5 @@
   --br-detour: #f97316;
   --br-disconnected: #ef4444;
   --br-blank: #44403c;
+  --br-stroke: #e5e5e5; /* light-neutral outline on dark surfaces */
 }

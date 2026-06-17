@@ -14,12 +14,11 @@ import {
   Trophy,
 } from "lucide-react";
 import type { ReactNode } from "react";
-import { useEffect, useState } from "react";
+import { lazy, Suspense, useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { Link, useNavigate } from "react-router-dom";
 import { getGlobalStats } from "../api/tauri-api";
 import { BorderRunSetup } from "../components/border-run/BorderRunSetup";
-import { WorldMap } from "../components/map/WorldMap";
 import { Button } from "../components/ui/Button";
 import { SegmentedControl } from "../components/ui/SegmentedControl";
 import { Toggle } from "../components/ui/Toggle";
@@ -32,6 +31,12 @@ import { useIntroStore } from "../store/intro-store";
 import { useModeStore } from "../store/mode-store";
 import { useSettingsStore } from "../store/settings-store";
 import type { AppMode, QuestionMode } from "../types/domain";
+
+// The continent map pulls in react-simple-maps + d3-geo; loading it lazily
+// keeps those out of the initial bundle so the launch intro paints first.
+const WorldMap = lazy(() =>
+  import("../components/map/WorldMap").then((m) => ({ default: m.WorldMap })),
+);
 
 // ---------------------------------------------------------------------------
 // Animation variants
@@ -278,18 +283,25 @@ export default function HomePage() {
                   variants={contentItem}
                   className="mx-auto w-full max-w-[720px]"
                 >
-                  {settings ? (
-                    <WorldMap
-                      selectedContinents={settings.selected_continents}
-                      onToggleContinent={toggleContinent}
-                    />
-                  ) : (
-                    <div
-                      className="aspect-[693/320] animate-pulse rounded-card bg-surface-2"
-                      role="status"
-                      aria-label={t("home.loadingMap")}
-                    />
-                  )}
+                  {(() => {
+                    const mapSkeleton = (
+                      <div
+                        className="aspect-[693/320] animate-pulse rounded-card bg-surface-2"
+                        role="status"
+                        aria-label={t("home.loadingMap")}
+                      />
+                    );
+                    return settings ? (
+                      <Suspense fallback={mapSkeleton}>
+                        <WorldMap
+                          selectedContinents={settings.selected_continents}
+                          onToggleContinent={toggleContinent}
+                        />
+                      </Suspense>
+                    ) : (
+                      mapSkeleton
+                    );
+                  })()}
                 </motion.div>
 
                 {/* Mode toggles + Start practicing CTA */}

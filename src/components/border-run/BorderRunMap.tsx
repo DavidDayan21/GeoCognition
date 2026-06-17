@@ -126,35 +126,66 @@ export function BorderRunMap({ colors, focus }: BorderRunMapProps) {
           }}
         >
           <Geographies geography={WORLD_GEO_URL}>
-            {({ geographies }) =>
-              geographies.map((geo: MapGeography) => {
+            {({ geographies }) => {
+              // Two paint passes fix the shared-border problem: in a flat list,
+              // blank neighbors paint over a colored country and hide its stroke
+              // on every shared edge. Rendering all blanks first, then the
+              // colored countries on top, guarantees each placed country's
+              // outline shows on all sides.
+              const blank: MapGeography[] = [];
+              const colored: { geo: MapGeography; color: CountryColor }[] = [];
+              for (const geo of geographies) {
                 const iso = geo.properties.iso_a3;
                 const color = iso ? colors[iso] : undefined;
+                if (color) colored.push({ geo, color });
+                else blank.push(geo);
+              }
 
-                const fill = color ? colorVar(color) : BLANK_FILL;
-                // Placed countries get a contrasting outline; blank ones use
-                // fill === stroke so internal borders stay hidden.
-                const stroke = color ? "var(--bg)" : BLANK_FILL;
-                const strokeWidth = color ? 0.75 : 0.5;
+              // Blank countries: fill === stroke so internal borders vanish;
+              // only the silhouette's ocean edge reads against the background.
+              const blankStyle = {
+                fill: BLANK_FILL,
+                stroke: BLANK_FILL,
+                strokeWidth: 0.5,
+                outline: "none",
+              };
 
-                const style = {
-                  fill,
-                  stroke,
-                  strokeWidth,
-                  outline: "none",
-                  transition: "fill 200ms cubic-bezier(0.22, 1, 0.36, 1)",
-                };
-
-                return (
-                  <Geography
-                    key={geo.rsmKey}
-                    geography={geo}
-                    tabIndex={-1}
-                    style={{ default: style, hover: style, pressed: style }}
-                  />
-                );
-              })
-            }
+              return (
+                <>
+                  {blank.map((geo) => (
+                    <Geography
+                      key={geo.rsmKey}
+                      geography={geo}
+                      tabIndex={-1}
+                      style={{
+                        default: blankStyle,
+                        hover: blankStyle,
+                        pressed: blankStyle,
+                      }}
+                    />
+                  ))}
+                  {colored.map(({ geo, color }) => {
+                    // Thin, light outline visible on every side (this country is
+                    // painted above its neighbors).
+                    const style = {
+                      fill: colorVar(color),
+                      stroke: "var(--br-stroke)",
+                      strokeWidth: 0.5,
+                      outline: "none",
+                      transition: "fill 200ms cubic-bezier(0.22, 1, 0.36, 1)",
+                    };
+                    return (
+                      <Geography
+                        key={geo.rsmKey}
+                        geography={geo}
+                        tabIndex={-1}
+                        style={{ default: style, hover: style, pressed: style }}
+                      />
+                    );
+                  })}
+                </>
+              );
+            }}
           </Geographies>
         </ZoomableGroup>
       </ComposableMap>
