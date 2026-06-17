@@ -41,6 +41,8 @@ pub fn run() {
             commands::border_run::border_run_start,
             commands::border_run::border_run_guess,
             commands::border_run::border_run_reveal_path,
+            commands::border_run::border_run_request_hint,
+            commands::border_run::border_run_undo,
         ])
         .run(tauri::generate_context!())
         .expect("error while running tauri application");

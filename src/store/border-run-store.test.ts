@@ -5,18 +5,24 @@ vi.mock("../api/tauri-api", () => ({
   borderRunStart: vi.fn(),
   borderRunGuess: vi.fn(),
   borderRunRevealPath: vi.fn(),
+  borderRunRequestHint: vi.fn(),
+  borderRunUndo: vi.fn(),
 }));
 
 import {
   borderRunGuess,
+  borderRunRequestHint,
   borderRunRevealPath,
   borderRunStart,
+  borderRunUndo,
 } from "../api/tauri-api";
 import { useBorderRunStore } from "./border-run-store";
 
 const mockStart = vi.mocked(borderRunStart);
 const mockGuess = vi.mocked(borderRunGuess);
 const mockReveal = vi.mocked(borderRunRevealPath);
+const mockHint = vi.mocked(borderRunRequestHint);
+const mockUndo = vi.mocked(borderRunUndo);
 
 function gameDto(overrides: Partial<BorderRunGameDto> = {}): BorderRunGameDto {
   return {
@@ -28,6 +34,9 @@ function gameDto(overrides: Partial<BorderRunGameDto> = {}): BorderRunGameDto {
     attempts_remaining: 6,
     status: "in_progress",
     difficulty: "easy",
+    hint_used: false,
+    hint_letter: null,
+    undo_used: false,
     ...overrides,
   };
 }
@@ -199,5 +208,58 @@ describe("border run store", () => {
     expect(useBorderRunStore.getState().game).toBeNull();
     expect(useBorderRunStore.getState().colors).toEqual({});
     expect(useBorderRunStore.getState().status).toBe("idle");
+  });
+
+  it("hint stores the revealed letter and marks the hint used", async () => {
+    mockStart.mockResolvedValueOnce(gameDto());
+    await useBorderRunStore.getState().start("easy");
+    mockHint.mockResolvedValueOnce({ letter: "B", used: true });
+
+    await useBorderRunStore.getState().hint();
+
+    expect(useBorderRunStore.getState().hintLetter).toBe("B");
+    expect(useBorderRunStore.getState().game?.hint_used).toBe(true);
+    expect(useBorderRunStore.getState().hintUnavailable).toBe(false);
+  });
+
+  it("hint flags unavailability when the backend has none to give", async () => {
+    mockStart.mockResolvedValueOnce(gameDto());
+    await useBorderRunStore.getState().start("easy");
+    mockHint.mockRejectedValueOnce(new Error("no hint"));
+
+    await useBorderRunStore.getState().hint();
+
+    expect(useBorderRunStore.getState().hintUnavailable).toBe(true);
+    expect(useBorderRunStore.getState().hintLetter).toBeNull();
+  });
+
+  it("undo removes the last placed country's color and updates the game", async () => {
+    mockStart.mockResolvedValueOnce(gameDto());
+    await useBorderRunStore.getState().start("easy");
+    mockGuess.mockResolvedValueOnce(
+      outcome({ classification: "disconnected" }),
+    );
+    await useBorderRunStore.getState().guess("Belgium");
+    expect(useBorderRunStore.getState().colors.bel).toBe("disconnected");
+
+    mockUndo.mockResolvedValueOnce(
+      gameDto({ undo_used: true, attempts_used: 0, attempts_remaining: 6 }),
+    );
+    await useBorderRunStore.getState().undo();
+
+    const state = useBorderRunStore.getState();
+    expect(state.colors.bel).toBeUndefined();
+    expect(state.colors).toEqual({ fra: "start", deu: "end" });
+    expect(state.game?.undo_used).toBe(true);
+    expect(state.game?.chain).toEqual([]);
+  });
+
+  it("undo is a no-op when the chain is empty", async () => {
+    mockStart.mockResolvedValueOnce(gameDto());
+    await useBorderRunStore.getState().start("easy");
+
+    await useBorderRunStore.getState().undo();
+
+    expect(mockUndo).not.toHaveBeenCalled();
   });
 });

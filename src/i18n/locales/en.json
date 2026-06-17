@@ -48,28 +48,33 @@
     "retry": "Try again",
     "route": "Route",
     "resetZoom": "Reset map view",
-    "attempts": "Attempts",
     "attemptsRemaining_one": "{{count}} attempt left",
     "attemptsRemaining_other": "{{count}} attempts left",
     "input": {
       "placeholder": "Type a country…",
-      "submit": "Submit guess",
-      "accepted": "Added to your route.",
       "notRecognized": "Country not recognized",
       "alreadyInChain": "{{country}} is already in your route"
     },
+    "hint": {
+      "button": "Hint",
+      "message": "Hint: a country on the shortest path starts with {{letter}}.",
+      "unavailable": "No hint available — you're already on the optimal path."
+    },
+    "undo": {
+      "button": "Undo",
+      "unavailable": "No undo available."
+    },
     "playAgain": "Play again",
     "changeDifficulty": "Change difficulty",
+    "dismissResult": "Dismiss results",
+    "showResult": "Show results",
     "downgraded": "No route found at that difficulty — trying an easier one.",
     "win": {
-      "title": "Connected!",
-      "attempts": "{{used}} of {{limit}} attempts used",
-      "optimal": "You found the shortest route!",
-      "withDetour": "Connected — with a detour or two."
+      "optimal": "Connected! You found an optimal route.",
+      "withDetour": "Connected! Optimal route shown in green."
     },
     "lose": {
-      "title": "Out of attempts",
-      "reveal": "The shortest route is revealed on the map in green."
+      "message": "Out of attempts. Optimal route shown in green."
     }
   },
   "practice": {

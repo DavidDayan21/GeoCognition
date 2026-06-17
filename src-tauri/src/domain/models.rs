@@ -153,6 +153,23 @@ pub struct BorderRunGameDto {
     pub attempts_remaining: u32,
     pub status: GameStatus,
     pub difficulty: Difficulty,
+    /// Whether the single free hint has been spent.
+    pub hint_used: bool,
+    /// The letter a hint revealed, shown for the rest of the game. `None`
+    /// until a hint is requested.
+    pub hint_letter: Option<char>,
+    /// Whether the single undo has been spent.
+    pub undo_used: bool,
+}
+
+/// Result of requesting the single per-game hint: the revealed first letter
+/// (in the active UI language) of a shortest-path country not yet placed.
+#[derive(Debug, Clone, Copy, PartialEq, Eq, Serialize, Deserialize)]
+pub struct HintResult {
+    pub letter: char,
+    /// Always `true` once a hint is granted; mirrors `BorderRunGameDto.hint_used`
+    /// so the caller can disable the button without re-fetching the game.
+    pub used: bool,
 }
 
 /// Outcome of one submitted guess, with the updated game snapshot.

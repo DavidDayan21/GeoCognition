@@ -151,6 +151,20 @@ export interface BorderRunGameDto {
   attempts_remaining: number;
   status: GameStatus;
   difficulty: Difficulty;
+  /** Whether the single free hint has been spent. */
+  hint_used: boolean;
+  /** The letter a hint revealed, shown for the rest of the game; null until used. */
+  hint_letter: string | null;
+  /** Whether the single undo has been spent. */
+  undo_used: boolean;
+}
+
+/** Result of requesting the single per-game hint. */
+export interface HintResult {
+  /** Revealed first letter (in the active UI language) of a shortest-path country. */
+  letter: string;
+  /** Always true once granted; mirrors {@link BorderRunGameDto.hint_used}. */
+  used: boolean;
 }
 
 export interface GuessOutcomeDto {

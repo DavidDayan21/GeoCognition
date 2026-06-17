@@ -1,5 +1,5 @@
-import { motion } from "framer-motion";
-import { ArrowRight, X } from "lucide-react";
+import { AnimatePresence, motion } from "framer-motion";
+import { ArrowRight, Flag, Lightbulb, Undo2, X } from "lucide-react";
 import { useEffect, useMemo, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
@@ -65,6 +65,10 @@ export default function BorderRunPage() {
   const start = useBorderRunStore((s) => s.start);
   const guess = useBorderRunStore((s) => s.guess);
   const revealPath = useBorderRunStore((s) => s.revealPath);
+  const hint = useBorderRunStore((s) => s.hint);
+  const undo = useBorderRunStore((s) => s.undo);
+  const hintLetter = useBorderRunStore((s) => s.hintLetter);
+  const hintUnavailable = useBorderRunStore((s) => s.hintUnavailable);
   const reset = useBorderRunStore((s) => s.reset);
 
   const showToast = useToastStore((s) => s.show);
@@ -125,18 +129,28 @@ export default function BorderRunPage() {
 
   const inProgress = game?.status === "in_progress";
   const gameStatus = game?.status;
+  // The route is optimal when every placed guess sits on a shortest path —
+  // i.e. nothing landed off it (orange "detour") or away from it (red
+  // "disconnected").
+  const optimal = !Object.values(colors).some(
+    (c) => c === "detour" || c === "disconnected",
+  );
 
   // Refocus the input whenever it becomes usable again.
   useEffect(() => {
     if (inProgress && !submitting) inputRef.current?.focus();
   }, [inProgress, submitting]);
 
-  // When a game ends, surface the result overlay; on a loss, reveal the path.
+  // When a game ends, surface the result bar and auto-reveal the optimal path
+  // in green for a loss (always) or a win that took a detour — so the player
+  // sees what they missed. An optimal win needs no reveal (it's already green).
   useEffect(() => {
     if (!gameStatus || gameStatus === "in_progress") return;
     setShowResult(true);
-    if (gameStatus === "lost") void revealPath();
-  }, [gameStatus, revealPath]);
+    if (gameStatus === "lost" || (gameStatus === "won" && !optimal)) {
+      void revealPath();
+    }
+  }, [gameStatus, optimal, revealPath]);
 
   function playAgain() {
     if (!game) return;
@@ -183,12 +197,6 @@ export default function BorderRunPage() {
 
   const steps = game ? [game.start, ...game.chain, game.end] : [];
   const ended = game != null && game.status !== "in_progress";
-  // The route is optimal when every placed guess sits on a shortest path —
-  // i.e. nothing landed off it (orange "detour") or away from it (red
-  // "disconnected").
-  const optimal = !Object.values(colors).some(
-    (c) => c === "detour" || c === "disconnected",
-  );
   const pulseRing =
     pulse === "ok"
       ? "ring-2 ring-success"
@@ -260,62 +268,107 @@ export default function BorderRunPage() {
         <>
           <BorderRunMap colors={colors} focus={focus} />
 
-          {/* Once the result overlay is dismissed, keep replay controls handy. */}
-          {ended && !showResult && (
-            <div className="flex flex-col items-center gap-3">
-              <p className="font-display text-2xl text-text">
-                {t(
-                  game.status === "won"
-                    ? "borderRun.win.title"
-                    : "borderRun.lose.title",
-                )}
-              </p>
-              <div className="flex gap-2">
-                <Button variant="secondary" onClick={() => navigate("/")}>
-                  {t("borderRun.changeDifficulty")}
-                </Button>
-                <Button onClick={playAgain}>{t("borderRun.playAgain")}</Button>
-              </div>
-            </div>
-          )}
-
           {!ended && (
-            <form
-              className="mx-auto w-full max-w-md"
-              onSubmit={(event) => {
-                event.preventDefault();
-                void onSubmit();
-              }}
-            >
-              <Input
-                ref={inputRef}
-                value={value}
-                disabled={submitting}
-                placeholder={t("borderRun.input.placeholder")}
-                aria-label={t("borderRun.input.placeholder")}
-                autoComplete="off"
-                autoCorrect="off"
-                spellCheck={false}
-                autoFocus
-                onChange={(event) => setValue(event.target.value)}
-                className={`text-center text-lg transition-shadow ${pulseRing}`}
-              />
-            </form>
+            <div className="mx-auto flex w-full max-w-md flex-col gap-3">
+              <form
+                onSubmit={(event) => {
+                  event.preventDefault();
+                  void onSubmit();
+                }}
+              >
+                <Input
+                  ref={inputRef}
+                  value={value}
+                  disabled={submitting}
+                  placeholder={t("borderRun.input.placeholder")}
+                  aria-label={t("borderRun.input.placeholder")}
+                  autoComplete="off"
+                  autoCorrect="off"
+                  spellCheck={false}
+                  autoFocus
+                  onChange={(event) => setValue(event.target.value)}
+                  className={`text-center text-lg transition-shadow ${pulseRing}`}
+                />
+              </form>
+
+              {/* Single-use helpers: a free hint and one undo per game. */}
+              <div className="flex justify-center gap-2">
+                <Button
+                  variant="secondary"
+                  onClick={() => void hint()}
+                  disabled={game.hint_used || hintUnavailable}
+                  title={
+                    game.hint_used || hintUnavailable
+                      ? t("borderRun.hint.unavailable")
+                      : undefined
+                  }
+                >
+                  <Lightbulb size={16} aria-hidden />
+                  {t("borderRun.hint.button")}
+                </Button>
+                <Button
+                  variant="secondary"
+                  onClick={() => void undo()}
+                  disabled={game.undo_used || game.chain.length === 0}
+                  title={
+                    game.undo_used || game.chain.length === 0
+                      ? t("borderRun.undo.unavailable")
+                      : undefined
+                  }
+                >
+                  <Undo2 size={16} aria-hidden />
+                  {t("borderRun.undo.button")}
+                </Button>
+              </div>
+
+              {hintLetter && (
+                <p
+                  className="text-center text-sm text-text-muted"
+                  role="status"
+                  aria-live="polite"
+                >
+                  {t("borderRun.hint.message", { letter: hintLetter })}
+                </p>
+              )}
+              {hintUnavailable && !hintLetter && (
+                <p
+                  className="text-center text-sm text-text-muted"
+                  role="status"
+                >
+                  {t("borderRun.hint.unavailable")}
+                </p>
+              )}
+            </div>
           )}
 
           {steps.length > 0 && (
             <ChainDisplay steps={steps} colors={colors} nameOf={nameOf} />
           )}
 
-          {ended && (
-            <BorderRunResult
-              open={showResult}
-              game={game}
-              optimal={optimal}
-              onClose={() => setShowResult(false)}
-              onPlayAgain={playAgain}
-              onChangeDifficulty={() => navigate("/")}
-            />
+          {/* End-of-game bottom bar, with a corner button to re-open it once
+              dismissed so the player can study the final map undisturbed. */}
+          <AnimatePresence>
+            {ended && showResult && (
+              <BorderRunResult
+                game={game}
+                optimal={optimal}
+                onPlayAgain={playAgain}
+                onChangeDifficulty={() => navigate("/")}
+                onDismiss={() => setShowResult(false)}
+              />
+            )}
+          </AnimatePresence>
+
+          {ended && !showResult && (
+            <button
+              type="button"
+              onClick={() => setShowResult(true)}
+              aria-label={t("borderRun.showResult")}
+              title={t("borderRun.showResult")}
+              className="fixed bottom-6 right-6 z-40 rounded-card border border-border bg-surface/95 p-3 text-text-muted shadow-lg ease-calm transition-colors duration-150 hover:bg-surface-2 hover:text-text focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
+            >
+              <Flag size={20} aria-hidden />
+            </button>
           )}
         </>
       )}

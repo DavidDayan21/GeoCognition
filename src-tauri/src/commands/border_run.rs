@@ -8,10 +8,12 @@ use rand::rngs::StdRng;
 use rand::{Rng, SeedableRng};
 use tauri::State;
 
-use crate::domain::border_run::game::{BorderRunGame, GuessOutcome};
+use crate::domain::border_run::game::{BorderRunGame, GuessOutcome, HintError, UndoError};
 use crate::domain::border_run::pathfinding::shortest_path;
 use crate::domain::grading::grade_bilingual;
-use crate::domain::models::{BorderRunGameDto, Difficulty, GameStatus, GuessKind, GuessOutcomeDto};
+use crate::domain::models::{
+    BorderRunGameDto, Difficulty, GameStatus, GuessKind, GuessOutcomeDto, HintResult, Language,
+};
 use crate::error::AppError;
 use crate::state::{AppState, BorderRunResources};
 
@@ -41,6 +43,25 @@ pub async fn border_run_guess(
 pub async fn border_run_reveal_path(state: State<'_, AppState>) -> Result<Vec<String>, AppError> {
     let slot = state.border_run.lock().await;
     reveal_path(&state.border_run_resources, &slot)
+}
+
+/// Spends the single free hint, revealing the first letter (in `language`) of
+/// a shortest-path country the player has not yet placed.
+#[tauri::command]
+pub async fn border_run_request_hint(
+    state: State<'_, AppState>,
+    language: Language,
+) -> Result<HintResult, AppError> {
+    let mut slot = state.border_run.lock().await;
+    let mut rng = StdRng::from_os_rng();
+    request_hint(&state.border_run_resources, &mut slot, language, &mut rng)
+}
+
+/// Spends the single undo, removing the last guess and refunding its attempt.
+#[tauri::command]
+pub async fn border_run_undo(state: State<'_, AppState>) -> Result<BorderRunGameDto, AppError> {
+    let mut slot = state.border_run.lock().await;
+    undo(&mut slot)
 }
 
 /// Picks a random pair at `difficulty`, stores a fresh game in `slot`, and
@@ -92,6 +113,70 @@ pub fn reveal_path(
     Ok(shortest_path(&resources.graph, &game.start, &game.end).unwrap_or_default())
 }
 
+/// Grants the active game's single hint. Picks a not-yet-placed shortest-path
+/// country (seeded via `rng`), derives the first letter of its name in
+/// `language`, records it on the game, and returns it.
+pub fn request_hint<R: Rng>(
+    resources: &BorderRunResources,
+    slot: &mut Option<BorderRunGame>,
+    language: Language,
+    rng: &mut R,
+) -> Result<HintResult, AppError> {
+    let game = slot
+        .as_mut()
+        .ok_or_else(|| AppError::NotFound("no active border run game".into()))?;
+    let iso3 = game.use_hint(rng).map_err(hint_error)?;
+    let letter = first_letter(resources, &iso3, language).ok_or_else(|| {
+        AppError::NotFound(format!("no name to derive a hint letter from for {iso3}"))
+    })?;
+    game.record_hint_letter(letter);
+    Ok(HintResult { letter, used: true })
+}
+
+/// Applies the active game's single undo, returning the updated snapshot.
+pub fn undo(slot: &mut Option<BorderRunGame>) -> Result<BorderRunGameDto, AppError> {
+    let game = slot
+        .as_mut()
+        .ok_or_else(|| AppError::NotFound("no active border run game".into()))?;
+    game.use_undo().map_err(undo_error)?;
+    Ok(to_game_dto(game))
+}
+
+/// Maps a [`HintError`] to a user-facing [`AppError`].
+fn hint_error(err: HintError) -> AppError {
+    match err {
+        HintError::AlreadyUsed => AppError::InvalidInput("the hint was already used".into()),
+        HintError::Unavailable => {
+            AppError::NotFound("every shortest-path country is already placed".into())
+        }
+        HintError::NotInProgress => {
+            AppError::InvalidInput("the border run game has already finished".into())
+        }
+    }
+}
+
+/// Maps an [`UndoError`] to a user-facing [`AppError`].
+fn undo_error(err: UndoError) -> AppError {
+    match err {
+        UndoError::AlreadyUsed => AppError::InvalidInput("the undo was already used".into()),
+        UndoError::EmptyChain => AppError::InvalidInput("there is nothing to undo".into()),
+        UndoError::NotInProgress => {
+            AppError::InvalidInput("the border run game has already finished".into())
+        }
+    }
+}
+
+/// First letter (uppercased) of `iso3`'s name in the given language, or `None`
+/// if the country is absent or has an empty name.
+fn first_letter(resources: &BorderRunResources, iso3: &str, language: Language) -> Option<char> {
+    let country = resources.countries.iter().find(|c| c.iso_alpha3 == iso3)?;
+    let name = match language {
+        Language::En => &country.name,
+        Language::Fr => &country.name_fr,
+    };
+    name.chars().next().map(|c| c.to_ascii_uppercase())
+}
+
 /// Fuzzy-matches `input` against every country's English and French name,
 /// returning the ISO alpha-3 of the best match (quality >= 3), or `None`.
 fn resolve_country(resources: &BorderRunResources, input: &str) -> Option<String> {
@@ -120,6 +205,9 @@ fn to_game_dto(game: &BorderRunGame) -> BorderRunGameDto {
         attempts_remaining: game.attempts_remaining(),
         status: game.status,
         difficulty: game.difficulty,
+        hint_used: game.hint_used,
+        hint_letter: game.hint_letter,
+        undo_used: game.undo_used,
     }
 }
 

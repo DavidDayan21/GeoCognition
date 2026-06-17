@@ -2,6 +2,8 @@
 
 use std::collections::{HashSet, VecDeque};
 
+use rand::Rng;
+
 use crate::domain::models::{CountryClassification, Difficulty, GameStatus};
 
 use super::graph::Graph;
@@ -46,6 +48,28 @@ pub enum GuessOutcome {
     },
 }
 
+/// Why the single per-game hint could not be granted.
+#[derive(Debug, Clone, Copy, PartialEq, Eq)]
+pub enum HintError {
+    /// The hint was already spent this game.
+    AlreadyUsed,
+    /// Every shortest-path country is already placed — nothing left to reveal.
+    Unavailable,
+    /// The game has already ended.
+    NotInProgress,
+}
+
+/// Why the single per-game undo could not be applied.
+#[derive(Debug, Clone, Copy, PartialEq, Eq)]
+pub enum UndoError {
+    /// The undo was already spent this game.
+    AlreadyUsed,
+    /// There are no placed guesses to remove.
+    EmptyChain,
+    /// The game has already ended; undo never resurrects a finished game.
+    NotInProgress,
+}
+
 /// In-memory state of one Border Run game.
 pub struct BorderRunGame {
     /// Start country (ISO alpha-3).
@@ -62,6 +86,13 @@ pub struct BorderRunGame {
     pub difficulty: Difficulty,
     /// Every country on any shortest start→end path (green classification).
     pub shortest_path_set: HashSet<String>,
+    /// Whether the single free hint has been spent.
+    pub hint_used: bool,
+    /// The letter revealed by the hint, kept so the UI can show it for the
+    /// rest of the game. `None` until a hint is requested.
+    pub hint_letter: Option<char>,
+    /// Whether the single undo has been spent.
+    pub undo_used: bool,
 }
 
 impl BorderRunGame {
@@ -83,6 +114,9 @@ impl BorderRunGame {
             status: GameStatus::InProgress,
             difficulty,
             shortest_path_set,
+            hint_used: false,
+            hint_letter: None,
+            undo_used: false,
         }
     }
 
@@ -193,5 +227,69 @@ impl BorderRunGame {
             }
         }
         false
+    }
+
+    /// Shortest-path countries a hint may still reveal: those not yet placed.
+    /// Start and end are always placed, so they are excluded along with any
+    /// accepted guess. Sorted, so seeded sampling is deterministic regardless
+    /// of the underlying `HashSet` iteration order.
+    pub fn hintable_countries(&self) -> Vec<&str> {
+        let mut out: Vec<&str> = self
+            .shortest_path_set
+            .iter()
+            .map(String::as_str)
+            .filter(|iso| {
+                *iso != self.start && *iso != self.end && !self.chain.iter().any(|c| c == iso)
+            })
+            .collect();
+        out.sort_unstable();
+        out
+    }
+
+    /// Spends the single free hint, returning the ISO alpha-3 of a randomly
+    /// chosen shortest-path country the player has not yet placed. The caller
+    /// derives the letter to reveal from the country's localized name and
+    /// records it via [`BorderRunGame::record_hint_letter`].
+    ///
+    /// Sampling uses the supplied RNG so tests can seed it. Errors if the game
+    /// has ended, the hint was already used, or no hintable country remains.
+    pub fn use_hint<R: Rng>(&mut self, rng: &mut R) -> Result<String, HintError> {
+        if self.status != GameStatus::InProgress {
+            return Err(HintError::NotInProgress);
+        }
+        if self.hint_used {
+            return Err(HintError::AlreadyUsed);
+        }
+        let candidates = self.hintable_countries();
+        if candidates.is_empty() {
+            return Err(HintError::Unavailable);
+        }
+        let iso3 = candidates[rng.random_range(0..candidates.len())].to_string();
+        self.hint_used = true;
+        Ok(iso3)
+    }
+
+    /// Stores the letter a hint revealed, so the UI can keep showing it for the
+    /// rest of the game. Separate from [`BorderRunGame::use_hint`] because the
+    /// letter depends on country names (and the active language), which live
+    /// outside this pure state machine.
+    pub fn record_hint_letter(&mut self, letter: char) {
+        self.hint_letter = Some(letter);
+    }
+
+    /// Spends the single undo, removing the most recently placed guess and
+    /// refunding its attempt. Returns the removed ISO alpha-3. Errors if the
+    /// game has ended, the undo was already used, or the chain is empty.
+    pub fn use_undo(&mut self) -> Result<String, UndoError> {
+        if self.status != GameStatus::InProgress {
+            return Err(UndoError::NotInProgress);
+        }
+        if self.undo_used {
+            return Err(UndoError::AlreadyUsed);
+        }
+        let removed = self.chain.pop().ok_or(UndoError::EmptyChain)?;
+        self.attempts_used = self.attempts_used.saturating_sub(1);
+        self.undo_used = true;
+        Ok(removed)
     }
 }

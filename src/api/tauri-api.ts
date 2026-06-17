@@ -15,6 +15,8 @@ import type {
   ForgettingPoint,
   GlobalStats,
   GuessOutcomeDto,
+  HintResult,
+  Language,
   QuestionMode,
   QuestionPayload,
   Settings,
@@ -90,4 +92,17 @@ export function borderRunGuess(input: string): Promise<GuessOutcomeDto> {
 /** Reveals one shortest start→end path for the active game (lose screen). */
 export function borderRunRevealPath(): Promise<string[]> {
   return invoke("border_run_reveal_path");
+}
+
+/**
+ * Spends the single free hint, revealing the first letter (in `language`) of a
+ * shortest-path country not yet placed. Rejects if no hint is available.
+ */
+export function borderRunRequestHint(language: Language): Promise<HintResult> {
+  return invoke("border_run_request_hint", { language });
+}
+
+/** Spends the single undo, removing the last guess and refunding its attempt. */
+export function borderRunUndo(): Promise<BorderRunGameDto> {
+  return invoke("border_run_undo");
 }

@@ -1,6 +1,10 @@
-use geocognition_lib::domain::border_run::game::{BorderRunGame, GuessOutcome};
+use geocognition_lib::domain::border_run::game::{
+    BorderRunGame, GuessOutcome, HintError, UndoError,
+};
 use geocognition_lib::domain::border_run::graph::Graph;
 use geocognition_lib::domain::models::{CountryClassification, Difficulty, GameStatus};
+use rand::rngs::StdRng;
+use rand::SeedableRng;
 
 fn country(iso3: &str, borders: &[&str]) -> geocognition_lib::domain::models::Country {
     geocognition_lib::domain::models::Country {
@@ -207,6 +211,91 @@ fn loses_when_the_chain_never_connects_despite_using_every_attempt() {
     );
     assert_eq!(game.status, GameStatus::Lost);
     assert_eq!(game.attempts_remaining(), 0);
+}
+
+#[test]
+fn hint_reveals_an_unplaced_shortest_path_country() {
+    let (mut game, _graph) = new_game(Difficulty::Easy);
+    let mut rng = StdRng::seed_from_u64(7);
+    let iso3 = game.use_hint(&mut rng).expect("hint available");
+    // The revealed country is on the shortest path and not yet placed.
+    assert!(game.shortest_path_set.contains(&iso3));
+    assert_ne!(iso3, "sss");
+    assert_ne!(iso3, "ttt");
+    assert!(!game.chain.contains(&iso3));
+    assert!(game.hint_used);
+}
+
+#[test]
+fn second_hint_is_rejected() {
+    let (mut game, _graph) = new_game(Difficulty::Easy);
+    let mut rng = StdRng::seed_from_u64(1);
+    game.use_hint(&mut rng).expect("first hint");
+    assert_eq!(game.use_hint(&mut rng), Err(HintError::AlreadyUsed));
+}
+
+#[test]
+fn hint_skips_already_placed_shortest_path_countries() {
+    let (mut game, graph) = new_game(Difficulty::Easy);
+    // Place `aaa` (on the shortest path); only `bbb` remains hintable.
+    assert!(matches!(
+        game.submit(Some("aaa"), &graph),
+        GuessOutcome::Accepted { .. }
+    ));
+    let mut rng = StdRng::seed_from_u64(42);
+    assert_eq!(game.use_hint(&mut rng), Ok("bbb".to_string()));
+}
+
+#[test]
+fn hint_is_unavailable_when_no_shortest_path_country_is_left() {
+    let graph = graph();
+    // sss and aaa are adjacent: the shortest path is just {sss, aaa}, so there
+    // is no interior country a hint could ever reveal.
+    let mut game = BorderRunGame::new("sss".into(), "aaa".into(), Difficulty::Easy, &graph);
+    let mut rng = StdRng::seed_from_u64(0);
+    assert_eq!(game.use_hint(&mut rng), Err(HintError::Unavailable));
+    assert!(!game.hint_used, "a failed hint is not spent");
+}
+
+#[test]
+fn undo_removes_the_last_guess_and_refunds_the_attempt() {
+    let (mut game, graph) = new_game(Difficulty::Easy);
+    assert!(matches!(
+        game.submit(Some("aaa"), &graph),
+        GuessOutcome::Accepted { .. }
+    ));
+    assert_eq!(game.attempts_used, 1);
+
+    assert_eq!(game.use_undo(), Ok("aaa".to_string()));
+    assert!(game.chain.is_empty());
+    assert_eq!(game.attempts_used, 0);
+    assert!(game.undo_used);
+}
+
+#[test]
+fn second_undo_is_rejected() {
+    let (mut game, graph) = new_game(Difficulty::Easy);
+    game.submit(Some("aaa"), &graph);
+    game.submit(Some("ppp"), &graph);
+    game.use_undo().expect("first undo");
+    assert_eq!(game.use_undo(), Err(UndoError::AlreadyUsed));
+}
+
+#[test]
+fn undo_with_an_empty_chain_is_rejected() {
+    let (mut game, _graph) = new_game(Difficulty::Easy);
+    assert_eq!(game.use_undo(), Err(UndoError::EmptyChain));
+}
+
+#[test]
+fn undo_on_a_finished_game_is_rejected() {
+    let (mut game, graph) = new_game(Difficulty::Easy);
+    game.submit(Some("aaa"), &graph);
+    assert!(matches!(
+        game.submit(Some("bbb"), &graph),
+        GuessOutcome::Won { .. }
+    ));
+    assert_eq!(game.use_undo(), Err(UndoError::NotInProgress));
 }
 
 #[test]

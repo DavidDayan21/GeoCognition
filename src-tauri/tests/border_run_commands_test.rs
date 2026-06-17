@@ -1,7 +1,11 @@
-use geocognition_lib::commands::border_run::{process_guess, reveal_path, start_game};
+use geocognition_lib::commands::border_run::{
+    process_guess, request_hint, reveal_path, start_game, undo,
+};
 use geocognition_lib::domain::border_run::game::BorderRunGame;
 use geocognition_lib::domain::border_run::pathfinding::shortest_path_length;
-use geocognition_lib::domain::models::{CountryClassification, Difficulty, GameStatus, GuessKind};
+use geocognition_lib::domain::models::{
+    CountryClassification, Difficulty, GameStatus, GuessKind, Language,
+};
 use geocognition_lib::state::BorderRunResources;
 use rand::rngs::StdRng;
 use rand::SeedableRng;
@@ -117,4 +121,53 @@ fn guessing_without_an_active_game_errors() {
     let resources = BorderRunResources::build().expect("resources");
     let mut slot = None;
     assert!(process_guess(&resources, &mut slot, "Spain").is_err());
+}
+
+#[test]
+fn hint_reveals_the_first_letter_in_the_active_language() {
+    let resources = BorderRunResources::build().expect("resources");
+    let mut slot = portugal_to_andorra(&resources);
+    let mut rng = StdRng::seed_from_u64(5);
+
+    // The only shortest-path interior country is Spain, so the hint is
+    // deterministic: "Spain" → 'S' in English, "Espagne" → 'E' in French.
+    let en = request_hint(&resources, &mut slot, Language::En, &mut rng).expect("hint");
+    assert_eq!(en.letter, 'S');
+    assert!(en.used);
+    let game = slot.as_ref().expect("game");
+    assert!(game.hint_used);
+    assert_eq!(game.hint_letter, Some('S'));
+
+    // A second hint on the same game is rejected.
+    assert!(request_hint(&resources, &mut slot, Language::En, &mut rng).is_err());
+
+    // A fresh game in French reveals the French first letter.
+    let mut slot_fr = portugal_to_andorra(&resources);
+    let fr = request_hint(&resources, &mut slot_fr, Language::Fr, &mut rng).expect("hint");
+    assert_eq!(fr.letter, 'E');
+}
+
+#[test]
+fn undo_removes_the_last_guess_and_refunds_the_attempt() {
+    let resources = BorderRunResources::build().expect("resources");
+    let mut slot = portugal_to_andorra(&resources);
+
+    // Place a country, then undo it.
+    process_guess(&resources, &mut slot, "Australia").expect("guess");
+    assert_eq!(slot.as_ref().expect("game").attempts_used, 1);
+
+    let dto = undo(&mut slot).expect("undo");
+    assert!(dto.chain.is_empty());
+    assert_eq!(dto.attempts_used, 0);
+    assert!(dto.undo_used);
+
+    // A second undo is rejected.
+    assert!(undo(&mut slot).is_err());
+}
+
+#[test]
+fn undo_with_an_empty_chain_errors() {
+    let resources = BorderRunResources::build().expect("resources");
+    let mut slot = portugal_to_andorra(&resources);
+    assert!(undo(&mut slot).is_err());
 }

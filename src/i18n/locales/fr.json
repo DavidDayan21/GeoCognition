@@ -48,28 +48,33 @@
     "retry": "Réessayer",
     "route": "Itinéraire",
     "resetZoom": "Réinitialiser la vue",
-    "attempts": "Essais",
     "attemptsRemaining_one": "{{count}} essai restant",
     "attemptsRemaining_other": "{{count}} essais restants",
     "input": {
       "placeholder": "Tapez un pays…",
-      "submit": "Valider la proposition",
-      "accepted": "Ajouté à votre itinéraire.",
       "notRecognized": "Pays non reconnu",
       "alreadyInChain": "{{country}} est déjà dans votre itinéraire"
     },
+    "hint": {
+      "button": "Indice",
+      "message": "Indice : un pays de l'itinéraire le plus court commence par {{letter}}.",
+      "unavailable": "Aucun indice disponible — vous êtes déjà sur l'itinéraire optimal."
+    },
+    "undo": {
+      "button": "Annuler",
+      "unavailable": "Aucune annulation disponible."
+    },
     "playAgain": "Rejouer",
     "changeDifficulty": "Changer de difficulté",
+    "dismissResult": "Masquer les résultats",
+    "showResult": "Afficher les résultats",
     "downgraded": "Aucun itinéraire à cette difficulté — passage à une difficulté plus facile.",
     "win": {
-      "title": "Connecté !",
-      "attempts": "{{used}} essais sur {{limit}} utilisés",
-      "optimal": "Vous avez trouvé l'itinéraire le plus court !",
-      "withDetour": "Relié — avec un détour ou deux."
+      "optimal": "Connecté ! Vous avez trouvé un itinéraire optimal.",
+      "withDetour": "Connecté ! Itinéraire optimal affiché en vert."
     },
     "lose": {
-      "title": "Plus d'essais",
-      "reveal": "L'itinéraire le plus court est révélé en vert sur la carte."
+      "message": "Plus d'essais. Itinéraire optimal affiché en vert."
     }
   },
   "practice": {
